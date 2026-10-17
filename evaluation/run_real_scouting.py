@@ -247,8 +247,10 @@ def prepare():
     prompts.update({f"review-{i}": REVIEW_PROMPT for i in (1, 2)})
     write_json(OUTPUT / "setup.json", {
         "boundary": verify_boundary(), "design": frozen_identity(), "prompts": prompts,
-        "authorization": {"basis": "Current user requests twelve roles; one replacement for v3 prompt refusal requires separate approval before prepare",
+        "authorization": {"basis": "Current user requests twelve roles and explicitly approved one replacement for v3 prompt refusal",
                           "sessions": 12, "aggregate_token_ceiling": 12000000, "aggregate_wall_seconds": 2160,
+                          "including_retained_failure": {"attempts": 13, "token_ceiling": 12024298,
+                                                         "session_wall_seconds": 2173.970},
                           "monetary_cost": "UNAVAILABLE; normal authenticated service accounting; no dollar cap specified",
                           "retry_authority": False, "merge_authority": False}})
 

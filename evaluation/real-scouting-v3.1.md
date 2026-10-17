@@ -13,9 +13,9 @@ capabilities still fail closed. No host flags, qualification, source/variant
 bytes, substantive question, budget or review criteria change. Do not rerun
 host probes. All [v3 requirements](real-scouting-v3.md) otherwise remain.
 
-One fresh replacement needs explicit approval because v3 froze twelve attempts
-with no retries. Before approval, no further paid session may launch. If approved,
-run exactly two fresh curators, eight audits and two reviewers under new neutral
+The user explicitly approved one replacement after reviewing this correction
+and its aggregate ceilings; v3 originally froze twelve attempts with no retries.
+Run exactly two fresh curators, eight audits and two reviewers under new neutral
 `-v3.1` work/output roots, without old curator interpretations. This is twelve
 remaining sessions plus the retained 13.970-second, 24,298-token failed attempt:
 at most **13 attempts / 12,024,298 cumulative tokens / 2,173.970 session seconds**.
