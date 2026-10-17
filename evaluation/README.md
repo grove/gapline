@@ -126,6 +126,14 @@ a large benchmark a prerequisite for trying the first skill.
 
 ## Compare optional scouting and verification refinements (#6 / #7)
 
+The [larger real-repository attempt](results/2026-10-17-real-scouting/README.md)
+retains four exact public snapshots and the [new protocol](real-scouting-v1.md),
+but stopped before audits: its first expectation-curator session exceeded the
+frozen token ceiling and the host inventory exceeded the declared restriction.
+Decision: **INCONCLUSIVE**; zero matched audits or blinded reviews. Production
+is unchanged, #6 remains open, and #7 remains closed. This is a preflight blocker
+record, not another negative scouting-quality comparison.
+
 The [frozen four-way protocol](refinements-v1.md), [fresh synthetic cohort](cohorts/refinements-1/README.md), and [20-audit record with blinded judgments](results/2026-10-17-refinements/README.md) distinguish original, scouting-only, verification-only, and combined instructions. Decision: **REVERT** the added scouting guidance; **SIMPLIFY** verification to the useful setup/support/refutation aid. No scouting advantage was demonstrated on these compact cases; reviewers found modest handoff gains and many ties. The final shorter wording was not rerun. Larger budget-constrained scouting and measured human developer effort remain unqualified.
 
 The [pg-trickle field observations](https://github.com/grove/gapline/issues/6) are **previously seen, pre-scoped teaching examples**. They suggested the consequence/boundary heuristic but do not establish unprompted discovery. The [verification handoffs](https://github.com/grove/gapline/issues/7) were enhanced in subsequent triage, not a controlled improvement experiment.

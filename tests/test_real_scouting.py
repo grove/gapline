@@ -4,9 +4,10 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
-from run_real_scouting import COHORT, SCHEDULE, anonymize, cases, supply
+from run_real_scouting import COHORT, SCHEDULE, anonymize, cases, freeze, supply
 from run_pilot import identity
 
 
@@ -48,3 +49,15 @@ class RealScoutingTests(unittest.TestCase):
         self.assertIn("a.py:123: durable write missing. PROPOSED — NOT RUN.", result)
         for hidden in ("Risk-guided", "Gapline", "12 inspection calls", "trial-02"):
             self.assertNotIn(hidden, result)
+
+    def test_over_budget_curator_cannot_be_promoted_to_frozen_expectations(self):
+        import json
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            for suffix in ("report.md", "host.json"):
+                (output / f"curator-1-{suffix}").write_text("unaccepted")
+            (output / "curator-1-run.json").write_text(json.dumps({
+                "status": "COMPLETED", "token_budget_met": False}))
+            with patch("run_real_scouting.OUTPUT", output), self.assertRaisesRegex(ValueError, "unqualified"):
+                freeze()
+            self.assertFalse((output / "frozen.json").exists())

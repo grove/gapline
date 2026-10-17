@@ -1,0 +1,33 @@
+{
+  "thread_id": "01a149db-d28d-73d1-88b0-bc3b1c939b8a",
+  "turn_contexts": [
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "low",
+      "approval_policy": "never",
+      "sandbox_policy": {
+        "type": "read-only"
+      }
+    }
+  ],
+  "base_sha256": "3c58c75398ea3ea0981f8a7699134b37df6f4e78abe015ab97461ceb54bf67bc",
+  "developer_sha256_normalized": "4343cd18de51f6e220c9ee8f89ebc9355b92425a01c305b52b8be1476f2c71ab",
+  "experimental_scout_in_host_instructions": false,
+  "expectations_in_host_instructions": false,
+  "available_tool_names": [
+    "apply_patch",
+    "clock__curr_time",
+    "create_goal",
+    "get_goal",
+    "list_mcp_resource_templates",
+    "list_mcp_resources",
+    "mcp__inspection__inspect",
+    "read_mcp_resource",
+    "update_goal"
+  ],
+  "tool_names": [
+    "clock__curr_time",
+    "exec",
+    "mcp__inspection__inspect"
+  ]
+}

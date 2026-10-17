@@ -148,6 +148,12 @@ def freeze():
             path = OUTPUT / f"curator-{curator}-{suffix}"
             if not path.is_file():
                 raise ValueError("expectation session or host proof missing")
+        record = json.loads((OUTPUT / f"curator-{curator}-run.json").read_text())
+        if (record["status"] != "COMPLETED" or record["token_budget_met"] is not True
+                or not 0 < record["inspection_calls"] <= 12 or record["forbidden_activity"]
+                or record["before"] != record["after"]):
+            raise ValueError("unqualified expectation session cannot be frozen")
+        host_record(record)
         shutil.copyfile(OUTPUT / f"curator-{curator}-report.md", COHORT / f"expectations-{curator}.md")
     if (OUTPUT / "frozen.json").exists():
         raise ValueError("already frozen")
