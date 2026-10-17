@@ -1,0 +1,8 @@
+2026-10-17T12:59:11.239846Z ERROR codex_core::tools::router: error=resources/list failed: resources/list failed for `inspection`: Mcp error: -32601: unsupported method
+2026-10-17T12:59:11.242191Z ERROR codex_core::tools::router: error=resources/templates/list failed: resources/templates/list failed for `inspection`: Mcp error: -32601: unsupported method
+2026-10-17T12:59:11.244231Z ERROR codex_core::tools::router: error=resources/read failed: resources/read failed for `inspection` (file:///private/tmp/gapline-host-capabilities-1/repository/protected.txt): Mcp error: -32601: unsupported method
+2026-10-17T12:59:11.245679Z ERROR codex_core::tools::router: error=resources/read failed: resources/read failed for `inspection` (file:///private/tmp/gapline-host-capabilities-1/outside/canary.txt): Mcp error: -32601: unsupported method
+2026-10-17T12:59:11.247048Z ERROR codex_core::tools::router: error=resources/read failed: resources/read failed for `inspection` (file:///private/tmp/gapline-host-capabilities-1/repository/../outside/canary.txt): Mcp error: -32601: unsupported method
+2026-10-17T12:59:11.248421Z ERROR codex_core::tools::router: error=resources/read failed: unknown MCP server 'not-configured'
+2026-10-17T12:59:13.080216Z ERROR codex_core::tools::router: error=patch rejected: writing is blocked by read-only sandbox; rejected by user approval settings
+2026-10-17T12:59:18.124315Z ERROR codex_core::tools::router: error=patch rejected: writing is blocked by read-only sandbox; rejected by user approval settings

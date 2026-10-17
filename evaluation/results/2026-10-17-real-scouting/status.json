@@ -1,0 +1,77 @@
+{
+  "decision": "INCONCLUSIVE",
+  "audit_attempts": 0,
+  "curator_attempts": 1,
+  "reviewer_attempts": 0,
+  "production_changed": false,
+  "issue_6": "OPEN",
+  "issue_7": "CLOSED",
+  "active_blockers": [
+    "Curator input+output 346289 exceeds frozen 250000 instruction ceiling",
+    "Actual available tool inventory exceeds protocol allowlist; effective denial/scope of additional APIs unqualified"
+  ],
+  "previous_git_blocker": "RESOLVED by subsequent explicit user authorization",
+  "no_retries_launched": true,
+  "sessions": [
+    {
+      "id": "curator-1",
+      "status": "REJECTED AFTER MODEL COMPLETED",
+      "elapsed_seconds": 74.439,
+      "inspection_calls": 12,
+      "usage": {
+        "input_tokens": 343989,
+        "cached_input_tokens": 271616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2300,
+        "reasoning_output_tokens": 32
+      },
+      "token_budget_met": false
+    },
+    {
+      "id": "curator-2",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r1-A",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r1-B",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r2-B",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r2-A",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r3-B",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r3-A",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r4-A",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "r4-B",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "review-1",
+      "status": "NOT RUN; stopped on preflight blockers"
+    },
+    {
+      "id": "review-2",
+      "status": "NOT RUN; stopped on preflight blockers"
+    }
+  ],
+  "publication": "BLOCKED; automatic approval review rejected branch push; separate approval needed",
+  "ci": "NOT RUN; branch unpublished"
+}

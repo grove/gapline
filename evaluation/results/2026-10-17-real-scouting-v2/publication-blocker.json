@@ -1,0 +1,9 @@
+{
+  "action": "git push origin evaluate/real-scouting",
+  "status": "REJECTED BY AUTOMATIC APPROVAL REVIEW; NOT EXECUTED",
+  "reason": "This pushes a new commit to the remote PR, but the user approved the 1M-token change—not publication of this amended commit—so separate remote-publication authorization is required.",
+  "publication": "V2 NOT PUBLISHED; PR #13 remains at 3cfb21f",
+  "ci": "NOT RUN for v2; prior published CI remains passing",
+  "workaround_attempted": false,
+  "required_approval": "Push the locally committed 1M amendment and v2 preflight evidence to evaluate/real-scouting, updating PR #13."
+}

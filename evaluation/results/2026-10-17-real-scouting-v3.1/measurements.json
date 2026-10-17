@@ -1,0 +1,199 @@
+{
+  "decision": "INCONCLUSIVE",
+  "runs": [
+    {
+      "id": "curator-1",
+      "status": "COMPLETED",
+      "seconds": 78.062,
+      "calls": 10,
+      "errors": 2,
+      "input": 444465,
+      "cached": 376320,
+      "output": 2941,
+      "total": 447406
+    },
+    {
+      "id": "curator-2",
+      "status": "COMPLETED",
+      "seconds": 86.61,
+      "calls": 12,
+      "errors": 3,
+      "input": 381817,
+      "cached": 335104,
+      "output": 2557,
+      "total": 384374
+    },
+    {
+      "id": "r1-A",
+      "status": "COMPLETED",
+      "seconds": 58.717,
+      "calls": 12,
+      "errors": 3,
+      "input": 273757,
+      "cached": 238848,
+      "output": 1473,
+      "total": 275230
+    },
+    {
+      "id": "r1-B",
+      "status": "COMPLETED",
+      "seconds": 55.242,
+      "calls": 12,
+      "errors": 3,
+      "input": 359388,
+      "cached": 322432,
+      "output": 1446,
+      "total": 360834
+    },
+    {
+      "id": "r2-B",
+      "status": "COMPLETED",
+      "seconds": 53.633,
+      "calls": 12,
+      "errors": 3,
+      "input": 394852,
+      "cached": 320896,
+      "output": 1235,
+      "total": 396087
+    },
+    {
+      "id": "r2-A",
+      "status": "TIMEOUT",
+      "seconds": 180.018,
+      "calls": 4,
+      "errors": 2,
+      "input": null,
+      "cached": null,
+      "output": null,
+      "total": null
+    },
+    {
+      "id": "r3-B",
+      "status": "NOT RUN",
+      "reason": "Stopped after r2-A timeout; no retries"
+    },
+    {
+      "id": "r3-A",
+      "status": "NOT RUN",
+      "reason": "Stopped after r2-A timeout; no retries"
+    },
+    {
+      "id": "r4-A",
+      "status": "NOT RUN",
+      "reason": "Stopped after r2-A timeout; no retries"
+    },
+    {
+      "id": "r4-B",
+      "status": "NOT RUN",
+      "reason": "Stopped after r2-A timeout; no retries"
+    },
+    {
+      "id": "review-1",
+      "status": "NOT RUN",
+      "reason": "Stopped after r2-A timeout; no retries"
+    },
+    {
+      "id": "review-2",
+      "status": "NOT RUN",
+      "reason": "Stopped after r2-A timeout; no retries"
+    }
+  ],
+  "totals": {
+    "A": {
+      "attempts": 2,
+      "complete": 1,
+      "seconds": 238.735,
+      "calls": 16,
+      "errors": 5,
+      "input": 273757,
+      "cached": 238848,
+      "output": 1473,
+      "total": 275230,
+      "usage_complete": false
+    },
+    "B": {
+      "attempts": 2,
+      "complete": 2,
+      "seconds": 108.875,
+      "calls": 24,
+      "errors": 6,
+      "input": 754240,
+      "cached": 643328,
+      "output": 2681,
+      "total": 756921,
+      "usage_complete": true
+    },
+    "curators": {
+      "attempts": 2,
+      "complete": 2,
+      "seconds": 164.672,
+      "calls": 22,
+      "errors": 5,
+      "input": 826282,
+      "cached": 711424,
+      "output": 5498,
+      "total": 831780,
+      "usage_complete": true
+    },
+    "reviewers": {
+      "attempts": 0,
+      "complete": 0,
+      "seconds": 0,
+      "calls": 0,
+      "errors": 0,
+      "input": 0,
+      "cached": 0,
+      "output": 0,
+      "total": 0,
+      "usage_complete": true
+    },
+    "all_attempted": {
+      "attempts": 6,
+      "complete": 5,
+      "seconds": 512.282,
+      "calls": 62,
+      "errors": 16,
+      "input": 1854279,
+      "cached": 1593600,
+      "output": 9652,
+      "total": 1863931,
+      "usage_complete": false
+    }
+  },
+  "historical_preparation": [
+    {
+      "directory": "2026-10-17-real-scouting",
+      "seconds": 74.439,
+      "input": 343989,
+      "cached": 271616,
+      "output": 2300,
+      "total": 346289
+    },
+    {
+      "directory": "2026-10-17-real-scouting-v2",
+      "seconds": 11.625,
+      "input": 23230,
+      "cached": 19072,
+      "output": 150,
+      "total": 23380
+    },
+    {
+      "directory": "2026-10-17-host-capabilities",
+      "seconds": 33.726,
+      "input": 79245,
+      "cached": 72320,
+      "output": 872,
+      "total": 80117
+    },
+    {
+      "directory": "2026-10-17-real-scouting-v3",
+      "seconds": 13.97,
+      "input": 24058,
+      "cached": 17664,
+      "output": 240,
+      "total": 24298
+    }
+  ],
+  "monetary_cost": "UNAVAILABLE",
+  "controller_usage": "UNAVAILABLE"
+}

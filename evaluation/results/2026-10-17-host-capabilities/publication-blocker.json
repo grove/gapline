@@ -1,0 +1,9 @@
+{
+  "action": "git push origin evaluate/real-scouting",
+  "status": "REJECTED BY AUTOMATIC APPROVAL REVIEW; NOT EXECUTED",
+  "reason": "The command would push a new host-qualification commit to PR #13, but the user authorized investigating the blocker—not publication of this new commit; separate remote-publication approval is required.",
+  "publication": "NOT PERFORMED for host qualification work",
+  "ci": "NOT RUN for new work; 54 local regression checks pass",
+  "workaround_attempted": false,
+  "required_approval": "Publish the local host-qualification commits to evaluate/real-scouting, updating PR #13."
+}

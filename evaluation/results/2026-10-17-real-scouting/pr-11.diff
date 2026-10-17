@@ -1,0 +1,103 @@
+diff --git a/README.md b/README.md
+index ec850c5..0fe28da 100644
+--- a/README.md
++++ b/README.md
+@@ -63,6 +63,10 @@ The host must already authorize access to the target. Gapline supports file/sear
+ 
+ These are optional investigation lenses. Complexity, churn, coverage, duplicate text, and design-principle names can suggest questions; they do not establish defects. Independent validation, different programming styles, and deliberately deferred capabilities can be appropriate.
+ 
++## Risk-guided scouting and verification handoffs
++
++For broad audits, Gapline now favors leads tied to an existing promise or consequential invariant at a reachable boundary—rather than ranking files by complexity or treating a three-finding ceiling as a quota. When a source-level concern remains unproven, its proposed next action aims to distinguish a real failure from a valid alternative, including the necessary observable result. Straightforward documentation contradictions do not require unnecessary runtime experiments. The audit remains read-only; verification steps are **PROPOSED — NOT RUN**. These instructions are candidates for evaluation under [#6](https://github.com/grove/gapline/issues/6) and [#7](https://github.com/grove/gapline/issues/7), not proof of increased effectiveness.
++
+ ## Optional subagent investigations
+ 
+ Gapline works with one coding agent by default. On hosts that already support subagents, a larger audit may delegate **independent, bounded** investigations after the initial Scout step. Usually start with no more than two workers, each assigned a specific question and shared total budget. All workers remain read-only; no project execution or file changes become permitted through delegation.
+diff --git a/evaluation/README.md b/evaluation/README.md
+index 470757f..c1c22da 100644
+--- a/evaluation/README.md
++++ b/evaluation/README.md
+@@ -124,6 +124,12 @@ cohort before expanding the product. Keep the fuller comparison in
+ [IMPLEMENTATION.md](../IMPLEMENTATION.md) as a later check rather than making
+ a large benchmark a prerequisite for trying the first skill.
+ 
++## Compare optional scouting and verification refinements (#6 / #7)
++
++The [pg-trickle field observations](https://github.com/grove/gapline/issues/6) are **previously seen, pre-scoped teaching examples**. They suggested the consequence/boundary heuristic but do not establish unprompted discovery. The [verification handoffs](https://github.com/grove/gapline/issues/7) were enhanced in subsequent triage, not a controlled improvement experiment.
++
++On fresh cases, keep the baseline skill text/answers withheld from the worker and compare against the candidate at a matched total budget. Include a consequential cross-boundary case, an apparently suspicious but valid design, a clean/no-findings case, an ambiguous requirement, and a direct documentation contradiction. For #6, assess selected probes, supported value, missed risks, false leads and cost—**not** the number of findings. For #7, have independent reviewers compare anonymized next actions for falsifiability, alternative outcomes, correct contract and actual developer effort. Penalize unnecessary test plans for obvious documentation mismatches. Record negative and inconclusive results, and revert the added wording if value does not justify its overhead.
++
+ ## Optional delegation comparison
+ 
+ To qualify multi-agent behavior, add an arm **C: Gapline with selective host-native delegation** to the normal single-agent Gapline arm. Use fresh independent cases, the same repository snapshot, question, access controls, and **combined** wall-clock/token/tool budget. Record actual number of workers, questions, handoff scopes, overlapping reads, total costs, attempts to execute or write, and whether the coordinator directly checked decisive evidence. A worker report is not proof of a claim or of permission compliance.
+diff --git a/gapline-audit/SKILL.md b/gapline-audit/SKILL.md
+index 5165dc1..a5da6f5 100644
+--- a/gapline-audit/SKILL.md
++++ b/gapline-audit/SKILL.md
+@@ -36,6 +36,7 @@ The coordinator should verify material source references directly, resolve disag
+ 
+ 1. **Establish scope and expected behavior.** Locate the relevant public interface, documentation, user requirement, tests, and caller constraints. Identify where the expectation came from. A test name, AI-generated plan, or existing implementation is not automatically an authoritative requirement.
+ 2. **Scout for consequential leads.** Trace selected behavior into its implementation and nearby tests. Prioritize specific promises, boundaries, state transitions, and assertion quality. Use complexity, churn, coverage, and duplicate text only to direct attention.
++   When choosing among leads, prefer a **current user promise or consequential invariant**, a reachable interaction/entry-point boundary, and an observation likely to distinguish success from failure within the budget. For a known fix on one path, consider whether another live entry point has equivalent protection. Do not infer that a broad survey found a risk unprompted when the user named it. Skip weak stylistic leads; do not force three findings.
+ 3. **Probe a falsifiable claim.** Read exact supporting evidence and actively seek **counterevidence**: caller preconditions, alternate paths, configuration overrides, existing protection, distinct policies, intentional trust-boundary checks, or absent requirements. Seek the smallest observation that distinguishes competing explanations.
+ 4. **Choose the narrowest conclusion.** A direct source/document contradiction can be demonstrated. Reading code does not reproduce a runtime failure. An assertion gap in selected tests does not establish a production defect or a suite-wide omission. Keep unresolved concerns as hypotheses, or omit them when too weak to help.
+ 5. **Prioritize and stop.** Keep the most useful supported observations and clearly qualified hypotheses with a meaningful consequence and achievable next step. Withdraw refuted leads. Return a no-findings result when nothing survives scrutiny; never fill the report with generic style advice.
+@@ -62,6 +63,12 @@ Trace an error or retry path through callers, cleanup, and transaction boundarie
+ 
+ Describe a relevant change or operational scenario, the dependency or policy relationship that makes it difficult, and its consequence. Investigate whether mechanisms such as presentation or storage affect a substantive decision. For repeated logic, distinguish one shared obligation drifting between live paths from different policies or independent trust-boundary validation. Consider intentional design and scope before recommending a small local change. A principle name, directory layout, long function, or duplicate block is not sufficient evidence.
+ 
++## Verification-ready next actions
++
++For a consequential **SUPPORTED** finding or **HYPOTHESIS** requiring further proof, propose the **smallest discriminating observation**: the relevant starting conditions/trigger, what to observe (the oracle), the expected result if the concern is real, and an alternative result or counterexample that would weaken or refute it. For concurrency and recovery, specify ordering, durable identities/frontiers, and any hidden self-repair that would invalidate the comparison **only when material**. For clock-dependent behavior, first establish the intended freshness contract. This is a thinking aid, **not a mandatory report form or additional finding quota**.
++
++A direct source/document contradiction can warrant a straightforward documentation correction without an expensive runtime experiment. If the contract is unknown, propose clarifying it rather than inventing a test expectation. All executable verification remains **PROPOSED — NOT RUN**; do not execute, install, edit, or create tickets during an audit. Favor short, developer-usable next actions over long testing plans.
++
+ ## Evidence levels
+ 
+ - **DEMONSTRATED:** A direct, specific source-level contradiction, or reproducible observed behavior with provenance. Runtime demonstrations require actual authorized execution receipts; **this read-only skill cannot produce those**. If inspecting an existing receipt, identify its source, candidate, scope, and limitations rather than claiming a new run.
+diff --git a/gapline-audit/references/investigation.md b/gapline-audit/references/investigation.md
+index d25e89c..a460908 100644
+--- a/gapline-audit/references/investigation.md
++++ b/gapline-audit/references/investigation.md
+@@ -2,6 +2,14 @@
+ 
+ Use the recipe that helps resolve the current question. These are optional reasoning aids; they do not add required report sections, new evidence states, or permission to execute anything.
+ 
++## Picking a promising probe (optional)
++
++When the task is broad, favor leads where an existing promise or invariant meets a reachable boundary, multiple entry points, or recovery transitions, and a small source observation could change the conclusion. For a named prior fix, check whether other applicable entry points inherit its protection. Prioritize the user's concerns first; do not claim spontaneous discovery of a lead provided in the prompt. A style smell without a traceable consequence stays low priority. The lead ceiling is not a quota.
++
++## Making the next observation discriminating (optional)
++
++For an unresolved consequential claim, identify the relevant precondition and trigger, the observation that would adjudicate it, and **both** a result supporting the concern and a result contradicting it. For retry/transaction questions, record necessary ordering, identity and persistent state; rule out incidental self-repair only if it would mask the failure. For clock-dependent behavior, check what freshness is actually promised. Do not invent a detailed runtime experiment if a source/document contradiction is already demonstrable or the contract is unspecified. Executable probes remain **PROPOSED — NOT RUN**.
++
+ ## 1. Consequential coupling
+ 
+ Start with a requested change, an observed change, or an operational scenario that matters. Trace the policy it affects and the other behavior connected by a dependency or shared representation.
+diff --git a/tests/test_skill.py b/tests/test_skill.py
+index 14fe258..3e3879d 100644
+--- a/tests/test_skill.py
++++ b/tests/test_skill.py
+@@ -83,6 +83,22 @@ def test_optional_delegation_preserves_limits_and_review(self):
+             with self.subTest(term=term):
+                 self.assertIn(term.lower(), self.skill.lower())
+ 
++    def test_scout_and_verification_guidance_keeps_scope_bounded(self):
++        # Presence-only guard; effectiveness requires independent matched trials.
++        for term in (
++            "current user promise",
++            "reachable interaction/entry-point boundary",
++            "another live entry point",
++            "do not force three findings",
++            "smallest discriminating observation",
++            "counterexample",
++            "intended freshness contract",
++            "not a mandatory report form",
++            "PROPOSED — NOT RUN",
++        ):
++            with self.subTest(term=term):
++                self.assertIn(term.lower(), self.skill.lower())
++
+     def test_one_canonical_skill_entry_point(self):
+         self.assertFalse((ROOT / "SKILL.md").exists(), "A root skill would shadow the canonical package")
+         self.assertEqual(list(ROOT.glob("*/SKILL.md")), [SKILL_PATH])

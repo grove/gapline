@@ -1,0 +1,10 @@
+{
+  "action": "git push -u origin evaluate/real-scouting",
+  "status": "REJECTED BY AUTOMATIC APPROVAL REVIEW; NOT EXECUTED",
+  "reason": "Pushing the branch publishes a remote mutation, but the user authorized local Git metadata writes—not this specific push—and the blocked evaluation produced no justified improvement requiring a PR.",
+  "publication": "NOT PERFORMED",
+  "pull_request": "NOT CREATED",
+  "ci": "NOT RUN; publication blocked",
+  "workaround_attempted": false,
+  "required_approval": "Publish the local evaluate/real-scouting evidence branch and open an evidence-only PR."
+}

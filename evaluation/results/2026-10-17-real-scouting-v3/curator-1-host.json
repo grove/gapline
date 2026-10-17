@@ -1,0 +1,48 @@
+{
+  "thread_id": "01a14a03-7079-7330-a4c5-c1a2c6e076df",
+  "turn_contexts": [
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "low",
+      "approval_policy": "never",
+      "sandbox_policy": {
+        "type": "read-only"
+      },
+      "permission_profile": {
+        "type": "managed",
+        "file_system": {
+          "type": "restricted",
+          "entries": [
+            {
+              "path": {
+                "type": "special",
+                "value": {
+                  "kind": "root"
+                }
+              },
+              "access": "read"
+            }
+          ]
+        },
+        "network": "restricted"
+      }
+    }
+  ],
+  "base_sha256": "3c58c75398ea3ea0981f8a7699134b37df6f4e78abe015ab97461ceb54bf67bc",
+  "developer_sha256_normalized": "4343cd18de51f6e220c9ee8f89ebc9355b92425a01c305b52b8be1476f2c71ab",
+  "experimental_scout_in_host_instructions": false,
+  "expectations_in_host_instructions": false,
+  "available_tool_names": [
+    "apply_patch",
+    "clock__curr_time",
+    "list_mcp_resource_templates",
+    "list_mcp_resources",
+    "mcp__inspection__inspect",
+    "read_mcp_resource"
+  ],
+  "tool_names": [
+    "exec"
+  ],
+  "forbidden_dispatch": false,
+  "mcp_calls": []
+}

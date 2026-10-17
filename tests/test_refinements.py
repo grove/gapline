@@ -15,6 +15,20 @@ from review_refinements import mask
 
 
 class RefinementTests(unittest.TestCase):
+    def test_inspection_line_bounds_reach_beyond_truncation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "large.txt").write_text("x" * 80001 + "\nsecond\nthird\n")
+            inspector = Inspector(root)
+            self.assertIn("[TRUNCATED", inspector.inspect("read", ["large.txt"]))
+            self.assertEqual(inspector.inspect("read", ["large.txt"], start_line=2, end_line=2),
+                             "large.txt:2: second")
+            for bounds in ({"start_line": 0}, {"start_line": 3, "end_line": 2}, {"start_line": True}):
+                with self.assertRaises(ValueError):
+                    inspector.inspect("read", ["large.txt"], **bounds)
+            with self.assertRaises(ValueError):
+                inspector.inspect("search", query="second", end_line=2)
+
     def test_review_mask_preserves_finding_and_removes_origin_and_cost(self):
         finding = "10/10 becomes 50%; alternative is 100%. PROPOSED — NOT RUN."
         report = "Gapline audit\nBudget used: 3 inspection calls, 100 tokens\n" + finding

@@ -1,0 +1,9 @@
+{
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "cli": "codex-cli 0.163.0",
+  "binary_sha256": "8813367285524ac798dd96d1b071aea30d58708c7226fd236cd275cf1cfdee31",
+  "fixture_data": "Only two synthetic text files; sibling marker omitted from worker prompt. No real secrets copied or targeted.",
+  "auth": "Normal existing CLI inference authentication only; credentials not inspected or exported.",
+  "audit_sessions_launched": 0,
+  "production_changed": false
+}

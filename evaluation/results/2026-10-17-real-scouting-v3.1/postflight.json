@@ -1,0 +1,147 @@
+{
+  "boundary": {
+    "qualification": {
+      "README.md": {
+        "sha256": "312a3b2b5d6036944588236e659861a9e9e3da41e8b8031a5f51d74e30ad355f",
+        "size_bytes": 9245
+      },
+      "artifacts.json": {
+        "sha256": "8ecb572ec6c0dd36dee7f181fb18533bbe2e5e7c5e84b8a181d1497396661c84",
+        "size_bytes": 2018
+      },
+      "assess.py": {
+        "sha256": "da1c10660b2ac759c0e671d5048b5fac4ee6e90f8bca801cadbbeb980ecdf60a",
+        "size_bytes": 4764
+      },
+      "assessment.json": {
+        "sha256": "14dd1bc3e60974ef15beecca903a3ad3b4bb1594181a508c7e28df4738a6dbee",
+        "size_bytes": 1097
+      },
+      "development-checks.txt": {
+        "sha256": "5a2eb065e1446a075fba930bce3d883a3edd20c126a8261ad00a3b877a444e35",
+        "size_bytes": 8220
+      },
+      "environment.json": {
+        "sha256": "d645357ff18bdbd582c76170e310747c598813b446fc281656d08f045136c046",
+        "size_bytes": 470
+      },
+      "file-identities.json": {
+        "sha256": "c938aad42a7ca03714b5b11d12a7aba98380795b834086a27a2d70c57f3da0c2",
+        "size_bytes": 639
+      },
+      "host-events.jsonl": {
+        "sha256": "1d90e82b61655d7d8bed59162fe389239760c47a89f0c7cbdf7cc2eb4611fc96",
+        "size_bytes": 28461
+      },
+      "preflight.json": {
+        "sha256": "6de7af3aa880812721d1c3c64a9c54b0e0cd6f6fae4b1860c4ce6603cae16f84",
+        "size_bytes": 1189
+      },
+      "probe-events.jsonl": {
+        "sha256": "ea88064f7f4d96d21b363260bf6b094af40ab7e56f7ba209a7864d1d436b3ca4",
+        "size_bytes": 8084
+      },
+      "probe-input.json": {
+        "sha256": "c6ee21f7257ee19f144e02ee953f5b9e55ce8301188928884989758039cb467b",
+        "size_bytes": 5475
+      },
+      "probe-inspections.jsonl": {
+        "sha256": "e814f3a40b94f25d4d2815af67b209ad029892e910dd3ab6bdbf0fdee873c8b3",
+        "size_bytes": 4178
+      },
+      "probe-report.md": {
+        "sha256": "aad348d5095b1622b09665bb69390e0697f755453f569b41b24c55837dd122e2",
+        "size_bytes": 904
+      },
+      "probe-run.json": {
+        "sha256": "9a05d42a2c0fbc30999e62ad133de04e4b74361791df8b2536609f9acaf6a773",
+        "size_bytes": 6010
+      },
+      "probe-stderr.txt": {
+        "sha256": "9fcc88bbcc53d4bba311e25fdb686ff1c07d6786728131e9375263a0d2f1c033",
+        "size_bytes": 1531
+      },
+      "publication-blocker.json": {
+        "sha256": "897ea6b09965b529ff32c3f0d1563e6df7ea57df2438ac9432a9d6f88dbd8ea0",
+        "size_bytes": 618
+      }
+    },
+    "environment": {
+      "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "cli": "codex-cli 0.163.0",
+      "binary_sha256": "8813367285524ac798dd96d1b071aea30d58708c7226fd236cd275cf1cfdee31",
+      "fixture_data": "Only two synthetic text files; sibling marker omitted from worker prompt. No real secrets copied or targeted.",
+      "auth": "Normal existing CLI inference authentication only; credentials not inspected or exported.",
+      "audit_sessions_launched": 0,
+      "production_changed": false
+    },
+    "normalized_argv": [
+      "codex",
+      "exec",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--skip-git-repo-check",
+      "--json",
+      "--sandbox",
+      "read-only",
+      "-m",
+      "gpt-6.1-sol",
+      "-c",
+      "approval_policy=\"never\"",
+      "-c",
+      "model_reasoning_effort=\"low\"",
+      "-c",
+      "web_search=\"disabled\"",
+      "-c",
+      "project_doc_max_bytes=0",
+      "-c",
+      "features.hooks=false",
+      "-c",
+      "features.apps=false",
+      "-c",
+      "features.plugins=false",
+      "-c",
+      "features.multi_agent=false",
+      "-c",
+      "features.shell_snapshot=false",
+      "-c",
+      "features.shell_tool=false",
+      "-c",
+      "features.browser_use=false",
+      "-c",
+      "features.computer_use=false",
+      "-c",
+      "features.image_generation=false",
+      "-c",
+      "features.view_image=false",
+      "-c",
+      "features.memories=false",
+      "-c",
+      "features.skill_search=false",
+      "-c",
+      "features.skill_mcp_dependency_install=false",
+      "-c",
+      "features.skip_host_skill_discovery=true",
+      "-c",
+      "features.code_mode_only=true",
+      "-c",
+      "features.code_mode_only_strict_3p_tools=true",
+      "-c",
+      "features.goals=false",
+      "-c",
+      "mcp_servers.inspection.command=\"/opt/homebrew/opt/python@3.15/bin/python3.15\"",
+      "-c",
+      "mcp_servers.inspection.args=[\"-B\", \"/Users/grove/projects/gapline/evaluation/inspect_server.py\", \"[PROJECT]\", \"[INSPECTION LOG]\"]",
+      "-c",
+      "mcp_servers.inspection.required=true",
+      "-C",
+      "[PROJECT]",
+      "-o",
+      "[REPORT]",
+      "-"
+    ]
+  },
+  "production_changed": false,
+  "decision": "INCONCLUSIVE",
+  "paid_sessions_stopped": true
+}

@@ -1,0 +1,8 @@
+{
+  "design_commit": "4652d73",
+  "baseline_commit": "b4d1e1c86802f16fe996c68eb33940cc298ea82c",
+  "cli_version": "codex-cli 0.163.0",
+  "permission_resolution": "User explicitly authorized local Git writes after recorded sandbox denial. No model sessions existed before resolution.",
+  "prelaunch_checks": "50 passed; earlier sandboxed run failed on 10 existing package-test sibling-directory creations, retained. Escalated controller regression run passed.",
+  "upstream_code_execution": "NONE"
+}

@@ -126,6 +126,37 @@ a large benchmark a prerequisite for trying the first skill.
 
 ## Compare optional scouting and verification refinements (#6 / #7)
 
+The [controlled real-repository v3.1 attempt](results/2026-10-17-real-scouting-v3.1/README.md)
+adopted the qualified capability gate and froze two fresh independent curator
+reports before audits. Three audits completed; the fourth hit the unchanged
+180-second timeout. The controller stopped before four remaining audits and
+both masked reviews, with no retry. Decision: **INCONCLUSIVE**; #6 remains open,
+#7 remains closed and production is unchanged. The tested host boundary passed;
+scouting effectiveness and independent quality judgments remain incomplete.
+Earlier records below describe historical blockers, not the current host status.
+
+The [native-tool qualification](results/2026-10-17-host-capabilities/README.md)
+tested actual writes and generic MCP resource reads using disposable canaries.
+The read-only host rejected both patches, the sole configured server rejected
+resource methods, the adapter denied outside paths, and disk hashes stayed
+unchanged. This qualifies the tested boundary; the
+[capability-based amendment](real-scouting-v3-proposed.md) remains prospective
+and no A/B audits are authorized or launched by that result.
+
+The [authorized 1M-token amendment](real-scouting-v2.md) retained the 180-second
+and 12-inspection limits. Its [new preflight record](results/2026-10-17-real-scouting-v2/README.md)
+passed the token ceiling but stopped before source reads: strict CLI feature
+flags did not remove the extra native APIs. No audits or blinded reviews ran;
+the host-tool restriction remains unqualified and #6 stays open.
+
+The [larger real-repository attempt](results/2026-10-17-real-scouting/README.md)
+retains four exact public snapshots and the [new protocol](real-scouting-v1.md),
+but stopped before audits: its first expectation-curator session exceeded the
+frozen token ceiling and the host inventory exceeded the declared restriction.
+Decision: **INCONCLUSIVE**; zero matched audits or blinded reviews. Production
+is unchanged, #6 remains open, and #7 remains closed. This is a preflight blocker
+record, not another negative scouting-quality comparison.
+
 The [frozen four-way protocol](refinements-v1.md), [fresh synthetic cohort](cohorts/refinements-1/README.md), and [20-audit record with blinded judgments](results/2026-10-17-refinements/README.md) distinguish original, scouting-only, verification-only, and combined instructions. Decision: **REVERT** the added scouting guidance; **SIMPLIFY** verification to the useful setup/support/refutation aid. No scouting advantage was demonstrated on these compact cases; reviewers found modest handoff gains and many ties. The final shorter wording was not rerun. Larger budget-constrained scouting and measured human developer effort remain unqualified.
 
 The [pg-trickle field observations](https://github.com/grove/gapline/issues/6) are **previously seen, pre-scoped teaching examples**. They suggested the consequence/boundary heuristic but do not establish unprompted discovery. The [verification handoffs](https://github.com/grove/gapline/issues/7) were enhanced in subsequent triage, not a controlled improvement experiment.

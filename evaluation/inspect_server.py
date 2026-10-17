@@ -16,10 +16,15 @@ class Inspector:
         self.limit = limit
         self.calls = 0
 
-    def inspect(self, operation, paths=None, query=""):
+    def inspect(self, operation, paths=None, query="", start_line=1, end_line=None):
         self.calls += 1
         if self.calls > self.limit:
             raise ValueError("inspection budget exhausted")
+        if (type(start_line) is not int or start_line < 1
+                or (end_line is not None and (type(end_line) is not int or end_line < start_line))):
+            raise ValueError("line bounds must be positive integers in ascending order")
+        if operation != "read" and (start_line != 1 or end_line is not None):
+            raise ValueError("line bounds apply only to read")
         if operation == "list":
             return "\n".join(self.files)
         selected = list(self.files) if paths is None else paths
@@ -30,7 +35,8 @@ class Inspector:
         lines = []
         for path in selected:
             for number, line in enumerate(self.files[path].splitlines(), 1):
-                if operation == "read" or query in line:
+                if ((operation == "read" and start_line <= number and (end_line is None or number <= end_line))
+                        or (operation == "search" and query in line)):
                     lines.append(f"{path}:{number}: {line}")
         result = "\n".join(lines)
         return result[:80000] + ("\n[TRUNCATED; read fewer files]" if len(result) > 80000 else "")
@@ -45,6 +51,8 @@ def main():
             "operation": {"type": "string", "enum": ["list", "read", "search"]},
             "paths": {"type": "array", "items": {"type": "string"}},
             "query": {"type": "string", "description": "Literal search text"},
+            "start_line": {"type": "integer", "minimum": 1, "description": "Read from this original line (inclusive); default 1"},
+            "end_line": {"type": "integer", "minimum": 1, "description": "Read through this original line (inclusive); omit for end of file"},
         }, "required": ["operation"], "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "openWorldHint": False},
     }
