@@ -11,9 +11,20 @@ EVALUATION = Path(__file__).resolve().parents[1] / "evaluation"
 sys.path.insert(0, str(EVALUATION))
 from inspect_server import Inspector
 from run_refinements import schedule, skill_variants
+from review_refinements import mask
 
 
 class RefinementTests(unittest.TestCase):
+    def test_review_mask_preserves_finding_and_removes_origin_and_cost(self):
+        finding = "10/10 becomes 50%; alternative is 100%. PROPOSED — NOT RUN."
+        report = "Gapline audit\nBudget used: 3 inspection calls, 100 tokens\n" + finding
+        report += "\n/private/tmp/gapline-refinement-workers/trial-01/repository/editor.py:12"
+        masked = mask(report)
+        self.assertIn(finding, masked)
+        self.assertIn("editor.py:12", masked)
+        for hidden in ("Gapline", "100 tokens", "3 inspection calls", "trial-01"):
+            self.assertNotIn(hidden, masked)
+
     def test_frozen_cohort_and_oracle(self):
         from run_pilot import identity
         cohort = EVALUATION / "cohorts/refinements-1"
