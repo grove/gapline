@@ -1,11 +1,16 @@
 # Real-host validation
 
-Use this manual procedure for [issue #4](https://github.com/grove/gapline/issues/4).
+This is the manual procedure developed for
+[issue #4](https://github.com/grove/gapline/issues/4).
 It qualifies only the named configuration and observed run. Installation,
 activation, delegated behavior, and enforced access are separate results.
 The [Codex record](results/2026-10-17-codex-host/README.md) includes successful
 activation, a failed worker launch, a successful retry, and a scope exception.
-Claude Code invocation remains **NOT TESTED** there.
+The [Claude Code attempt](results/2026-10-17-claude-host/README.md) failed
+authentication before an audit. The user dropped that host's qualification
+from #4 and directed its closure with the Codex evidence. This procedure
+retains the requirements for any future qualification; Claude Code remains
+**UNQUALIFIED**.
 
 ## Prepare outside the audit
 
@@ -90,16 +95,27 @@ evidence. Export only the relevant trial records after privacy review. Preserve
 event order and explain omissions; encrypted handoff bodies are not inspectable
 plaintext. Do not search unrelated session history or export account metadata.
 
-For Claude Code, first record the actual installed version and available
-controls on the other machine. Keep skills enabled; a mode that disables skill
-loading cannot qualify discovery. Use the host's read/search tool restrictions
+For Claude Code, first establish working authentication through the host's
+normal login flow, then record the installed version and available controls.
+Do not copy credentials into evidence or fixtures. Keep skills enabled; a mode
+that disables skill loading cannot qualify discovery. Use the host's read/search tool restrictions
 and capture its activity stream, permission decisions, and worker records where
 exposed. In print mode, the documented capture options include `--output-format
 stream-json --verbose`; verify invocation support in that exact configuration.
 Tool allowlists are distinct from permission preapprovals. Consult the
 [Claude Code CLI reference](https://code.claude.com/docs/en/cli-reference) and
 [skill documentation](https://code.claude.com/docs/en/skills). These are
-**PROPOSED — NOT RUN** instructions, not evidence of Claude Code compliance.
+**PROPOSED — NOT RUN** audit instructions, not evidence of Claude Code compliance.
+
+The attempted 2.1.301 configuration used `--restricted` with an explicit
+`--tools Read,Glob,Grep,Skill` list, `dontAsk`, no permission-prompt handler,
+and empty strict MCP configuration. `--allowedTools` preapprovals alone are
+not a tool-removal boundary. The initialization event listed those four tools
+but did not list the installed skill; authentication failed before a skill
+load could be observed. Do not adopt this configuration as qualified without
+fresh activation and activity evidence. Check process exit status and
+`is_error`, not only the final event's subtype: this failure emitted
+`subtype: success` with `is_error: true` and exit code 1.
 
 ## Review and retain
 

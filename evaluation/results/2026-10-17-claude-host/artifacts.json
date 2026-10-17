@@ -1,0 +1,29 @@
+{
+  "selection": "All three stdout events retained in original order with selected fields only. Omitted host/session/message IDs, local paths, API-key-source metadata, unrelated initialization metadata, and null message fields. Installer paths use $WORK. No reasoning or credentials are retained.",
+  "original_explicit_stdout_sha256": "63e39fae03c44b9be873ca899c1b63096a1b73869eaa6847a386fad48d4cb2bc",
+  "original_explicit_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "original_explicit_event_count": 3,
+  "original_explicit_stderr_bytes": 0,
+  "files": {
+    "explicit-events.jsonl": {
+      "size_bytes": 1949,
+      "sha256": "3794120590d7dc4824feaa75e146513fa746f9c57401b17662001675cfe5a1ee"
+    },
+    "inputs.json": {
+      "size_bytes": 3354,
+      "sha256": "cfb32f32f4fe02992aab4d29b1f7b7b04dcb11ccd9f1b8c76cb19b98d6463625"
+    },
+    "install.json": {
+      "size_bytes": 987,
+      "sha256": "5886a44726001f8282651edf8354b88d45493ccb3f7e6b0e56b18a94437ce2c0"
+    },
+    "run.json": {
+      "size_bytes": 3646,
+      "sha256": "e78e3708f04a64d724e0ed4fffd67ceb5e6a3fc3f02cd2ddc54dec8c77f9a3b4"
+    },
+    "README.md": {
+      "size_bytes": 5121,
+      "sha256": "de367821f442eb7fcd2db9b93577163841fccf25b90c1877c1f49efa8af08cf6"
+    }
+  }
+}

@@ -130,9 +130,12 @@ The [Codex host record](evaluation/results/2026-10-17-codex-host/README.md)
 observed explicit and uncued skill activation and a native two-worker audit.
 It also retains a failed ephemeral worker launch and a host-instruction read
 outside the requested project scope. This does not establish host isolation;
-Claude Code invocation remains **NOT TESTED**. See the
+the [Claude Code attempt](evaluation/results/2026-10-17-claude-host/README.md)
+verified installation but failed authentication before an audit. At the user's
+direction, Claude Code qualification was dropped from #4; it remains
+**UNQUALIFIED**, rather than inferred from Codex results. See the
 [real-host validation procedure](evaluation/host-validation.md) for reproduction
-and the remaining evidence needed.
+and requirements for any future qualification.
 
 ## Neighboring projects
 

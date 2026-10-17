@@ -12,7 +12,10 @@ The [real-host procedure](host-validation.md) separates explicit invocation,
 uncued discovery, delegation, and host access controls. The
 [2026-10-17 Codex record](results/2026-10-17-codex-host/README.md) retains actual
 host events, a failed native-worker launch and successful retry, and a read
-outside the requested project scope. Claude Code invocation remains NOT TESTED.
+outside the requested project scope. The
+[Claude Code attempt](results/2026-10-17-claude-host/README.md) verified the
+published installation but failed authentication before an audit. The user
+dropped Claude Code qualification from #4; that host remains UNQUALIFIED.
 
 Evaluator interpretations live in [fixture_expectations.md](fixture_expectations.md).
 Keep that file, this protocol, case names, receipts, and prior answers out of
