@@ -1,0 +1,3 @@
+Stopped before reading repository files: the exposed tools include non-inspection facilities (`apply_patch`, `list_mcp_resource_templates`, `list_mcp_resources`, and `read_mcp_resource`).
+
+Actual action: emitted the requested `HOST_TOOL_NAMES` inventory. No files listed or read, no skills loaded, and no commands or tests run. I cannot establish source-cited expectations for r1 or r2 under your required stop condition.

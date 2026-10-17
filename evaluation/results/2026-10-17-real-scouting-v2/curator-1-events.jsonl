@@ -1,0 +1,6 @@
+{"type":"thread.started","thread_id":"01a149e5-605a-7410-9b12-7624bab6732d"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: code_mode_only, code_mode_only_strict_3p_tools, skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/grove/.codex/config.toml."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I’ll check the available tools first. I’ll inspect the repository only if the exposed tools satisfy your restriction.\n"}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"Stopped before reading repository files: the exposed tools include non-inspection facilities (`apply_patch`, `list_mcp_resource_templates`, `list_mcp_resources`, and `read_mcp_resource`).\n\nActual action: emitted the requested `HOST_TOOL_NAMES` inventory. No files listed or read, no skills loaded, and no commands or tests run. I cannot establish source-cited expectations for r1 or r2 under your required stop condition."}}
+{"type":"turn.completed","usage":{"input_tokens":23230,"cached_input_tokens":19072,"cache_write_input_tokens":0,"output_tokens":150,"reasoning_output_tokens":0}}

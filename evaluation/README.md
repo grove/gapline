@@ -126,6 +126,12 @@ a large benchmark a prerequisite for trying the first skill.
 
 ## Compare optional scouting and verification refinements (#6 / #7)
 
+The [authorized 1M-token amendment](real-scouting-v2.md) retained the 180-second
+and 12-inspection limits. Its [new preflight record](results/2026-10-17-real-scouting-v2/README.md)
+passed the token ceiling but stopped before source reads: strict CLI feature
+flags did not remove the extra native APIs. No audits or blinded reviews ran;
+the host-tool restriction remains unqualified and #6 stays open.
+
 The [larger real-repository attempt](results/2026-10-17-real-scouting/README.md)
 retains four exact public snapshots and the [new protocol](real-scouting-v1.md),
 but stopped before audits: its first expectation-curator session exceeded the

@@ -1,0 +1,64 @@
+{
+  "decision": "INCONCLUSIVE",
+  "token_limit": 1000000,
+  "token_blocker": "RESOLVED prospectively by user approval",
+  "active_blocker": "Host inventory still exposes apply_patch and generic MCP resource APIs despite tested strict flags. Effective denial/scope not independently qualified.",
+  "curator_attempts": 1,
+  "audit_attempts": 0,
+  "reviewer_attempts": 0,
+  "production_changed": false,
+  "issue_6": "OPEN",
+  "issue_7": "CLOSED",
+  "sessions": [
+    {
+      "id": "curator-1",
+      "status": "MODEL COMPLETED; QUALIFICATION REJECTED BEFORE SOURCE READS",
+      "token_budget_met": true,
+      "inspection_calls": 0
+    },
+    {
+      "id": "curator-2",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r1-A",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r1-B",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r2-B",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r2-A",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r3-B",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r3-A",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r4-A",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "r4-B",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "review-1",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    },
+    {
+      "id": "review-2",
+      "status": "NOT RUN; stopped on host preflight blocker"
+    }
+  ]
+}
