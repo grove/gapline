@@ -1,6 +1,6 @@
 # Gapline — implementation plan
 
-**Status:** Planning document. No Gapline audit skill or verified executable product exists yet.  
+**Status:** Experimental read-only skill and static fixtures authored. Host discovery, tool-safety compliance, and real audit quality remain unverified.  
 **First product target:** one portable, **read-only** `gapline-audit` skill that helps an existing coding agent discover and prioritize a few evidence-backed weaknesses in an existing repository.  
 **Admission rule:** only add execution, persistence, a CLI, or automation after the simpler skill proves useful and the associated permission and safety requirements are met.
 
@@ -12,7 +12,7 @@ Gapline is **not** an expanded Faultline. It is an independent, agent-native inv
 
 Start with **Scout + read-only Probe**. Keep **Track** as a small later enhancement. There is no separate service, runtime package, mutation engine, scheduler, database, or new model runner in the initial release.
 
-The initial repository contains the Apache-2.0 license and these planning documents. Nothing here claims that an audit has run, a skill has been installed, the host access controls have been verified, or benchmark value has been demonstrated.
+The repository includes a prompt-only skill, packaging checks, teaching fixtures, and the Apache-2.0 license. Nothing here claims that a host audit has run, skill discovery has been verified, host access controls have been qualified, or benchmark value has been demonstrated.
 
 ### Initial defaults
 
@@ -285,8 +285,8 @@ A developer should eventually be able to invoke the first skill and observe all 
 
 ## 10. Work sequence and first next task
 
-**Docs → read-only skill → controlled fixtures → focused real-repository audits → optional continuity → conditional executable probes → matched usefulness evaluation → optional platform features.**
+**Docs → read-only skill and teaching fixtures (authored) → host smoke test → fresh matched baseline evaluation → targeted real-world audits → optional continuity/executable probes → optional platform features.**
 
-The first implementation task is **Milestone B only**: author a concise canonical `gapline-audit/SKILL.md` and a minimal discoverability/safety regression check, then demonstrate an honest read-only investigation on a small controlled fixture. Do not claim that running text-oriented tests alone qualifies the security boundary.
+The canonical `gapline-audit/SKILL.md`, static checks, and small authored fixtures are now present, but Milestone B is **not yet accepted**: validate skill discovery in an actual named host, inspect the host tool trace on the fixtures, and independently evaluate the generated findings. Then run the matched comparison in [evaluation/README.md](evaluation/README.md) before adding breadth. Static text checks do not qualify a security boundary or prove usefulness.
 
 Aim for a useful, low-ceremony investigative habit: **find fewer, more consequential weaknesses and establish exactly what is known about them**.
