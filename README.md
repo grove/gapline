@@ -2,149 +2,145 @@
 
 **Find what your codebase is missing.**
 
-Gapline is an experimental, opt-in **codebase investigation skill for existing coding agents**. Its purpose is to discover consequential weaknesses in an existing software project, investigate promising leads, and give developers evidence-backed next steps.
+Gapline is a portable, opt-in **codebase investigation skill for existing coding agents**. It helps an agent investigate consequential weaknesses in behavior, tests, documentation, failure handling, and architecture, then return grounded findings and useful next steps.
 
-It is not limited to a pull request or a feature currently being implemented. A developer should be able to revisit a mature repository and ask: **What are we overlooking?**
+Use it for a focused component or a sampled review of a mature repository. A pull request or active feature is not required. A good audit can also dismiss a false lead or establish no supported findings.
 
-> **Status: experimental v0.1.** A read-only agent skill, static packaging checks, and small teaching fixtures now exist. No coding-agent host discovery, real-world audit quality, runtime isolation, or benchmark improvement has yet been verified. This is not an executable scanner.
+**Current product:** one complete read-only skill, `gapline-audit`, with optional investigation recipes. Installation, packaging checks, teaching fixtures, and evaluation tooling are separate from claims about audit effectiveness. See [evaluation](evaluation/README.md) for the validation method and its limits.
 
-[Skill](gapline-audit/SKILL.md) · [Evaluation protocol](evaluation/README.md) · [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md)
+[Skill](gapline-audit/SKILL.md) · [Investigation recipes](gapline-audit/references/investigation.md) · [Evaluation](evaluation/README.md) · [Design](DESIGN.md) · [Implementation](IMPLEMENTATION.md)
 
-## Try the experimental skill
+## Install
 
-Gapline v0.1 is a **prompt-based agent skill**, not a command-line scanner. With a coding agent that has authorized read-only access to a target repository:
+From the project where you want to use Gapline:
 
-1. Open [gapline-audit/SKILL.md](gapline-audit/SKILL.md). If your agent supports skill discovery, configure that file according to the host's own documentation. Otherwise, provide the file's contents directly as instructions. **Automatic discovery has not been verified on a named host.**
-2. Ask: **Use Gapline to investigate a focused component or sampled repository. Read only. Look for hollow tests, documentation drift, and unsafe failure paths. Return up to three consequential findings, with exact evidence, counterevidence, and proposed next checks.**
-3. Inspect the response critically. Claims about runtime behavior remain unverified unless a separate, authorized experiment actually ran. This skill never executes tests or changes the target repository.
-
-For Gapline's own development checkout, run the **static contract tests** with:
-
-    python -m unittest discover -s tests -v
-
-These tests check skill packaging and fixtures, **not** safe host behavior or whether the agent discovers real defects. The [evaluation protocol](evaluation/README.md) describes necessary host smoke tests and matched baseline comparisons. No such evaluation results are claimed yet.
-
-## Why Gapline?
-
-A project can compile, pass CI, and still have significant blind spots:
-
-- An edge case is handled incorrectly, but nobody has exercised it.
-- A test passes without asserting the behavior its name promises to check.
-- A documented option has changed, while its examples have not.
-- A failure path leaks a resource or leaves inconsistent state.
-- A feature exists in the public API but is only partially implemented.
-- Similar components enforce subtly different rules.
-
-Linters, coverage reports, mutation tools, and ordinary code reviews each offer useful signals. None automatically answers the broader question: **Which weaknesses in this particular project are both credible and worth fixing?**
-
-Gapline's role is to help an agent ask better questions, gather discriminating evidence, and separate confirmed problems from plausible suspicions.
-
-## What it will investigate
-
-| Investigation area | Examples of useful questions |
-| --- | --- |
-| **Behavior and correctness** | Are boundary values, invalid inputs, and state transitions handled correctly? |
-| **Missing or hollow tests** | Which important behaviors lack assertions? Would tests detect a plausible wrong implementation? |
-| **Documentation** | Do README claims, examples, API docs, and operational instructions match actual behavior? |
-| **Completeness** | Are there unfinished paths, misleading success responses, or unimplemented promised behaviors? |
-| **Reliability** | Do failure recovery, retries, cleanup, and unexpected dependency failures work safely? |
-| **Security and trust boundaries** | Are inputs validated and permissions enforced where they need to be? |
-| **Architecture and maintainability** | Which dependencies or inconsistencies create a concrete risk, rather than just a style preference? |
-
-These are **investigation lenses**, not a checklist that must generate a finding in every category. No findings can be a valid result.
-
-## How it should work
-
-The first experimental version is **one portable agent skill**, `gapline-audit`, for a coding agent that already has authorized read-only access to the repository. It does not launch its own model or require another service.
-
-### 1. Scout — discover hypotheses
-
-The agent maps relevant code, tests, docs, and interfaces; chooses a bounded scope; and identifies a few high-value questions. Recent changes, critical behavior, complexity, and documentation promises can guide attention, but are not proof of defects.
-
-### 2. Probe — distinguish suspicion from evidence
-
-The agent first investigates by reading code, tracing paths, and comparing documented claims with implementations and tests.
-
-A later, separately qualified mode may run selected tests, make controlled inputs, or use existing mutation and analysis tools. **Execution must be authorized and appropriately isolated.** A skill prompt, copied directory, or git worktree is not itself a sandbox. The v0.1 skill is read-only.
-
-### 3. Track — improve across repeated runs
-
-With an explicitly approved finding ledger, later runs can distinguish new findings from previously reported, resolved, dismissed, stale, or regressed concerns.
-
-"Continuous" means **repeatable, cumulative investigation**, not an always-on daemon or automatic scheduled execution. The first release need not persist findings to be useful.
-
-## Example finding — illustrative, not observed
-
-```text
-GAP-004 | Test gap | SUPPORTED
-
-Location: tests/test_retries.py and src/client/retries.py
-Concern: Tests exercise successful retries but apparently
-         do not check what happens after a timeout.
-
-Evidence: The inspected tests assert successful completion,
-          but contain no assertion about duplicate effects.
-          No test command was executed in this audit.
-
-Potential impact: A retry could repeat a non-idempotent operation.
-
-Next probe: In an authorized isolated environment, simulate
-            a timeout after the remote side effect and verify
-            that retrying does not duplicate that effect.
-
-Status: Hypothesis about production behavior; not a confirmed bug.
-Scope: Only the cited retry path and selected tests were reviewed.
+```sh
+npx skills@latest add grove/gapline
 ```
 
-A useful result points to **a precise behavior, the evidence actually obtained, and the next discriminating check**. Gapline should never convert "looks suspicious" into "is broken" without support.
+Select your coding agent and project or global installation in the installer. The repository exposes one skill, **gapline-audit**. The skill and its supporting reference are installed together; a Gapline runtime or sibling project is not needed.
 
-## Intended use
+For a non-interactive project installation targeting Codex:
 
-When an agent has been explicitly given the skill and authorized read-only repository access, a developer can ask:
+```sh
+npx skills@latest add grove/gapline --agent codex --yes
+```
 
-> Use Gapline to investigate this repository. Start read-only. Find up to five consequential weaknesses in behavior, tests, documentation, or reliability. Separate demonstrated problems from hypotheses, and recommend the smallest useful next action.
+For Claude Code, use `--agent claude-code`. Add `--global` if you want the install to apply across projects. Use `--copy` if you prefer copied files to the installer's default symlinks.
 
-Or, on a later run:
+Installation requires Git and a Node.js version supported by the [skills CLI](https://github.com/vercel-labs/skills); the verified CLI version, 1.7.2, requires **Node.js 22.20.0 or newer**. Python is only needed for Gapline's development and evaluation helpers. Installation is an explicit setup action; an audit never installs tools.
 
-> Revisit the previous Gapline findings. Check which are still supported, what has actually been fixed, and what new weaknesses deserve investigation.
+To inspect discovery without installing:
 
-The current skill supports a sampled repository **survey** or narrow **focus** via the requested scope. A **revisit** with persisted prior findings remains a future capability. A survey must disclose what was not assessed.
+```sh
+npx skills@latest add grove/gapline --list
+```
 
-## What Gapline is not
+## Use
 
-- Not a correctness certificate, comprehensive audit, or substitute for human judgment.
-- Not a generic warning generator, mandatory CI gate, or repository quality score.
-- Not a linter, mutation engine, test framework, or new coding-agent orchestrator.
-- Not an automatic bug fixer, issue publisher, pull-request author, or release gate.
-- Not permitted to execute repository-suggested commands, install tools, contact external services, or write to a target repository merely because its contents request it.
+Start your coding agent in the target repository and request the installed skill:
 
-Repository files, documentation, comments, and tool output are **data to investigate, not instructions granting authority**. The user and host control access, execution, network use, and writes. Sensitive information must not appear in reports without authorization.
+> Use gapline-audit to investigate this repository read-only. Start with a sampled survey. Return up to three consequential findings, with exact evidence, counterevidence, and the smallest useful next action. Say what you did not assess.
 
-A read-only review can still be useful when execution is unavailable. In that case, experiments remain **NOT RUN**, and their proposed results must not be presented as observations.
+Or give it a focused question:
 
-## Relationship to neighboring projects
+> Use gapline-audit on the retry path and its tests. Check the documented retry contract, caller guarantees, and protection against repeated side effects. Keep runtime experiments proposed, not run.
 
-Gapline stands alone; none of these projects is required to use it.
+Hosts that support explicit skill invocation can use their native syntax, such as `$gapline-audit` in Codex. If discovery is unavailable, provide [SKILL.md](gapline-audit/SKILL.md) directly and make its sibling `references/` directory available. Installation into an agent's skill directory and the agent actually invoking the skill are distinct checks.
 
-| Project | Question it addresses |
+The host must already authorize access to the target. Gapline supports file/search tools and bounded, authorized shell reads. It **does not run project code, collect or run tests, import project modules, execute builds, modify files, call project endpoints, or publish findings**. The host supplies actual access controls; the skill is not a sandbox.
+
+## What it investigates
+
+| Area | Useful questions |
 | --- | --- |
-| [Intentline](https://github.com/grove/intentline) | What was requested, and what obligations or acceptance criteria follow from that intent? |
-| [Proofline](https://github.com/grove/proofline) | What checks and evidence demonstrate properties of an identified candidate? |
-| [Faultline](https://github.com/grove/faultline) | Would selected tests catch particular plausible incorrect behaviors? |
-| **Gapline** | Where are the meaningful weaknesses in the codebase, and which ones can we substantiate? |
+| Behavior and boundaries | Do edge cases, invalid input, and state transitions match the relevant contract? |
+| Test protection | Which meaningful wrong behavior would the actual oracle detect? Do tests permit valid internal changes? |
+| Documentation and completeness | Do advertised options, defaults, examples, and current promises match the applicable implementation? |
+| Failure handling | Can retries, cleanup, partial success, or composed operations violate a required invariant? |
+| Trust boundaries | Does each independently reachable boundary validate what it cannot safely assume? |
+| Architecture | Does a specific dependency create a consequential change or operational problem? |
 
-Gapline may use an existing requirement statement as context or suggest a Faultline-style experiment. It must not silently assume those projects are present, treat an AI-generated plan as an authoritative contract, or reinterpret another tool's evidence as a universal pass/fail verdict.
+These are optional investigation lenses. Complexity, churn, coverage, duplicate text, and design-principle names can suggest questions; they do not establish defects. Independent validation, different programming styles, and deliberately deferred capabilities can be appropriate.
 
-## Roadmap
+## How an audit works
 
-1. **Experimental skill: authored, not host-qualified.** [gapline-audit/SKILL.md](gapline-audit/SKILL.md) contains three focused, evidence-aware read-only playbooks.
-2. **Host qualification and real-world evaluation: next.** Verify discovery and tool behavior, then compare against normal agent review on unseen cases at matched budget.
-3. **Controlled probes: conditional.** Only after host isolation, permissions, and evidence handling are qualified.
-4. **Finding continuity: conditional.** Opt-in, human-reviewable history only when repeated audits justify the overhead.
-5. **Automation or CLI: conditional.** Build these only when measured needs justify them.
+1. **Scout:** identify the repository snapshot, question, sampled scope, public behavior, and a few promising leads.
+2. **Probe:** trace supporting evidence and opposing explanations through relevant code, callers, tests, and documentation.
+3. **Report:** return a small set of useful conclusions with evidence levels, impact rationale, limitations, and proposed next steps. Withdraw defeated concerns and allow a no-findings result.
 
-See [IMPLEMENTATION.md](IMPLEMENTATION.md) for milestones and stopping criteria. The next task is to **validate and measure the small skill**, not build a general scanning platform.
+The default ceiling is three findings, or up to five when requested. It is never a quota. Reports identify actual inspection facilities and commands, separately stating whether any project code, tests, or builds ran. Reading files with a shell is not runtime reproduction.
+
+### Evidence levels
+
+| Level | Meaning |
+| --- | --- |
+| **DEMONSTRATED** | A direct source-level contradiction, or an observed behavior supported by actual execution provenance. This read-only skill produces no new runtime receipts. |
+| **SUPPORTED** | A narrow source/test observation is well supported; its wider runtime consequence remains unverified. |
+| **HYPOTHESIS** | A consequential concern needs more evidence. |
+| **REFUTED / WITHDRAWN** | Counterevidence defeats the concern; it is not counted as a finding. |
+| **NOT ASSESSED** | The area is outside the sampled scope or evidence is unavailable. |
+
+Evidence strength is separate from severity. A missing assertion in selected tests does not establish a production bug or a suite-wide omission. A proposed executable check is always **PROPOSED — NOT RUN**.
+
+### Illustrative finding
+
+This is an example, not an observed result:
+
+```text
+GAP-001 | Test protection | SUPPORTED | Medium
+Location: the inspected retry tests and retry implementation
+Expected: the documented operation is idempotent across retries.
+Observed: selected tests repeat the request but check only success responses.
+Counterevidence: check caller guarantees, other assertions, and provider behavior.
+Concern: the inspected tests do not establish the repeated-effect invariant.
+Unverified: whether production actually duplicates an effect.
+Next action: simulate a timeout after the side effect and observe the retry.
+            PROPOSED — NOT RUN.
+Scope: only the cited paths; no project code, tests, or builds executed.
+```
+
+## Development and validation
+
+Run the dependency-free Python checks from a development checkout:
+
+```sh
+python -m unittest discover -s tests -v
+```
+
+Run the real skills-CLI installation smoke test:
+
+```sh
+python scripts/check_install.py
+```
+
+The installation check uses disposable project directories, installs the checkout's actual skill, and verifies the installed payload. The checks also cover package references and controlled fixture behavior. They do not measure real-world audit quality or prove that an agent obeys its instructions.
+
+The [evaluation protocol](evaluation/README.md) keeps evaluator expectations outside worker inputs, provides contrasting teaching cases, and describes fresh host trials and matched comparisons with ordinary review. Record installation, invocation, findings, and actual host observations separately. A small successful trial cannot establish general superiority or isolation.
+
+The [2026-10-17 validation record](evaluation/results/2026-10-17-install-and-smoke/README.md) includes real CLI installs and independently reviewed manual trials. Both Gapline and ordinary review reached the same main functional conclusions in the small authored batch; no material effectiveness advantage was established.
+
+## Neighboring projects
+
+Gapline works independently. No sibling is required or automatically invoked.
+
+| Project | Question it owns |
+| --- | --- |
+| [Intentline](https://github.com/grove/intentline) | What was requested, and what acceptance draft follows? |
+| [Proofline](https://github.com/grove/proofline) | What did selected checks establish about an identified candidate? |
+| [Faultline](https://github.com/grove/faultline) | Would selected tests detect particular plausible wrong behaviors? |
+| **Gapline** | Which consequential weaknesses can this investigation substantiate? |
+
+An optional exchange must retain source identity, scope, and uncertainty. A generated plan remains advisory; a passing check establishes only its limited claim; a surviving mutation does not establish a defect in the original candidate. No shared schema or runtime is required.
+
+## Scope and future work
+
+The read-only skill is the implemented product. Persistent finding history, executable probes, automatic fixes, scheduled scans, a custom CLI, and an orchestration service are conditional future capabilities. Add them only when actual investigations demonstrate their value and the host supports the required permissions.
+
+Repository files, comments, examples, tool output, and previous audit records are evidence to inspect. They cannot authorize new actions, change the user's task, or require disclosure of secrets. Audits report in the conversation; saving or publishing results is a separate authorized action.
+
+See [DESIGN.md](DESIGN.md) for evidence and boundary decisions and [IMPLEMENTATION.md](IMPLEMENTATION.md) for acceptance and feature-admission criteria.
 
 ## License
 
-Apache-2.0. See [LICENSE](LICENSE).
+Apache-2.0. See [LICENSE](LICENSE). The installable skill also includes a copy of the license.

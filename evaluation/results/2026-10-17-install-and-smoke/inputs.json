@@ -1,0 +1,111 @@
+{
+  "base_commit": "691a023b1a994b9d64ba093f149c4f5af4cde74e",
+  "source_state": "working-tree additions recorded by exact hashes; subsequently committed with this record",
+  "installed_skill": [
+    {
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "21a639fae851bd48707b411a799afce12bb131faaf0f63ec6dbf3480b7ff0697"
+    },
+    {
+      "path": "references/investigation.md",
+      "sha256": "6a64b96aa94f9e996780181b5b5cc4cedb61632577fd6e1a043fcfa81682c1ff"
+    }
+  ],
+  "cases": [
+    {
+      "format": "gapline-teaching-fixture-v1",
+      "fixture": "composition-unique",
+      "tree_sha256": "eee3b5e87f9bccc09b87cfa402d7474b4086b92ea5314406e88e628a5cb33856",
+      "files": [
+        {
+          "path": "README.md",
+          "size_bytes": 335,
+          "sha256": "65e97ae2aae290da0280b608b79b0701727278c3ff84e7547f0c29e067f0d96e"
+        },
+        {
+          "path": "notifications.py",
+          "size_bytes": 112,
+          "sha256": "575b170f66a89d97674c1e82fd6241d4d7e173cc8a3a5e6abee3c8caf6c990d6"
+        },
+        {
+          "path": "test_notifications.py",
+          "size_bytes": 294,
+          "sha256": "4085ddc9de4df62ed3319305bdb199fd37d1b64f3d545df3f7f2385ec3b81689"
+        }
+      ],
+      "worker_directory": "/workspace/scratch/4fb9d73ce3bf/gapline-trials/case-1/repository",
+      "case": 1
+    },
+    {
+      "format": "gapline-teaching-fixture-v1",
+      "fixture": "composition-repeated",
+      "tree_sha256": "71f6286d7298d651cc57f685f17f65d6d51493db01990d89c43366c29c4ec419",
+      "files": [
+        {
+          "path": "README.md",
+          "size_bytes": 342,
+          "sha256": "c778b3c49f8e198e8c260e31b4f5ed9f932795ef1e820eb185484cad40796894"
+        },
+        {
+          "path": "notifications.py",
+          "size_bytes": 112,
+          "sha256": "575b170f66a89d97674c1e82fd6241d4d7e173cc8a3a5e6abee3c8caf6c990d6"
+        },
+        {
+          "path": "test_notifications.py",
+          "size_bytes": 323,
+          "sha256": "a837442f29e868e8abde49cac8b8b58e9a2c98257dd60b5daea7dc2f6d112708"
+        }
+      ],
+      "worker_directory": "/workspace/scratch/4fb9d73ce3bf/gapline-trials/case-2/repository",
+      "case": 2
+    },
+    {
+      "format": "gapline-teaching-fixture-v1",
+      "fixture": "cache-contract",
+      "tree_sha256": "02dfd04429e9da008cffa5bf395a6653862e4ef30e79411552c6651b48f9e6e9",
+      "files": [
+        {
+          "path": "README.md",
+          "size_bytes": 588,
+          "sha256": "82b09f3fa234485d8cb00348f658658ad62d58c4752b751d08fae9d205862d29"
+        },
+        {
+          "path": "cache.py",
+          "size_bytes": 300,
+          "sha256": "b664ff3ab0a50faeb879bda5cbafa44b5c933b984d39b773e1eebe5f2c1c540d"
+        },
+        {
+          "path": "test_cache.py",
+          "size_bytes": 884,
+          "sha256": "2821aedd2aaf77f0603fecf8bf51203d05d3324de00c3fc640609659b6edc25e"
+        }
+      ],
+      "worker_directory": "/workspace/scratch/4fb9d73ce3bf/gapline-trials/case-3/repository",
+      "case": 3
+    },
+    {
+      "format": "gapline-teaching-fixture-v1",
+      "fixture": "legacy-label",
+      "tree_sha256": "8ba882f40a185c7aa1b98ac9ab36fc5e708dc69ba64d93da42cf10f87ffd93a2",
+      "files": [
+        {
+          "path": "README.md",
+          "size_bytes": 460,
+          "sha256": "da16acb3512236cfe631c2e7f894d93bdef5beb384e9d9b2209a6a7cc6684ec2"
+        },
+        {
+          "path": "labels.py",
+          "size_bytes": 56,
+          "sha256": "8ba744e2eedb3302633477f4aa1520425f72713f21e06468cb366c0b4b9ba818"
+        }
+      ],
+      "worker_directory": "/workspace/scratch/4fb9d73ce3bf/gapline-trials/case-4/repository",
+      "case": 4
+    }
+  ]
+}

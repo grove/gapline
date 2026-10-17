@@ -1,6 +1,6 @@
 # Gapline — design
 
-**Status:** Experimental read-only v0.1 skill authored; host behavior and audit value not yet evaluated.  
+**Status:** Read-only skill implemented with installable references, packaging checks, and controlled evaluation cases. Installation and invocation evidence are recorded separately from effectiveness and host isolation.
 **Product decision:** Start with one optional, portable, **read-only** coding-agent skill. Extend it only after real investigations show useful, independently supportable findings at acceptable cost.
 
 ## 1. Purpose
@@ -63,7 +63,7 @@ Before naming weaknesses, the agent establishes:
 - Repository/candidate identity where available (commit, branch, and visible working-tree state); avoid pretending uncommitted changes are captured by the commit SHA.
 - The area actually inspected, deliberately excluded areas, available tools, and a finite investigation budget.
 
-The agent chooses a **small set of hypotheses** using significance and evidence potential, not mere syntactic oddity. For the first skill, a sensible default proposal is a short survey with up to five hypotheses and a report with at most five findings; actual limits are subject to the caller's requested scope and host budget.
+The agent chooses a **small set of hypotheses** using significance and evidence potential, not mere syntactic oddity. Default to up to three leads and three findings, or up to five when requested. These are ceilings, not quotas; actual scope is subject to the host budget.
 
 High-value hypotheses usually concern behavior with identifiable consequences, observable boundaries, or documented promises. Low-value style criticism and generic best-practice lists should be deprioritized.
 
@@ -75,7 +75,7 @@ Lenses are **question-generation guidance**, not independent modules that all ha
 | --- | --- | --- |
 | Correctness and boundaries | Can a valid edge case or invalid input produce the wrong behavior? | Branch trace, type/range handling, stated contract, inconsistent call sites |
 | Error handling and recovery | Is an error swallowed, misclassified, or followed by unsafe state? | Exception paths, cleanup and retry logic, error handling assertions |
-| Test quality | Do tests actually distinguish acceptable from unacceptable behavior? | Test names versus assertions, missing negative cases, mocked-away core logic |
+| Test quality | Do tests reject meaningful wrong behavior and permit valid implementation changes? | Actual oracles, missing invariants, mocked-away logic, incidental private-call expectations |
 | Documentation accuracy | Do documented examples and promises match implementation? | Exact claim and cited source locations, code path, configuration/default comparison |
 | Feature completeness | Does an exposed option or feature silently do nothing or only partly work? | Public API/documentation versus implementation path, placeholders, ignored arguments |
 | State and concurrency | Could ordering, persistence, retries, or race conditions violate invariants? | State transitions, locking, transaction boundaries, lifecycle code |
@@ -83,6 +83,10 @@ Lenses are **question-generation guidance**, not independent modules that all ha
 | Maintainability with consequence | Does duplication or complexity create a concrete drift or defect risk? | Inconsistent implementations, change history where available, tangled dependencies |
 
 Complexity, code churn, coverage, and duplicate text are **triage signals**, not findings by themselves. Intentional redundancy across trust boundaries or deliberately independent implementations may be safer than deduplication.
+
+For an architectural concern, describe a relevant change or operational scenario, the dependency or policy relationship that makes it difficult, and the consequence worth investigating. Look for evidence that the relationship is intentional or appropriate. Recommend the smallest useful next observation or local change. These questions do not create mandatory report fields.
+
+For test protection, identify both a meaningful wrong behavior and a valid alternative under the **full relevant contract**. Interactions, ordering, side effects, exact bytes, and operational properties can be part of that contract. Absence of conventional assertion syntax does not make an execution-only smoke test hollow. Check global invariants after composed operations as well as local successes. The installable [investigation recipes](gapline-audit/references/investigation.md) supply optional examples and primary reading.
 
 ### 2.3 Probe — smallest discriminating investigation
 
@@ -167,7 +171,8 @@ Use plain labels such as **High / Medium / Low** with justification, not invente
 Mode: read-only survey
 Scope: <inspected packages/docs/tests>
 Budget and work performed: <actual>
-Commands or project code executed: NONE
+Inspection facilities and commands used: <actual>
+Project code, tests, and builds executed: NONE
 Prior findings supplied: NO
 Findings: 2 supported, 1 hypothesis; 2 other leads refuted
 Not assessed: integration behavior, dependency failures, runtime effects
@@ -194,7 +199,7 @@ Actual reports must use real observations, not fill placeholders with invented r
 
 Initial Gapline behavior is limited to source, tests, documentation, and any existing records the agent is authorized to read. It must not run project scripts or test discovery; import modules; install packages; execute sample commands; run builds or tools that write caches; invoke network APIs for the project; or create/change local or remote artifacts.
 
-The host may provide its own read-only search or retrieval facilities. The skill must accurately document the permissions and side effects of those facilities rather than assume an instruction file enforces them.
+The host may provide its own read-only search or retrieval facilities, including bounded shell reads when already authorized. Use trusted host tools, quote paths/searches as data, and never evaluate repository-supplied command text. Limit Git shell reads to revision metadata: working-tree status/diff can execute configured content filters even when fsmonitor, external diff, and text conversion are disabled. Prefer direct file reads and host-supplied snapshot evidence; disclose unavailable working-tree identity. Record actual inspection facilities and commands separately from project execution. The skill must accurately document permissions and side effects rather than assume an instruction file enforces them.
 
 If a requested operation would exceed permissions, propose the command/check and mark it **NOT RUN** rather than quietly executing it.
 
@@ -231,7 +236,7 @@ If scope or budget is vague, use a conservative read-only default and disclose i
 
 ### Output
 
-A concise human-readable Markdown report in the agent's response. No mandatory on-disk report, canonical JSON schema, plugin service, or Gapline-specific executable is required for v0.1.
+A concise human-readable Markdown report in the agent's response. No mandatory on-disk report, canonical JSON schema, plugin service, or Gapline-specific executable is required for the read-only skill.
 
 When continuity is qualified, add a simple opt-in ledger with stable IDs, provenance, and a clear status history. It should be portable and manually reviewable, with no automatic sync or publishing requirement.
 
@@ -243,11 +248,13 @@ Gapline should not control another coding agent or fork a second agent unless a 
 
 ## 6. Evaluation and feature admission
 
-A useful skill must outperform a casual agent review **in actionable accuracy**, not in word count or warnings.
+A useful skill should improve a developer's decisions at acceptable total cost. Test incremental value against the current ordinary agent review with its normal tools and a comparable budget; do not weaken the baseline to favor the skill.
 
 First qualify behavior using authored, independently expected examples: actual logic defect, genuine missing assertion, hollow test, doc/code disagreement, intentional alternative implementation, intentionally duplicated trust-boundary logic, and clean control. Include misleading/untrusted repository instructions and material but unexecutable hypotheses.
 
-Then test against fresh real projects or task snapshots under explicit access and cost permissions. Compare ordinary agent review with ordinary review plus Gapline using matched time/tool budgets and independently withheld expectations where feasible.
+Use paired cases where a meaningful contract or behavioral difference changes the expected interpretation while superficial structure remains similar. Include both defect sensitivity and tolerance of valid changes. Keep worker copies separate from evaluator expectations; teaching cases do not become unseen evidence merely by renaming them.
+
+Begin a small matched usefulness comparison during the first credible host trials, then check promising results on fresh real projects or task snapshots under explicit access and cost permissions. Match source, host, model/settings where available, permissions, and time/tool budget. Keep findings and expected answers from leaking between arms and use an independent reviewer. The pilot informs the next implementation decision; it does not establish general superiority.
 
 Measure:
 
