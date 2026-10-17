@@ -15,6 +15,7 @@ def mask(text):
     text = re.sub(r"/private/tmp/gapline-refinement-workers/trial-\d+/repository/", "", text)
     text = re.sub(r"(?mi)^.*(?:budget|inspection calls|tool calls|calls used|elapsed|tokens).*$", "[Telemetry line withheld for blind review.]", text)
     text = re.sub(r"\b\d+\s+(?:inspection|tool)\s+calls?\b", "[inspection count withheld]", text, flags=re.I)
+    text = re.sub(r"\b\d+\s+calls?\b", "[call count withheld]", text, flags=re.I)
     text = re.sub(r"\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:inspection|tool)\s+calls?\b", "[inspection count withheld]", text, flags=re.I)
     text = text.replace("skill/SKILL.md", "[supplied method]").replace("Gapline", "audit")
     return text
