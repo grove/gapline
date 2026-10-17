@@ -36,8 +36,8 @@ The coordinator should verify material source references directly, resolve disag
 
 1. **Establish scope and expected behavior.** Locate the relevant public interface, documentation, user requirement, tests, and caller constraints. Identify where the expectation came from. A test name, AI-generated plan, or existing implementation is not automatically an authoritative requirement.
 2. **Scout for consequential leads.** Trace selected behavior into its implementation and nearby tests. Prioritize specific promises, boundaries, state transitions, and assertion quality. Use complexity, churn, coverage, and duplicate text only to direct attention.
-   When choosing among leads, prefer a **current user promise or consequential invariant**, a reachable interaction/entry-point boundary, and an observation likely to distinguish success from failure within the budget. For a known fix on one path, consider whether another live entry point has equivalent protection. Do not infer that a broad survey found a risk unprompted when the user named it. Skip weak stylistic leads; do not force three findings.
 3. **Probe a falsifiable claim.** Read exact supporting evidence and actively seek **counterevidence**: caller preconditions, alternate paths, configuration overrides, existing protection, distinct policies, intentional trust-boundary checks, or absent requirements. Seek the smallest observation that distinguishes competing explanations.
+   For a consequential unresolved claim, make the next action concrete: relevant setup, an observable result supporting the concern, and a meaningful result that would weaken or refute it. Clarify an unknown requirement before choosing an expected result.
 4. **Choose the narrowest conclusion.** A direct source/document contradiction can be demonstrated. Reading code does not reproduce a runtime failure. An assertion gap in selected tests does not establish a production defect or a suite-wide omission. Keep unresolved concerns as hypotheses, or omit them when too weak to help.
 5. **Prioritize and stop.** Keep the most useful supported observations and clearly qualified hypotheses with a meaningful consequence and achievable next step. Withdraw refuted leads. Return a no-findings result when nothing survives scrutiny; never fill the report with generic style advice.
 
@@ -62,12 +62,6 @@ Trace an error or retry path through callers, cleanup, and transaction boundarie
 ### D. Architecture and repeated knowledge
 
 Describe a relevant change or operational scenario, the dependency or policy relationship that makes it difficult, and its consequence. Investigate whether mechanisms such as presentation or storage affect a substantive decision. For repeated logic, distinguish one shared obligation drifting between live paths from different policies or independent trust-boundary validation. Consider intentional design and scope before recommending a small local change. A principle name, directory layout, long function, or duplicate block is not sufficient evidence.
-
-## Verification-ready next actions
-
-For a consequential **SUPPORTED** finding or **HYPOTHESIS** requiring further proof, propose the **smallest discriminating observation**: the relevant starting conditions/trigger, what to observe (the oracle), the expected result if the concern is real, and an alternative result or counterexample that would weaken or refute it. For concurrency and recovery, specify ordering, durable identities/frontiers, and any hidden self-repair that would invalidate the comparison **only when material**. For clock-dependent behavior, first establish the intended freshness contract. This is a thinking aid, **not a mandatory report form or additional finding quota**.
-
-A direct source/document contradiction can warrant a straightforward documentation correction without an expensive runtime experiment. If the contract is unknown, propose clarifying it rather than inventing a test expectation. All executable verification remains **PROPOSED — NOT RUN**; do not execute, install, edit, or create tickets during an audit. Favor short, developer-usable next actions over long testing plans.
 
 ## Evidence levels
 

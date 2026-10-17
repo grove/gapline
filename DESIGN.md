@@ -3,6 +3,8 @@
 **Status:** Read-only skill implemented with installable references, packaging checks, and controlled evaluation cases. Installation and invocation evidence are recorded separately from effectiveness and host isolation.
 **Product decision:** Start with one optional, portable, **read-only** coding-agent skill. Extend it only after real investigations show useful, independently supportable findings at acceptable cost.
 
+The [scouting/verification comparison](evaluation/results/2026-10-17-refinements/README.md) found no scouting advantage on five compact synthetic cases. The added Scout wording was reverted; verification was simplified after modest gains and substantial ties in blinded process-role model review. This does not qualify larger-repository prioritization or establish human developer savings.
+
 ## 1. Purpose
 
 Gapline helps an existing coding agent answer:

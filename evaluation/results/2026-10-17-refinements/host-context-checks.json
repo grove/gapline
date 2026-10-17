@@ -1,0 +1,185 @@
+{
+  "records": [
+    {
+      "id": "s1-A",
+      "thread_id": "01a149b9-19f5-7061-9bd8-c6d35bb15e66",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s1-B",
+      "thread_id": "01a149b9-906d-7cd3-a620-2cd7612f2ffa",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s1-C",
+      "thread_id": "01a149ba-6132-78a1-930a-72affc18fbc7",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s1-D",
+      "thread_id": "01a149b9-f1ec-7800-b070-f7fd9849a36f",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s2-A",
+      "thread_id": "01a149bb-d927-7371-ab14-2a4cc5848091",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s2-B",
+      "thread_id": "01a149ba-e856-7ed3-a68d-561bf23adb79",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s2-C",
+      "thread_id": "01a149bb-653d-7390-997d-552f03c061bc",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s2-D",
+      "thread_id": "01a149bc-5005-7cc0-b33f-b9cb70255246",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s3-A",
+      "thread_id": "01a149bd-d65c-7642-921c-c989b61600cb",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s3-B",
+      "thread_id": "01a149bd-6dfc-70b3-a9d1-6c4ceba05164",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s3-C",
+      "thread_id": "01a149bc-b1f6-7b62-8d58-cf11f19bfe08",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s3-D",
+      "thread_id": "01a149bd-0259-75e1-a3e2-22372837ec25",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s4-A",
+      "thread_id": "01a149be-ee38-7861-b32d-32e918fc191b",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s4-B",
+      "thread_id": "01a149c0-264b-7991-9372-0511604e338a",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s4-C",
+      "thread_id": "01a149bf-7886-7e52-b149-af35141bc36c",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s4-D",
+      "thread_id": "01a149be-4be4-72c3-bd54-c7725ebc5d00",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s5-A",
+      "thread_id": "01a149c1-7890-72c0-91df-d40ab18862de",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s5-B",
+      "thread_id": "01a149c1-dac9-7262-94a0-489884d672e9",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s5-C",
+      "thread_id": "01a149c1-1786-7133-b844-f0391258aaf5",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    },
+    {
+      "id": "s5-D",
+      "thread_id": "01a149c0-a95c-7022-a8c0-a190d3a40a90",
+      "developer_messages_sha256_normalized": "06c54c1a31fa6bbf4c35511eae6bb57c328a4905f7291399020577d201c226da",
+      "base_instructions_sha256": "d9128b491a80f82473fa69d41462ad40db926c32e9ea853af59ee9ce8bc197db",
+      "host_skill_catalog_present": true,
+      "added_scouting_in_host_instructions": false,
+      "added_verification_in_host_instructions": false
+    }
+  ],
+  "limits": "Only own-session base/developer instruction records, path-normalized. No instruction bodies or private reasoning exported. String/hash checks do not establish all remote model context or training novelty."
+}

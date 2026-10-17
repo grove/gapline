@@ -1,0 +1,34 @@
+[
+  {
+    "reviewer": 1,
+    "files": {
+      "s1.md": {
+        "sha256": "ee74dd053c2dd6a9d2f7ed4d1c21458005abfc7a7ed806ef1b51d1d7d1919eee",
+        "size_bytes": 23795
+      },
+      "s2.md": {
+        "sha256": "e8e6d9b09700e147fda2f67086b0399b9d8fa5df4261fc21a6532b1e7b2d4769",
+        "size_bytes": 19021
+      },
+      "s3.md": {
+        "sha256": "59ca35ebc612f85d2fc2d6c21a595eba4ac0e315ca209ea1b41a1ff5a61ad5ba",
+        "size_bytes": 20593
+      }
+    },
+    "prompt": "You are a fresh independent report reviewer, not a case author or audit worker. Work alone. Use only the inspection MCP tool to read the supplied case bundles (list files, then read one bundle per call to avoid truncation). Do not execute any code/tests/builds, edit, use network, access other sessions or files, or use audit skills. You have 180 seconds, 12 inspection calls and 250000 input-plus-output tokens. Reports are origin-masked and randomly labeled; arm identities, time/token costs and controller preferences are withheld. Do not infer methods. Judge against exact source and authoritative contracts, not agreement with the nonexhaustive evaluator interpretation. For EVERY report label, assess correctness, material misses/false positives, useful probe selection, refuted leads, appropriate no-findings/uncertainty, misleading certainty, and next-action usefulness. For consequential unresolved claims, check starting conditions/trigger, observable oracle, supporting and refuting outcomes, assumptions/alternatives, and avoidable developer effort. Reward concise useful distinctions, not finding count, field count or verbosity. Documentation contradictions should permit direct correction; missing requirements should prompt clarification, not invented expectations. Executable follow-ups must remain PROPOSED \u2014 NOT RUN. Compare all four reports within each case: identify material gains, ties, unnecessary complexity, and the cheapest adequate handoff. Record disagreement with evaluator expectations and report any residual method disclosure. Do not resolve the product decision or claim independent human validation. Return your frozen judgments in the final response.\n"
+  },
+  {
+    "reviewer": 2,
+    "files": {
+      "s4.md": {
+        "sha256": "b695910fb50d4889a029d5484eb6aaad27a13e884a93fc2e8cd004bdffd384ec",
+        "size_bytes": 24965
+      },
+      "s5.md": {
+        "sha256": "4df2c7773e2057ca5d566c18fedaf7ae37a4ca5bc6c105afb9d8ae798f1db3d5",
+        "size_bytes": 20382
+      }
+    },
+    "prompt": "You are a fresh independent report reviewer, not a case author or audit worker. Work alone. Use only the inspection MCP tool to read the supplied case bundles (list files, then read one bundle per call to avoid truncation). Do not execute any code/tests/builds, edit, use network, access other sessions or files, or use audit skills. You have 180 seconds, 12 inspection calls and 250000 input-plus-output tokens. Reports are origin-masked and randomly labeled; arm identities, time/token costs and controller preferences are withheld. Do not infer methods. Judge against exact source and authoritative contracts, not agreement with the nonexhaustive evaluator interpretation. For EVERY report label, assess correctness, material misses/false positives, useful probe selection, refuted leads, appropriate no-findings/uncertainty, misleading certainty, and next-action usefulness. For consequential unresolved claims, check starting conditions/trigger, observable oracle, supporting and refuting outcomes, assumptions/alternatives, and avoidable developer effort. Reward concise useful distinctions, not finding count, field count or verbosity. Documentation contradictions should permit direct correction; missing requirements should prompt clarification, not invented expectations. Executable follow-ups must remain PROPOSED \u2014 NOT RUN. Compare all four reports within each case: identify material gains, ties, unnecessary complexity, and the cheapest adequate handoff. Record disagreement with evaluator expectations and report any residual method disclosure. Do not resolve the product decision or claim independent human validation. Return your frozen judgments in the final response.\n"
+  }
+]

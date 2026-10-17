@@ -1,0 +1,14 @@
+One supported gap emerged: approving revised wording leaves already prepared upcoming worksheets on the old revision. Whether that violates the intended policy needs clarification.
+
+**F1 — Advance preparation can prevent revised wording from reaching the next shift.**  
+Category: contract integration and test protection. Evidence: **SUPPORTED**, source inspection only. Impact: operators may receive outdated inspection instructions.
+
+- **Expected:** `POLICY.md:6–8` requires revised wording on the next shift worksheet and permits preparing worksheets several days ahead.
+- **Implementation:** `Desk.approve()` only updates the approved template (`desk/service.py:10–11`, `desk/templates.py:21–22`). Although `Desk.prepare()` passes the current template (`desk/service.py:13–14`), `Worksheets.generate()` uses it only when the date/shift has no existing worksheet (`desk/worksheets.py:22–27`). Thus, preparing an upcoming shift, approving revised wording, and preparing that shift again retains its original wording and revision.
+- **Test protection:** `tests/test_desk.py:19–23` checks revised wording only for a newly generated worksheet. Repeat generation is tested without an intervening approval (`tests/test_desk.py:25–33`). Neither covers this interaction.
+- **Counterevidence and uncertainty:** `POLICY.md:12–13` explicitly requires returning an existing worksheet without erasing marks; the implementation satisfies that rule. Completed records must also retain original wording (`POLICY.md:9–10`), and `tests/test_desk.py:35–47` protects their wording and revision. The policy does not resolve how revised wording should affect an existing, incomplete worksheet. This supports an unresolved contract interaction, rather than an unqualified implementation defect.
+- **Next action:** clarify whether approval must update already prepared, incomplete worksheets, including how marks survive task changes. **PROPOSED — NOT RUN:** add a regression covering prepare → approve revised wording → prepare the same upcoming shift, asserting the agreed wording, revision, reference, and mark behavior.
+
+**Scope and actual actions:** Applied `skill/SKILL.md`’s Gapline method, working alone. Used **3 inspection calls**: skill read, file listing, and a batched read of `README.md`, `POLICY.md`, all four exposed `desk/` files, and `tests/test_desk.py`. No files changed; no network or credential access. **Project code, tests, and builds executed: NONE.**
+
+The target was the supplied repository snapshot. No Git metadata was supplied, so revision and working-tree identity remain unknown. Runtime behavior and embedding-application guarantees were not assessed. This bounded source audit produced **one supported finding**, not a repository-wide correctness conclusion.

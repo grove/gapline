@@ -1,0 +1,15 @@
+Audited the supplied “Shift worksheet desk” snapshot using `skill/SKILL.md`. **One supported finding** survived review.
+
+**F1 — Revised wording does not reach an already prepared next-shift worksheet**  
+**SUPPORTED · Medium impact · Cross-operation contract gap**
+
+- **Expected:** `POLICY.md:6–8` requires approved revised wording on the next shift worksheet and permits preparing worksheets days ahead.
+- **Source behavior:** Approval only replaces the current template (`desk/service.py:10–11`, `desk/templates.py:21–23`). Existing worksheets retain their captured revision and tasks: `desk/worksheets.py:23–27` only initializes absent date/shift keys. Consequently, preparing tomorrow’s worksheet, approving revised wording, then preparing tomorrow’s worksheet again returns the old wording. No inspected path refreshes it.
+- **Consequence:** Operators could receive superseded instructions on the next shift despite supervisor approval.
+- **Test protection:** `tests/test_desk.py:19–23` checks revised wording only when generation happens after approval. The repeat-generation test (`25–33`) exercises no intervening approval. Neither protects the advance-preparation sequence.
+- **Counterevidence and uncertainty:** `POLICY.md:12–13` requires returning an existing worksheet while preserving marks, and `9–10` protects completed history. These requirements justify preserving identity, marks, and completed records; they do not explicitly resolve wording changes on unfinished, advance-prepared sheets. The implementation’s behavior is supported by source inspection, but the intended reconciliation needs clarification. No runtime failure was reproduced.
+- **Next action:** Define how approval affects unfinished worksheets prepared in advance, including partially checked ones. **PROPOSED — NOT RUN:** Prepare tomorrow’s morning worksheet under revision A, approve revision B with the same task keys and revised wording, then prepare and view that worksheet. Check wording, revision, reference, and marks against the clarified policy. The inspected implementation predicts A remains; automatic refresh or explicit invalidation would refute that prediction.
+
+Other examined leads did not support additional findings: template validation precedes approval-state changes (`desk/templates.py:16–22`), and completed worksheets retain captured wording while rejecting further marks (`desk/worksheets.py:25`, `31–32`).
+
+**Actions and limits:** Used **3 of 12 inspection calls**: skill read, file listing, and a batch read of README, policy, all four exposed `desk` files, and the test file. Worked alone; changed no files. **Project code, tests, and builds executed: NONE.** No shell, network, credentials, or other sessions were accessed. Revision and working-tree identity are unavailable because no Git metadata was supplied. This was source inspection only; embedding-application behavior, persistence, and runtime outcomes were not assessed.

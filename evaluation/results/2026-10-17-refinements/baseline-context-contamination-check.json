@@ -1,0 +1,29 @@
+{
+  "thread_id": "01a149b9-19f5-7061-9bd8-c6d35bb15e66",
+  "checks": [
+    {
+      "section": "base_instructions",
+      "contains_added_scouting": false,
+      "contains_added_verification": false
+    },
+    {
+      "section": "developer_message",
+      "contains_added_scouting": false,
+      "contains_added_verification": false,
+      "contains_skill_catalog": true
+    },
+    {
+      "section": "developer_message",
+      "contains_added_scouting": false,
+      "contains_added_verification": false,
+      "contains_skill_catalog": false
+    },
+    {
+      "section": "developer_message",
+      "contains_added_scouting": false,
+      "contains_added_verification": false,
+      "contains_skill_catalog": false
+    }
+  ],
+  "limit": "String checks of own baseline instruction records; not proof of all model-side context or absence of training familiarity."
+}

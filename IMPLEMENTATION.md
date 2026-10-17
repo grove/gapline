@@ -244,6 +244,8 @@ If isolation cannot be verified, this milestone is **NO-GO** for that host; Gapl
 
 ## 7. Milestone G — measure incremental value
 
+The [separate four-way scouting/verification experiment](evaluation/results/2026-10-17-refinements/README.md) retains 20 audits and two blinded Codex review sessions without altering the prior pilot. Its negative scouting result supports reverting the added Scout wording; modest verification gains support a compact aid, whose shortened wording has not itself been rerun. A larger, budget-constrained scouting comparison remains open under [#6](https://github.com/grove/gapline/issues/6).
+
 Start with a lightweight comparison during the first credible host trials. Before shipping scheduled audits, audit quality gates, a custom CLI, or a public platform, evaluate whether Gapline changes outcomes on fresh cases. Packaging CI is an implementation check, not an automated audit product.
 
 The [versioned three-arm pilot](evaluation/pilot-v1.md) freezes a fresh authored
