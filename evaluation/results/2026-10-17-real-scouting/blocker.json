@@ -1,0 +1,21 @@
+{
+  "status": "BLOCKED BEFORE PROTOCOL FREEZE AND BEFORE AUDITS",
+  "decision": "INCONCLUSIVE \u2014 NOT RUN",
+  "repository_revision": "b4d1e1c86802f16fe996c68eb33940cc298ea82c",
+  "failed_command": "git switch -c evaluate/real-scouting",
+  "exit_code": 128,
+  "stderr": "fatal: cannot lock ref 'refs/heads/evaluate/real-scouting': Unable to create '/Users/grove/projects/gapline/.git/refs/heads/evaluate/real-scouting.lock': Operation not permitted",
+  "boundary": "Environment grants read access to .git; user AGENTS.md requires ordinary local Git operations inside sandbox.",
+  "audit_attempts": 0,
+  "curator_attempts": 0,
+  "reviewer_attempts": 0,
+  "authentication": "NOT TESTED for new Codex sessions; GitHub reads and public git fetches succeeded",
+  "audit_permission_controls": "NOT VALIDATED for this cohort",
+  "paid_cli_usage": "NONE; no Codex exec sessions launched",
+  "controller_tokens_and_cost": "UNAVAILABLE",
+  "production_changed": false,
+  "issue_6": "OPEN",
+  "issue_7": "CLOSED; unchanged",
+  "snapshots_work_path": "/private/tmp/gapline-scout-real/snapshots",
+  "partial_preparation_only": true
+}
