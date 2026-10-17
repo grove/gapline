@@ -1,7 +1,4 @@
-# Caller guards teaching fixture
+# User registration
 
-Only register_user is the public API. Blank names are invalid; the internal
-formatter intentionally relies on its caller to validate input.
-
-Evaluator expectation (do not share with the audit agent): REFUTED /
-WITHDRAWN public API defect after inspecting caller preconditions.
+Only register_user is the public API. Blank names are invalid. The internal
+normalization helper is not a public interface.
