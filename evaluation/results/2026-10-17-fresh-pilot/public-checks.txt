@@ -1,0 +1,28 @@
+q1: python3 -B -m unittest discover -v
+test_empty_and_successive_publications (test_artifacts.ArtifactTests.test_empty_and_successive_publications) ... ok
+test_failed_replacement_preserves_existing_commit (test_artifacts.ArtifactTests.test_failed_replacement_preserves_existing_commit) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.017s
+
+OK
+
+q2: python3 -B -m unittest discover -v
+test_completion_keeps_the_operation_identity (test_leases.QueueTests.test_completion_keeps_the_operation_identity) ... ok
+test_reissued_lease_fences_old_worker (test_leases.QueueTests.test_reissued_lease_fences_old_worker) ... ok
+test_values_are_detached (test_leases.QueueTests.test_values_are_detached) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+q3: python3 -B -m unittest discover -v
+test_compaction_rejects_old_cursor (test_changes.ChangeTests.test_compaction_rejects_old_cursor) ... ok
+test_pages_include_repeated_keys_and_tombstones (test_changes.ChangeTests.test_pages_include_repeated_keys_and_tombstones) ... ok
+test_returned_values_do_not_change_history (test_changes.ChangeTests.test_returned_values_do_not_change_history) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

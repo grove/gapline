@@ -246,6 +246,13 @@ If isolation cannot be verified, this milestone is **NO-GO** for that host; Gapl
 
 Start with a lightweight comparison during the first credible host trials. Before shipping scheduled audits, audit quality gates, a custom CLI, or a public platform, evaluate whether Gapline changes outcomes on fresh cases. Packaging CI is an implementation check, not an automated audit product.
 
+The [versioned three-arm pilot](evaluation/pilot-v1.md) freezes a fresh authored
+cohort and evaluator expectations before review. Its
+[retained evidence](evaluation/results/2026-10-17-fresh-pilot/README.md) separates
+independent judgments, observable resource costs, and unavailable telemetry.
+This synthetic cohort is a local decision aid; production-case effectiveness
+still requires independently specified real repository questions.
+
 ### Matched comparison
 
 On a small, fresh, independently reviewed set of realistic repository questions, compare:

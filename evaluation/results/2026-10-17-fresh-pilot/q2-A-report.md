@@ -1,0 +1,9 @@
+One supported finding:
+
+**A NaN lease duration creates a lease that never expires.** In [leases.py:33](/private/tmp/gapline-issue5-20261017/work/trial-04/repository/leases.py:33), validation rejects only `ttl <= 0`. A floating-point NaN passes that check and produces a NaN deadline at line 46. Consequently, the expiration comparisons in `reserve` (line 37) and `finish` (line 60) are always false. An abandoned job cannot be leased again, while its current token remains accepted indefinitely. This undermines the expiration and recovery behavior described in [README.md:15](/private/tmp/gapline-issue5-20261017/work/trial-04/repository/README.md:15).
+
+Counterevidence and uncertainty: this requires an exceptional duration value; ordinary positive finite durations follow the documented logic. The README places timestamp ordering responsibility on the adapter, but states no finite-duration constraint. No adapter implementation was available to establish whether NaN is reachable. The existing [tests](/private/tmp/gapline-issue5-20261017/work/trial-04/repository/test_leases.py:18) cover normal expiration and stale-token fencing, but not invalid durations.
+
+**PROPOSED — NOT RUN:** Check that reserving with `float("nan")` rejects the duration before changing job state, and that a subsequent valid reservation succeeds. Decide and document whether infinite durations are also invalid.
+
+I used two read-only shell inspection calls to list project files and read the three listed files with line numbers. I did not execute project code, collect or run tests, build, install, edit files, invoke Git, use network tools, access credentials, inspect outside the project, use audit skills, or delegate. Findings are based on static inspection; runtime behavior and external caller validation were not assessed.

@@ -1,0 +1,17 @@
+{
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+  "architecture": "arm64",
+  "controller_python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "global_instruction_files": {
+    "/Users/grove/.codex/AGENTS.md": {
+      "sha256": "088e32c2c96ce50b4dad9b478552f86a6ffe2ab49e8c68eeea4ad1e1195b7a82",
+      "size_bytes": 4049
+    },
+    "/Users/grove/.codex/RTK.md": {
+      "sha256": "13f973cf9d47899124efae2cdb1684021ea2ed4b523c9a8c7f032197175e1aa1",
+      "size_bytes": 546
+    }
+  },
+  "sampling_parameters": "UNAVAILABLE; no overrides supplied",
+  "complete_process_network_permission_telemetry": "UNAVAILABLE"
+}
