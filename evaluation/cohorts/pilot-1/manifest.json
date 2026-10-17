@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "cohort": "pilot-1",
+  "evaluator_only": true,
+  "authored_on": "2026-10-17",
+  "predeclared_before_reviews": true,
+  "worker_input_rule": "Only exact files inside selected cases/<id>. Exclude manifest, cohort README, oracle, case IDs, other cases, and evaluator results. Enforce isolation separately.",
+  "oracle_policy": "Only stdlib execution of trusted freshly authored source. Seven evaluator checks, one expected failure for q1 plus a separate positive witness. Public baselines pass. Never attribute evaluator execution to audit workers.",
+  "limitations": [
+    "Three small synthetic cases support local calibration only, not population estimates or real-world effectiveness claims.",
+    "Independent authorship is role separation, not evidence of unseen/pretraining novelty.",
+    "Oracle expectations are nonexhaustive; novel supported claims need independent review.",
+    "Hashes and copied paths do not enforce isolation or establish host compliance."
+  ],
+  "cases": [
+    {
+      "id": "q1",
+      "question": "Investigate this repository read-only for consequential behavior, test, documentation, or maintenance gaps. Return at most three supported findings; none is acceptable. Cite evidence, consider counterevidence, and distinguish observed facts from proposed checks. Do not execute project code, tests, or builds, install dependencies, or change files.",
+      "provenance": "Freshly independently authored by the evaluator curator on 2026-10-17 for this pilot; synthetic local snapshot. Existing teaching fixture names and expectations were read to avoid reproducing them. No claim of real-world provenance, unseen status, or pretraining novelty. Curator did not run audits or inspect pilot worker reports.",
+      "intended_role": "consequential_defect",
+      "expected_outcomes": [
+        "A failed first publish can leave a complete generation without CURRENT. read() still returns None until reopening.",
+        "Startup recover() promotes the newest complete generation when CURRENT is absent. A generation that never reached os.replace commitment becomes visible, violating the explicit empty-state recovery contract.",
+        "The public failure test begins with an existing commit; its CURRENT early return misses failed first publication. Preserve marker absence as empty or require separate durable commit evidence, and add that boundary check."
+      ],
+      "accepted_alternatives": [
+        "Any equivalent supported explanation of uncommitted data promotion after interrupted first publication.",
+        "A narrow supported test-gap observation earns partial credit but does not fully identify the consequence.",
+        "A proposed deterministic fault-injection check is valid without execution; runtime reproduction requires actual authorized execution evidence."
+      ],
+      "reject_or_qualify": [
+        "Do not claim failed updates overwrite an existing committed artifact: recover returns early when CURRENT exists.",
+        "Do not invent excluded concurrent-access, power-loss durability, externally corrupt directories, or garbage-collection obligations.",
+        "The documented diagnostic listing of uncommitted complete generations is not itself the defect."
+      ],
+      "oracle": {
+        "scenario": "Start empty; fail os.replace while publishing fixed bytes; restore replacement; reopen.",
+        "contract_expected": "None before and after reopening; no committed CURRENT.",
+        "snapshot_observed": "None before reopen; candidate bytes and CURRENT generation 1 after reopen.",
+        "expected_failure_test": "ArtifactOracle.test_uncommitted_first_generation_must_remain_invisible_on_reopen",
+        "positive_witness_test": "ArtifactOracle.test_exact_known_failure_witness"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1503,
+          "sha256": "00eb45e7c2ea16a417aaf3eafdca21f6ed6fbf1ed6b6aa69998714f3af37189a"
+        },
+        {
+          "path": "artifacts.py",
+          "size": 2729,
+          "sha256": "f3792053c3579b2e4ea4de8c81a9849ad3c6983c7aadf1f151bddd707858cf68"
+        },
+        {
+          "path": "test_artifacts.py",
+          "size": 1236,
+          "sha256": "633b86a5bae2b5d5e8e822a60e7cf33e4f1bd5dab1c27a7ef5cdd1fac57fed97"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Investigate this repository read-only for consequential behavior, test, documentation, or maintenance gaps. Return at most three supported findings; none is acceptable. Cite evidence, consider counterevidence, and distinguish observed facts from proposed checks. Do not execute project code, tests, or builds, install dependencies, or change files.",
+      "provenance": "Freshly independently authored by the evaluator curator on 2026-10-17 for this pilot; synthetic local snapshot. Existing teaching fixture names and expectations were read to avoid reproducing them. No claim of real-world provenance, unseen status, or pretraining novelty. Curator did not run audits or inspect pilot worker reports.",
+      "intended_role": "legitimate_design_false_lead",
+      "expected_outcomes": [
+        "Completed keys identify an operation for the whole bounded batch. Replaying an equal payload preserves the same completed job and result, rather than requesting requeue.",
+        "Conflicting payloads under one key are rejected; another key creates another operation.",
+        "Fresh tokens fence expired workers even under the same owner name; deadline equality is expired.",
+        "A scoped no-finding answer is appropriate."
+      ],
+      "accepted_alternatives": [
+        "No findings, with or without discussing intentional completed-key retention.",
+        "A limitation framed within the documented bounded, serialized, in-memory scope may be useful.",
+        "A novel consequential finding can be accepted after independent contract-grounded verification; this oracle is nonexhaustive."
+      ],
+      "reject_or_qualify": [
+        "Completed-key retention is not a requeue defect or an unbounded-service memory leak under the declared single-batch lifecycle.",
+        "Do not claim stale completion succeeds without accounting for token and deadline checks.",
+        "Persistence and cross-process locking are explicitly outside scope."
+      ],
+      "oracle": {
+        "scenario": "Complete, replay same key, then enqueue a distinct key; separately expire and reissue a lease under the same owner name.",
+        "contract_expected": "Replay keeps completed result and yields no lease; new key is leasable; stale token rejected, fresh token accepted.",
+        "snapshot_observed": "Matches scoped contract."
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1492,
+          "sha256": "9ef3825893f36e427b84b1ff0283c30438d9d92444f1a2f1ed4492dd4e074b1e"
+        },
+        {
+          "path": "leases.py",
+          "size": 2205,
+          "sha256": "441c70cb6f1d6b835dde159ec66a53bc68b32ff681285b6ea5a20738e29367db"
+        },
+        {
+          "path": "test_leases.py",
+          "size": 1744,
+          "sha256": "c20901acc1f1743c889e7b333d61593963d87433d7502301bba81ac7c557c357"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Investigate this repository read-only for consequential behavior, test, documentation, or maintenance gaps. Return at most three supported findings; none is acceptable. Cite evidence, consider counterevidence, and distinguish observed facts from proposed checks. Do not execute project code, tests, or builds, install dependencies, or change files.",
+      "provenance": "Freshly independently authored by the evaluator curator on 2026-10-17 for this pilot; synthetic local snapshot. Existing teaching fixture names and expectations were read to avoid reproducing them. No claim of real-world provenance, unseen status, or pretraining novelty. Curator did not run audits or inspect pilot worker reports.",
+      "intended_role": "clean_scoped_case",
+      "expected_outcomes": [
+        "begin() freezes the upper revision; resume preserves it; a later pull includes writes appended between pages.",
+        "Repeated updates and tombstones remain ordered events; detached values protect retained history.",
+        "Compaction explicitly expires positions below the inclusive floor, including active continuations; the floor remains usable.",
+        "A scoped no-finding answer is appropriate. Adapter snapshot endpoint, token transport, persistence, and multiwriter handling are expressly outside scope."
+      ],
+      "accepted_alternatives": [
+        "No findings, without claiming global correctness.",
+        "A narrow adapter-integration question is acceptable when explicitly unresolved rather than asserted as a component defect.",
+        "Novel material findings can be accepted after independent verification; no planted defect is not a correctness certificate."
+      ],
+      "reject_or_qualify": [
+        "Displayed checkpoints do not authorize persisting them before the final page.",
+        "Between-page appends are beyond the frozen checkpoint and appear on the next pull; they are not silently lost.",
+        "Do not invent snapshot retention or hostile-input promises for invalidated continuations or trusted in-process tokens."
+      ],
+      "oracle": {
+        "scenario": "Pull revisions 1..3 in single-event pages; append revision 4 between pages; separately compact beyond an active continuation.",
+        "contract_expected": "First pull contains 1..3 at checkpoint 3; next pull includes 4. Compacted continuation raises CursorExpired; floor cursor remains valid.",
+        "snapshot_observed": "Matches scoped contract."
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1618,
+          "sha256": "55d90d7a34769f3d470e03e482c9265e40de14934f9b8b08d06bfde2c362d954"
+        },
+        {
+          "path": "changes.py",
+          "size": 2241,
+          "sha256": "bc68c0e98c5a352bfca33eadf16510af02d9743a7c74efbc28da7511e0f8c78f"
+        },
+        {
+          "path": "test_changes.py",
+          "size": 1406,
+          "sha256": "f1ae9ab848fc6d960d9f94c493d159884acbeaa21868668430ff9d26ce0a8278"
+        }
+      ]
+    }
+  ]
+}
