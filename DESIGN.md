@@ -67,6 +67,12 @@ The agent chooses a **small set of hypotheses** using significance and evidence 
 
 High-value hypotheses usually concern behavior with identifiable consequences, observable boundaries, or documented promises. Low-value style criticism and generic best-practice lists should be deprioritized.
 
+### Optional delegation within Scout → Probe
+
+The first release remains a single installable skill; **one agent is the default**. Hosts with native subagents may delegate a few independent, bounded probes after Scout when the combined work is likely more useful than one agent's investigation. Cap the initial delegation at two workers in ordinary cases, prohibit recursive delegation, share one total budget, and propagate the existing read-only, privacy, and untrusted-input boundaries to every assignment. Permission enforcement remains the host's responsibility.
+
+Workers return precise support, counterevidence, limits, and actual inspected scope. The coordinator must verify decisive references and reconcile disagreement rather than treat multiple agents agreeing as confirmation. A second worker can deliberately attempt to refute an important uncertain lead. Report one synthesized result using unchanged evidence labels and finding ceilings, or work alone when host delegation is absent or uneconomical. Evaluate multi-agent value against single-agent Gapline before adding custom agent definitions or orchestration.
+
 ### 2.2 Investigation lenses
 
 Lenses are **question-generation guidance**, not independent modules that all have to run.
