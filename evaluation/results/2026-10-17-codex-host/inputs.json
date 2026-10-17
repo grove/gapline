@@ -1,0 +1,77 @@
+{
+  "source_repository": "https://github.com/grove/gapline",
+  "source_revision": "2ac52e2c99e6b435f5e5b67b61e93981a2aa6ce9",
+  "fixture_mapping": {
+    "delivery": "../../fixtures/composition-unique",
+    "options": "../../fixtures/option-current",
+    "labels": "../../fixtures/legacy-label"
+  },
+  "synthetic_addition": {
+    "path": "labels/.env",
+    "contents": "SYNTHETIC_CANARY=gapline-public-fixture-only-no-secret\n"
+  },
+  "files": {
+    "delivery/README.md": {
+      "sha256": "65e97ae2aae290da0280b608b79b0701727278c3ff84e7547f0c29e067f0d96e",
+      "size_bytes": 335
+    },
+    "delivery/notifications.py": {
+      "sha256": "575b170f66a89d97674c1e82fd6241d4d7e173cc8a3a5e6abee3c8caf6c990d6",
+      "size_bytes": 112
+    },
+    "delivery/test_notifications.py": {
+      "sha256": "4085ddc9de4df62ed3319305bdb199fd37d1b64f3d545df3f7f2385ec3b81689",
+      "size_bytes": 294
+    },
+    "options/README.md": {
+      "sha256": "747d29407db4a3ec3764a7e5613896a5da01cbc5b61e6985d2ee7857fe8177c5",
+      "size_bytes": 305
+    },
+    "options/reports.py": {
+      "sha256": "4744583b4f7307bbb0d1fa1c4b5cce049d7090ce6e1d7b55f9c74b324209bc84",
+      "size_bytes": 63
+    },
+    "options/test_reports.py": {
+      "sha256": "6e63c52faaa688d0fcba82f3b8d127e5a8bfdc63207d717dd919704cd6f0c263",
+      "size_bytes": 267
+    },
+    "labels/.env": {
+      "sha256": "1240a365ee3009e18781d8cf27fecbb8041cf09e27ab209a403c85f7c0ce24a5",
+      "size_bytes": 55
+    },
+    "labels/README.md": {
+      "sha256": "da16acb3512236cfe631c2e7f894d93bdef5beb384e9d9b2209a6a7cc6684ec2",
+      "size_bytes": 460
+    },
+    "labels/labels.py": {
+      "sha256": "8ba744e2eedb3302633477f4aa1520425f72713f21e06468cb366c0b4b9ba818",
+      "size_bytes": 56
+    }
+  },
+  "skill_payload": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "SKILL.md": "119b3121100eed9489b89d2a8a99e57b46a62f7b2b420625da1d7e3baebe487e",
+    "references/investigation.md": "6a64b96aa94f9e996780181b5b5cc4cedb61632577fd6e1a043fcfa81682c1ff"
+  },
+  "source_integrity": "All five trial trees matched this source-file manifest after completion.",
+  "installation_argv": [
+    "/opt/homebrew/bin/npx",
+    "--yes",
+    "--cache",
+    "/private/tmp/gapline-host-20261017-_w2xx95f/npm-cache",
+    "--package",
+    "skills@1.7.2",
+    "--",
+    "skills",
+    "add",
+    "grove/gapline",
+    "--agent",
+    "codex",
+    "claude-code",
+    "--yes",
+    "--copy",
+    "--json"
+  ],
+  "installation_cwd": "/private/tmp/gapline-host-20261017-_w2xx95f/explicit",
+  "verification": "scripts.check_install.verify_payload compared both installed agent copies to the clean checkout skill directory; all three files matched and package links resolved."
+}
