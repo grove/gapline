@@ -109,6 +109,12 @@ cohort before expanding the product. Keep the fuller comparison in
 [IMPLEMENTATION.md](../IMPLEMENTATION.md) as a later check rather than making
 a large benchmark a prerequisite for trying the first skill.
 
+## Optional delegation comparison
+
+To qualify multi-agent behavior, add an arm **C: Gapline with selective host-native delegation** to the normal single-agent Gapline arm. Use fresh independent cases, the same repository snapshot, question, access controls, and **combined** wall-clock/token/tool budget. Record actual number of workers, questions, handoff scopes, overlapping reads, total costs, attempts to execute or write, and whether the coordinator directly checked decisive evidence. A worker report is not proof of a claim or of permission compliance.
+
+Compare independently verified actionable findings, false positives, valuable refutations, omitted coverage, latency, and aggregate tool/model cost. Include a small case where delegation should be **skipped** and a case where a second worker is asked to challenge a consequential uncertain finding. If the host does not support subagents, record unavailable rather than simulating extra workers or changing the matched budget. Do not assume delegation is superior because workers agree or produce more text. Keep the optional workflow only if it earns its incremental cost.
+
 ## Minimal evaluator run note
 
 Keep the note and output outside worker access; plain Markdown is sufficient.
