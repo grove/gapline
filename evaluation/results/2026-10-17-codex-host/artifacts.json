@@ -1,0 +1,78 @@
+{
+  "README.md": {
+    "size_bytes": 10861,
+    "sha256": "e2778618824dc3a446b0186a1d3939c3b8b3bccc5b5778771423b14c8d507c5e"
+  },
+  "automatic-events.jsonl": {
+    "size_bytes": 20705,
+    "sha256": "13b036b6ffe98da437276ff972a7edf600d222e2056857be6afa9ef6fbdae8fe"
+  },
+  "automatic-report.md": {
+    "size_bytes": 2994,
+    "sha256": "81f2fc4247d76794719887f7d7ce1567f146891ebab118a4f21e8674c05e991f"
+  },
+  "coordinator-trace.jsonl": {
+    "size_bytes": 26711,
+    "sha256": "7cf8aa5447e3cd2a7ddd7ea9b04342c635a37cd35729675a040c40b2997b9fe7"
+  },
+  "delegated-events.jsonl": {
+    "size_bytes": 24095,
+    "sha256": "6b7512c77288599195f7e8d8f544dd0270f8547f05f45c53de4adb8947199805"
+  },
+  "delegated-persisted-events.jsonl": {
+    "size_bytes": 21446,
+    "sha256": "b40a50d7510ac631d299413026310fb6fcacf6108323e39c29c66e56add07873"
+  },
+  "delegated-persisted-report.md": {
+    "size_bytes": 2496,
+    "sha256": "8c38b7a16e7e0c84f4bdf192a9d3a0e4f7d0172b687d70681202523e87005e76"
+  },
+  "delegated-report.md": {
+    "size_bytes": 2633,
+    "sha256": "c267574bd2968552467b55aa8eb740caa117e8d13d5658d3f05b99b4fa084601"
+  },
+  "delegated.stderr.txt": {
+    "size_bytes": 277,
+    "sha256": "ea4103a8a0850dc848527b2c19b9f384182d5fbf81c4275b8f16e5b3a8771d19"
+  },
+  "discovery-events.jsonl": {
+    "size_bytes": 20320,
+    "sha256": "55d83eb9f1ab9afd1967dede5437731416fef1dc1f5e463656644518c3bd7bca"
+  },
+  "discovery-report.md": {
+    "size_bytes": 3265,
+    "sha256": "b0dacd63fcff320d0d1ffb34444850de10c718094a98c11100d0d7b0dc6a46a0"
+  },
+  "explicit-events.jsonl": {
+    "size_bytes": 20246,
+    "sha256": "f94f1906f2763f8d19509f61e4e151aa5e9c7562b97c670faaaaad5e791fdce7"
+  },
+  "explicit-report.md": {
+    "size_bytes": 3069,
+    "sha256": "012dea4c2e04700085699365b3446d0d4700a7bd22789e4b507bcaf48d4c48e1"
+  },
+  "inputs.json": {
+    "size_bytes": 2731,
+    "sha256": "8e42b203e22201a7b679140e7630096f765830d01b05f4bc1c62813117a1464f"
+  },
+  "install-sha-failed.json": {
+    "size_bytes": 275,
+    "sha256": "7b3c192d1f4b93d07bda9247752aaa579a5f2127c2453ef351a3da1bfa345156"
+  },
+  "install.json": {
+    "size_bytes": 543,
+    "sha256": "48561c38da8e57a409eb7ebe2188b3ce533e0b6702fdc0d2a91ffd03b4c698e4"
+  },
+  "labels-worker-trace.jsonl": {
+    "size_bytes": 4557,
+    "sha256": "fd831727c407387b93d967bb7c63494703bdace3091e85734413c49f55384d4f"
+  },
+  "options-worker-trace.jsonl": {
+    "size_bytes": 5350,
+    "sha256": "08334a475ff52ba4ddc1db135ea0f71d3620f1be26dc16534862b096aa23e5ea"
+  },
+  "runs.json": {
+    "size_bytes": 11327,
+    "sha256": "1becbac8a23da844eacdc2ffae0b2c70f29285982b7c44789ffafce9c6c37d99"
+  }
+}

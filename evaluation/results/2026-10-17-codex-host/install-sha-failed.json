@@ -1,0 +1,6 @@
+[
+  {
+    "status": "failed",
+    "error": "Failed to clone repository\nFailed to clone https://github.com/grove/gapline.git: Cloning into '/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/skills-zWJE7W'...\nfatal: Remote branch 2ac52e2 not found in upstream origin\n"
+  }
+]

@@ -126,6 +126,14 @@ The [evaluation protocol](evaluation/README.md) keeps evaluator expectations out
 
 The [2026-10-17 validation record](evaluation/results/2026-10-17-install-and-smoke/README.md) includes real CLI installs and independently reviewed manual trials. Both Gapline and ordinary review reached the same main functional conclusions in the small authored batch; no material effectiveness advantage was established.
 
+The [Codex host record](evaluation/results/2026-10-17-codex-host/README.md)
+observed explicit and uncued skill activation and a native two-worker audit.
+It also retains a failed ephemeral worker launch and a host-instruction read
+outside the requested project scope. This does not establish host isolation;
+Claude Code invocation remains **NOT TESTED**. See the
+[real-host validation procedure](evaluation/host-validation.md) for reproduction
+and the remaining evidence needed.
+
 ## Neighboring projects
 
 Gapline works independently. No sibling is required or automatically invoked.

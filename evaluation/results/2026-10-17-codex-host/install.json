@@ -1,0 +1,22 @@
+[
+  {
+    "name": "gapline-audit",
+    "status": "installed",
+    "source": "grove/gapline",
+    "ref": null,
+    "hash": "ef5135d95f9e09b493a1c2813e0a5ad60e7b541425157521a8aee2f04df0ee4c",
+    "path": "/private/tmp/gapline-host-20261017-_w2xx95f/explicit/.agents/skills/gapline-audit",
+    "scope": "project",
+    "agents": [
+      "Codex",
+      "Claude Code"
+    ],
+    "mode": "copy",
+    "security": {
+      "gen": "safe",
+      "socket": "0 alerts",
+      "snyk": "medium",
+      "details": "https://skills.sh/grove/gapline"
+    }
+  }
+]
