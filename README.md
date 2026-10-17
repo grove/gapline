@@ -63,6 +63,12 @@ The host must already authorize access to the target. Gapline supports file/sear
 
 These are optional investigation lenses. Complexity, churn, coverage, duplicate text, and design-principle names can suggest questions; they do not establish defects. Independent validation, different programming styles, and deliberately deferred capabilities can be appropriate.
 
+## Optional subagent investigations
+
+Gapline works with one coding agent by default. On hosts that already support subagents, a larger audit may delegate **independent, bounded** investigations after the initial Scout step. Usually start with no more than two workers, each assigned a specific question and shared total budget. All workers remain read-only; no project execution or file changes become permitted through delegation.
+
+The coordinator verifies important citations, challenges uncertain claims, combines overlapping results, and returns **one** evidence-calibrated report. An independent worker can be tasked with disproving a consequential hypothesis when worth the extra cost. Subagents are not required, automatically launched, or a substitute for host-enforced permissions. See the [skill's delegation contract](gapline-audit/SKILL.md#optional-host-native-subagent-delegation) and the [evaluation comparison](evaluation/README.md).
+
 ## How an audit works
 
 1. **Scout:** identify the repository snapshot, question, sampled scope, public behavior, and a few promising leads.
