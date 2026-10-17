@@ -1,0 +1,21 @@
+{
+  "setup": {
+    "started_unix": 1792236578.597041,
+    "role": "independent reviewer, separate context; not curator or worker",
+    "arm_mapping_withheld": true
+  },
+  "delivery": {
+    "delivered_unix": 1792236713.19836,
+    "masking": "Only absolute source root replaced with repository. Substantive content retained; structure may reveal origin."
+  },
+  "source_review_sha256": "7c646b1b7118873bde8f6bf99d113f04a0f2c7b57a51f5dd45d8e37d98629f91",
+  "active_review_tokens_tools_time": "UNAVAILABLE; timestamps include waiting between phases",
+  "judgments_received_unix": 1792236894.8299918,
+  "reviewer_mapping_received": false,
+  "reviewer_observed_calls": {
+    "source_inspection": 3,
+    "report_inspection": 4,
+    "evaluator_oracle_execution": 1,
+    "artifact_writes": 2
+  }
+}

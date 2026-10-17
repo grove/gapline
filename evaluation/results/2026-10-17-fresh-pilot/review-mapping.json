@@ -1,0 +1,47 @@
+[
+  {
+    "report": "r01",
+    "run": "q3-B",
+    "case": "q3"
+  },
+  {
+    "report": "r02",
+    "run": "q1-A",
+    "case": "q1"
+  },
+  {
+    "report": "r03",
+    "run": "q3-C",
+    "case": "q3"
+  },
+  {
+    "report": "r04",
+    "run": "q2-A",
+    "case": "q2"
+  },
+  {
+    "report": "r05",
+    "run": "q1-B",
+    "case": "q1"
+  },
+  {
+    "report": "r06",
+    "run": "q2-C",
+    "case": "q2"
+  },
+  {
+    "report": "r07",
+    "run": "q1-C",
+    "case": "q1"
+  },
+  {
+    "report": "r08",
+    "run": "q2-B",
+    "case": "q2"
+  },
+  {
+    "report": "r09",
+    "run": "q3-A",
+    "case": "q3"
+  }
+]

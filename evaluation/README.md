@@ -17,6 +17,12 @@ outside the requested project scope. The
 published installation but failed authentication before an audit. The user
 dropped Claude Code qualification from #4; that host remains UNQUALIFIED.
 
+For issue #5, [pilot protocol v1](pilot-v1.md) freezes a three-arm comparison,
+with a [fresh authored cohort](cohorts/pilot-1/README.md) and separate evaluator
+manifest/oracle. The [pilot record](results/2026-10-17-fresh-pilot/README.md)
+retains every attempt, independent report judgments, observable costs and the
+development decision. Authored cases do not establish production effectiveness.
+
 Evaluator interpretations live in [fixture_expectations.md](fixture_expectations.md).
 Keep that file, this protocol, case names, receipts, and prior answers out of
 the worker's context. Source files contain ordinary project contracts and

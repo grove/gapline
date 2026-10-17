@@ -137,6 +137,14 @@ direction, Claude Code qualification was dropped from #4; it remains
 [real-host validation procedure](evaluation/host-validation.md) for reproduction
 and requirements for any future qualification.
 
+The [fresh authored three-arm pilot](evaluation/results/2026-10-17-fresh-pilot/README.md)
+retains nine runs, independent judgments and observable costs. Gapline added
+two specific regression-check scenarios over ordinary review, with more elapsed
+time and input tokens; it found no additional current functional defect.
+All selective runs skipped delegation. The decision is **KEEP** the optional
+portable skill for another focused trial; production effectiveness and actual
+delegation's incremental value remain unproven.
+
 ## Neighboring projects
 
 Gapline works independently. No sibling is required or automatically invoked.
