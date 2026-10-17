@@ -1,0 +1,24 @@
+| Run | Seconds | Inspections | Input | Cached subset | Output | Report |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| review-1 | 69.178 | 4 | 120,790 | 92,672 | 2,177 | [report](review-1-report.md) |
+| review-2 | 56.315 | 3 | 86,155 | 65,152 | 1,481 | [report](review-2-report.md) |
+| s1-A | 30.344 | 3 | 74,578 | 58,624 | 937 | [report](s1-A-report.md) |
+| s1-B | 24.968 | 3 | 74,766 | 59,392 | 781 | [report](s1-B-report.md) |
+| s1-C | 34.596 | 3 | 60,010 | 48,256 | 988 | [report](s1-C-report.md) |
+| s1-D | 28.503 | 3 | 75,582 | 63,616 | 771 | [report](s1-D-report.md) |
+| s2-A | 30.423 | 3 | 74,209 | 62,848 | 654 | [report](s2-A-report.md) |
+| s2-B | 31.848 | 3 | 74,486 | 55,936 | 650 | [report](s2-B-report.md) |
+| s2-C | 29.734 | 3 | 59,297 | 47,872 | 646 | [report](s2-C-report.md) |
+| s2-D | 25.064 | 3 | 75,298 | 51,968 | 638 | [report](s2-D-report.md) |
+| s3-A | 30.076 | 3 | 74,707 | 58,112 | 673 | [report](s3-A-report.md) |
+| s3-B | 26.680 | 3 | 75,008 | 62,976 | 721 | [report](s3-B-report.md) |
+| s3-C | 20.526 | 3 | 59,795 | 47,872 | 554 | [report](s3-C-report.md) |
+| s3-D | 27.614 | 3 | 75,804 | 51,200 | 666 | [report](s3-D-report.md) |
+| s4-A | 35.439 | 3 | 74,177 | 62,848 | 1,018 | [report](s4-A-report.md) |
+| s4-B | 32.258 | 3 | 74,470 | 62,976 | 952 | [report](s4-B-report.md) |
+| s4-C | 44.484 | 3 | 75,121 | 55,680 | 934 | [report](s4-C-report.md) |
+| s4-D | 41.530 | 3 | 75,242 | 63,616 | 1,057 | [report](s4-D-report.md) |
+| s5-A | 25.123 | 3 | 59,149 | 43,904 | 765 | [report](s5-A-report.md) |
+| s5-B | 26.548 | 4 | 76,455 | 64,768 | 604 | [report](s5-B-report.md) |
+| s5-C | 24.816 | 3 | 59,428 | 47,872 | 746 | [report](s5-C-report.md) |
+| s5-D | 29.405 | 3 | 59,744 | 40,064 | 723 | [report](s5-D-report.md) |

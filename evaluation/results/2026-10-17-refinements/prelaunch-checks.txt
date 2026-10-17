@@ -1,0 +1,99 @@
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+CWD /Users/grove/projects/gapline/evaluation/cohorts/refinements-1/cases/s1
+EXIT 0
+test_adding_removing_and_title_edits_leave_edition_structure (test_rubrics.RubricTests.test_adding_removing_and_title_edits_leave_edition_structure) ... ok
+test_bad_scores_and_duplicate_records (test_rubrics.RubricTests.test_bad_scores_and_duplicate_records) ... ok
+test_description_does_not_allow_external_changes (test_rubrics.RubricTests.test_description_does_not_allow_external_changes) ... ok
+test_empty_and_duplicate_criteria (test_rubrics.RubricTests.test_empty_and_duplicate_criteria) ... ok
+test_validation_preserves_draft (test_rubrics.RubricTests.test_validation_preserves_draft) ... ok
+test_weighted_percentage_and_score_copy (test_rubrics.RubricTests.test_weighted_percentage_and_score_copy) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+CWD /Users/grove/projects/gapline/evaluation/cohorts/refinements-1/cases/s2
+EXIT 0
+test_admission_captures_track_list (test_listening.ListeningTests.test_admission_captures_track_list) ... ok
+test_awareness_and_timezone_equivalence (test_listening.ListeningTests.test_awareness_and_timezone_equivalence) ... ok
+test_finish_after_closure_is_supported_and_idempotent (test_listening.ListeningTests.test_finish_after_closure_is_supported_and_idempotent) ... ok
+test_revocation_blocks_new_runs_but_preserves_admitted_runs (test_listening.ListeningTests.test_revocation_blocks_new_runs_but_preserves_admitted_runs) ... ok
+test_validation_and_unknown_references (test_listening.ListeningTests.test_validation_and_unknown_references) ... ok
+test_window_edges (test_listening.ListeningTests.test_window_edges) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+CWD /Users/grove/projects/gapline/evaluation/cohorts/refinements-1/cases/s3
+EXIT 0
+test_atomic_batches_and_empty_batch (test_fieldlog.LedgerTests.test_atomic_batches_and_empty_batch) ... ok
+test_bad_windows_and_equivalent_timezone_bounds (test_fieldlog.LedgerTests.test_bad_windows_and_equivalent_timezone_bounds) ... ok
+test_celsius_fahrenheit_and_absolute_zero (test_fieldlog.LedgerTests.test_celsius_fahrenheit_and_absolute_zero) ... ok
+test_invalid_values_names_units_and_time (test_fieldlog.LedgerTests.test_invalid_values_names_units_and_time) ... ok
+test_order_and_immutable_results (test_fieldlog.LedgerTests.test_order_and_immutable_results) ... ok
+test_replacement_timezone_equivalence_and_same_batch_last_wins (test_fieldlog.LedgerTests.test_replacement_timezone_equivalence_and_same_batch_last_wins) ... ok
+test_summary_interval_and_sensor_isolation (test_fieldlog.LedgerTests.test_summary_interval_and_sensor_isolation) ... ok
+test_supported_upper_bounds_and_large_batch_summary (test_fieldlog.LedgerTests.test_supported_upper_bounds_and_large_batch_summary) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.004s
+
+OK
+
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+CWD /Users/grove/projects/gapline/evaluation/cohorts/refinements-1/cases/s4
+EXIT 0
+test_completion_preserves_history (test_desk.DeskTests.test_completion_preserves_history) ... ok
+test_future_generation_uses_updated_wording (test_desk.DeskTests.test_future_generation_uses_updated_wording) ... ok
+test_generation_uses_approved_revision (test_desk.DeskTests.test_generation_uses_approved_revision) ... ok
+test_invalid_actions_do_not_change_approval (test_desk.DeskTests.test_invalid_actions_do_not_change_approval) ... ok
+test_repeat_generation_keeps_marks_and_distinct_shifts (test_desk.DeskTests.test_repeat_generation_keeps_marks_and_distinct_shifts) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+CWD /Users/grove/projects/gapline/evaluation/cohorts/refinements-1/cases/s5
+EXIT 0
+test_cli_defaults_and_failure_streams (test_tileplan.TileTests.test_cli_defaults_and_failure_streams) ... ok
+test_cli_pixel_geometry (test_tileplan.TileTests.test_cli_pixel_geometry) ... ok
+test_empty_default_and_zero_spacing (test_tileplan.TileTests.test_empty_default_and_zero_spacing) ... ok
+test_full_rows_and_partial_row (test_tileplan.TileTests.test_full_rows_and_partial_row) ... ok
+test_invalid_values (test_tileplan.TileTests.test_invalid_values) ... ok
+test_no_extra_columns_or_border (test_tileplan.TileTests.test_no_extra_columns_or_border) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '/Users/grove/projects/gapline/evaluation/cohorts/refinements-1/oracle.py']
+CWD /Users/grove/projects/gapline
+EXIT 0
+rubric_boundary: verified
+listening_policy: verified
+sensor_controls: verified
+worksheet_uncertainty: verified
+documentation_contract: verified
+Frozen case inventory: verified
+
+COMMAND ['/opt/homebrew/opt/python@3.15/bin/python3.15', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_refinements.py', '-v']
+CWD /Users/grove/projects/gapline
+EXIT 0
+test_factorial_variants_and_balanced_schedule (test_refinements.RefinementTests.test_factorial_variants_and_balanced_schedule) ... ok
+test_frozen_cohort_and_oracle (test_refinements.RefinementTests.test_frozen_cohort_and_oracle) ... ok
+test_inspection_denies_outside_reads_execution_and_over_budget (test_refinements.RefinementTests.test_inspection_denies_outside_reads_execution_and_over_budget) ... ok
+test_mcp_transport_initializes_and_records_only_allowlisted_reads (test_refinements.RefinementTests.test_mcp_transport_initializes_and_records_only_allowlisted_reads) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.105s
+
+OK
+

@@ -1,0 +1,6 @@
+Node: v26.12.0; skills CLI: 1.7.2; source: /Users/grove/projects/gapline
+  symlink: codex: 3 matching files; local links resolve
+  symlink: claude-code: 3 matching files; local links resolve
+  copy: codex: 3 matching files; local links resolve
+  copy: claude-code: 3 matching files; local links resolve
+PASS: discovery, project installation, full payload, and local links. Host activation and audit quality were not tested.

@@ -63,9 +63,9 @@ The host must already authorize access to the target. Gapline supports file/sear
 
 These are optional investigation lenses. Complexity, churn, coverage, duplicate text, and design-principle names can suggest questions; they do not establish defects. Independent validation, different programming styles, and deliberately deferred capabilities can be appropriate.
 
-## Risk-guided scouting and verification handoffs
+## Scouting and verification evaluation
 
-For broad audits, Gapline now favors leads tied to an existing promise or consequential invariant at a reachable boundary—rather than ranking files by complexity or treating a three-finding ceiling as a quota. When a source-level concern remains unproven, its proposed next action aims to distinguish a real failure from a valid alternative, including the necessary observable result. Straightforward documentation contradictions do not require unnecessary runtime experiments. The audit remains read-only; verification steps are **PROPOSED — NOT RUN**. These instructions are candidates for evaluation under [#6](https://github.com/grove/gapline/issues/6) and [#7](https://github.com/grove/gapline/issues/7), not proof of increased effectiveness.
+A [four-way comparison](evaluation/results/2026-10-17-refinements/README.md) used five fresh synthetic cases, 20 bounded Codex audits, and two blinded Codex reviewer sessions. The added scouting guidance showed no advantage and was reverted; larger scopes with a scarce inspection budget remain untested. Verification guidance sometimes clarified refuting outcomes, but longer handoffs were not consistently more useful. It was reduced to one short aid for consequential unresolved claims. The shortened wording has not had another model trial. These results do not establish production effectiveness or measured developer time savings. Audits remain read-only, with executable follow-ups **PROPOSED — NOT RUN**. See [#6](https://github.com/grove/gapline/issues/6) and [#7](https://github.com/grove/gapline/issues/7).
 
 ## Optional subagent investigations
 

@@ -2,14 +2,6 @@
 
 Use the recipe that helps resolve the current question. These are optional reasoning aids; they do not add required report sections, new evidence states, or permission to execute anything.
 
-## Picking a promising probe (optional)
-
-When the task is broad, favor leads where an existing promise or invariant meets a reachable boundary, multiple entry points, or recovery transitions, and a small source observation could change the conclusion. For a named prior fix, check whether other applicable entry points inherit its protection. Prioritize the user's concerns first; do not claim spontaneous discovery of a lead provided in the prompt. A style smell without a traceable consequence stays low priority. The lead ceiling is not a quota.
-
-## Making the next observation discriminating (optional)
-
-For an unresolved consequential claim, identify the relevant precondition and trigger, the observation that would adjudicate it, and **both** a result supporting the concern and a result contradicting it. For retry/transaction questions, record necessary ordering, identity and persistent state; rule out incidental self-repair only if it would mask the failure. For clock-dependent behavior, check what freshness is actually promised. Do not invent a detailed runtime experiment if a source/document contradiction is already demonstrable or the contract is unspecified. Executable probes remain **PROPOSED — NOT RUN**.
-
 ## 1. Consequential coupling
 
 Start with a requested change, an observed change, or an operational scenario that matters. Trace the policy it affects and the other behavior connected by a dependency or shared representation.

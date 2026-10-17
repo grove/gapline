@@ -1,0 +1,13 @@
+{
+  "thread_id": "01a149b9-f1ec-7800-b070-f7fd9849a36f",
+  "turn_contexts": [
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "low",
+      "approval_policy": "never",
+      "sandbox_policy": {
+        "type": "read-only"
+      }
+    }
+  ]
+}
