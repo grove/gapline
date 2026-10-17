@@ -49,7 +49,7 @@ def schedule():
     return [(f"s{index}", arm) for index, order in enumerate(orders, 1) for arm in order]
 
 
-def launch(run_id, project, output, prompt):
+def launch(run_id, project, output, prompt, *, token_limit=250000, strict_tools=False):
     argv = ["codex", "exec", "--ignore-user-config", "--ignore-rules", "--skip-git-repo-check",
             "--json", "--sandbox", "read-only", "-m", "gpt-6.1-sol"]
     settings = {"approval_policy": "never", "model_reasoning_effort": "low", "web_search": "disabled",
@@ -62,6 +62,10 @@ def launch(run_id, project, output, prompt):
                     "skill_search", "skill_mcp_dependency_install"):
         settings[f"features.{feature}"] = False
     settings["features.skip_host_skill_discovery"] = True
+    if strict_tools:
+        settings["features.code_mode_only"] = True
+        settings["features.code_mode_only_strict_3p_tools"] = True
+        settings["features.goals"] = False
     # JSON is also valid TOML for these scalar/array values; tables need inline TOML.
     server = settings.pop("mcp_servers")["inspection"]
     for key, value in settings.items():
@@ -70,7 +74,7 @@ def launch(run_id, project, output, prompt):
         argv.extend(["-c", f"mcp_servers.inspection.{key}={json.dumps(value)}"])
     argv.extend(["-C", str(project.resolve()), "-o", str((output / f"{run_id}-report.md").resolve()), "-"])
     record = {"id": run_id, "argv": argv, "stdin": prompt, "before": identity(project),
-              "monetary_cost": "UNAVAILABLE"}
+              "monetary_cost": "UNAVAILABLE", "token_limit": token_limit}
     (output / f"{run_id}-input.json").write_text(json.dumps(record, indent=2) + "\n")
     started = time.monotonic()
     with (output / f"{run_id}-events.jsonl").open("w") as stdout, (output / f"{run_id}-stderr.txt").open("w") as stderr:
@@ -90,7 +94,7 @@ def launch(run_id, project, output, prompt):
     record["thread_id"] = next((event["thread_id"] for event in events if event.get("type") == "thread.started"), "UNAVAILABLE")
     inspections = output / f"{run_id}-inspections.jsonl"
     record["inspection_calls"] = len(inspections.read_text().splitlines()) if inspections.exists() else 0
-    record["token_budget_met"] = (sum(record["usage"].get(key, 0) for key in ("input_tokens", "output_tokens")) <= 250000
+    record["token_budget_met"] = (sum(record["usage"].get(key, 0) for key in ("input_tokens", "output_tokens")) <= token_limit
                                   if isinstance(record["usage"], dict) else "UNAVAILABLE")
     record["forbidden_activity"] = [event for event in events if event.get("item", {}).get("type") in
                                     ("command_execution", "file_change", "web_search")]

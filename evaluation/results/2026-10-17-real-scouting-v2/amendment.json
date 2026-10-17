@@ -1,0 +1,17 @@
+{
+  "protocol": "real-scouting-v2",
+  "prior_evidence_commit": "3cfb21f379de1e6d0ad48f27b152f9820b3efdfe",
+  "token_limit": 1000000,
+  "authorization": "User: I approve raising the token ceiling to 1M.",
+  "budget_interpretation": "Per session cumulative input plus output; cached input counted once. Post-hoc instruction ceiling, not hard cap.",
+  "time_limit_seconds": 180,
+  "inspection_limit": 12,
+  "new_curator_attempt_limit": 2,
+  "audit_attempt_limit": 8,
+  "review_attempt_limit": 2,
+  "source_cohort": "real-scouting-1; same exact commits, no audits previously run",
+  "strict_tools_required": true,
+  "strict_tools_qualified": "NOT YET; first fresh curator must verify before source reads",
+  "production_changed": false,
+  "monetary_cost": "UNAVAILABLE"
+}

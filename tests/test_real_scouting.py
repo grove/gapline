@@ -5,10 +5,12 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+import json
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
 from run_real_scouting import COHORT, SCHEDULE, anonymize, cases, freeze, supply
 from run_pilot import identity
+from run_refinements import launch
 
 
 class RealScoutingTests(unittest.TestCase):
@@ -51,7 +53,6 @@ class RealScoutingTests(unittest.TestCase):
             self.assertNotIn(hidden, result)
 
     def test_over_budget_curator_cannot_be_promoted_to_frozen_expectations(self):
-        import json
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary)
             for suffix in ("report.md", "host.json"):
@@ -61,3 +62,26 @@ class RealScoutingTests(unittest.TestCase):
             with patch("run_real_scouting.OUTPUT", output), self.assertRaisesRegex(ValueError, "unqualified"):
                 freeze()
             self.assertFalse((output / "frozen.json").exists())
+
+    def test_explicit_ceiling_counts_cached_input_once_and_preserves_legacy_default(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            project = root / "repository"
+            project.mkdir()
+            def fake_process(argv, **kwargs):
+                class Process:
+                    returncode = 0
+                    def communicate(self, prompt, timeout):
+                        kwargs["stdout"].write(json.dumps({"type": "turn.completed", "usage": {
+                            "input_tokens": 900000, "cached_input_tokens": 800000, "output_tokens": 100000}}) + "\n")
+                return Process()
+            with patch("run_refinements.subprocess.Popen", side_effect=fake_process) as process:
+                original = launch("legacy", project, root, "check")
+                revised = launch("v2", project, root, "check", token_limit=1000000, strict_tools=True)
+            self.assertEqual(original["token_limit"], 250000)
+            self.assertFalse(original["token_budget_met"])
+            self.assertTrue(revised["token_budget_met"])
+            self.assertEqual(revised["token_limit"], 1000000)
+            argv = process.call_args.args[0]
+            for setting in ("features.code_mode_only=true", "features.code_mode_only_strict_3p_tools=true", "features.goals=false"):
+                self.assertIn(setting, argv)
