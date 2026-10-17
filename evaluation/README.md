@@ -124,6 +124,12 @@ cohort before expanding the product. Keep the fuller comparison in
 [IMPLEMENTATION.md](../IMPLEMENTATION.md) as a later check rather than making
 a large benchmark a prerequisite for trying the first skill.
 
+## Compare optional scouting and verification refinements (#6 / #7)
+
+The [pg-trickle field observations](https://github.com/grove/gapline/issues/6) are **previously seen, pre-scoped teaching examples**. They suggested the consequence/boundary heuristic but do not establish unprompted discovery. The [verification handoffs](https://github.com/grove/gapline/issues/7) were enhanced in subsequent triage, not a controlled improvement experiment.
+
+On fresh cases, keep the baseline skill text/answers withheld from the worker and compare against the candidate at a matched total budget. Include a consequential cross-boundary case, an apparently suspicious but valid design, a clean/no-findings case, an ambiguous requirement, and a direct documentation contradiction. For #6, assess selected probes, supported value, missed risks, false leads and cost—**not** the number of findings. For #7, have independent reviewers compare anonymized next actions for falsifiability, alternative outcomes, correct contract and actual developer effort. Penalize unnecessary test plans for obvious documentation mismatches. Record negative and inconclusive results, and revert the added wording if value does not justify its overhead.
+
 ## Optional delegation comparison
 
 To qualify multi-agent behavior, add an arm **C: Gapline with selective host-native delegation** to the normal single-agent Gapline arm. Use fresh independent cases, the same repository snapshot, question, access controls, and **combined** wall-clock/token/tool budget. Record actual number of workers, questions, handoff scopes, overlapping reads, total costs, attempts to execute or write, and whether the coordinator directly checked decisive evidence. A worker report is not proof of a claim or of permission compliance.

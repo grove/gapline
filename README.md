@@ -63,6 +63,10 @@ The host must already authorize access to the target. Gapline supports file/sear
 
 These are optional investigation lenses. Complexity, churn, coverage, duplicate text, and design-principle names can suggest questions; they do not establish defects. Independent validation, different programming styles, and deliberately deferred capabilities can be appropriate.
 
+## Risk-guided scouting and verification handoffs
+
+For broad audits, Gapline now favors leads tied to an existing promise or consequential invariant at a reachable boundary—rather than ranking files by complexity or treating a three-finding ceiling as a quota. When a source-level concern remains unproven, its proposed next action aims to distinguish a real failure from a valid alternative, including the necessary observable result. Straightforward documentation contradictions do not require unnecessary runtime experiments. The audit remains read-only; verification steps are **PROPOSED — NOT RUN**. These instructions are candidates for evaluation under [#6](https://github.com/grove/gapline/issues/6) and [#7](https://github.com/grove/gapline/issues/7), not proof of increased effectiveness.
+
 ## Optional subagent investigations
 
 Gapline works with one coding agent by default. On hosts that already support subagents, a larger audit may delegate **independent, bounded** investigations after the initial Scout step. Usually start with no more than two workers, each assigned a specific question and shared total budget. All workers remain read-only; no project execution or file changes become permitted through delegation.

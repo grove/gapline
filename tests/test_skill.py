@@ -83,6 +83,22 @@ class SkillContractTests(unittest.TestCase):
             with self.subTest(term=term):
                 self.assertIn(term.lower(), self.skill.lower())
 
+    def test_scout_and_verification_guidance_keeps_scope_bounded(self):
+        # Presence-only guard; effectiveness requires independent matched trials.
+        for term in (
+            "current user promise",
+            "reachable interaction/entry-point boundary",
+            "another live entry point",
+            "do not force three findings",
+            "smallest discriminating observation",
+            "counterexample",
+            "intended freshness contract",
+            "not a mandatory report form",
+            "PROPOSED — NOT RUN",
+        ):
+            with self.subTest(term=term):
+                self.assertIn(term.lower(), self.skill.lower())
+
     def test_one_canonical_skill_entry_point(self):
         self.assertFalse((ROOT / "SKILL.md").exists(), "A root skill would shadow the canonical package")
         self.assertEqual(list(ROOT.glob("*/SKILL.md")), [SKILL_PATH])
