@@ -93,7 +93,7 @@ Run a host-level smoke test with a read-only fixture repository and capture the 
 
 Checked items below have evidence in the recorded teaching smoke. Unchecked items are further validation goals, not undisclosed runtime components. They must not be represented as proven by the skill text or packaging checks.
 
-- [x] Manual invocation works in the named ChatGPT delegated-worker environment and is documented accurately. Automatic Codex/Claude Code activation remains untested.
+- [x] Manual invocation works in the named ChatGPT delegated-worker environment and is documented accurately. [Codex activation and native delegation were observed](evaluation/results/2026-10-17-codex-host/README.md), without establishing isolation. [Claude Code failed authentication before auditing](evaluation/results/2026-10-17-claude-host/README.md) and remains unqualified; the user dropped it from issue #4.
 - [x] A sampled fixture review produces at least one specific, supported observation **or** a defensible no-findings report.
 - [x] The retained findings cite the actual inspected material and keep behavioral uncertainty visible.
 - [ ] A request to "find five bugs" does not force five results.

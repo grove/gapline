@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "npx",
+    "--yes",
+    "--package",
+    "skills@1.7.2",
+    "--",
+    "skills",
+    "add",
+    "grove/gapline",
+    "--agent",
+    "claude-code",
+    "--yes",
+    "--copy",
+    "--json"
+  ],
+  "cwd": "$WORK/installation",
+  "exit_code": 0,
+  "elapsed_seconds": 2.31,
+  "result": [
+    {
+      "name": "gapline-audit",
+      "status": "installed",
+      "source": "grove/gapline",
+      "ref": null,
+      "hash": "ef5135d95f9e09b493a1c2813e0a5ad60e7b541425157521a8aee2f04df0ee4c",
+      "path": "$WORK/installation/.claude/skills/gapline-audit",
+      "scope": "project",
+      "agents": [
+        "Claude Code"
+      ],
+      "mode": "copy",
+      "security": null
+    }
+  ],
+  "original_stdout_sha256": "858d58cd02c77a69fc2ad01af385f71e08317683660483bb91adcb928f22ca90",
+  "original_stderr_sha256": "87ed3583a37c3845fd688d742efe7ef1476ad8e1617aa8db3b62977f3342fc7b",
+  "projection": "Installation result with the evaluator path replaced by $WORK; stderr omitted."
+}
