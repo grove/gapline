@@ -186,6 +186,11 @@ Decision and next experiment (NOT RUN unless actually performed):
 
 ## Development checks
 
+The [proposed-check planning controls](proposed-checks.md) for #14 retain five
+authored reachability/oracle examples, including valid serialization, a refuted
+fallback lead, and a documentation-only correction. Their development checks
+do not establish model efficacy; no new host/model comparison was run.
+
 In the Gapline checkout, run:
 
 ```sh

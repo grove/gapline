@@ -16,12 +16,12 @@ from run_refinements import launch
 
 
 class RealScoutingTests(unittest.TestCase):
-    def test_variants_restore_only_historical_scout_and_keep_current_probe(self):
-        production = COHORT.parents[2] / "gapline-audit"
+    def test_frozen_variants_restore_only_historical_scout_and_keep_short_probe(self):
+        frozen = json.loads((COHORT.parents[1] / "results/2026-10-17-real-scouting-v3.1/frozen.json").read_text())
+        self.assertEqual(identity(COHORT), frozen["design"]["cohort"])
         for name in identity(COHORT / "skills/A"):
             original = (COHORT / "skills/A" / name).read_text()
             revised = (COHORT / "skills/B" / name).read_text()
-            self.assertEqual(original, (production / name).read_text())
             historical = (COHORT.parent / "refinements-1/skills/D" / name).read_text()
             if name == "SKILL.md":
                 addition = next(line + "\n" for line in historical.splitlines()
