@@ -1,6 +1,6 @@
 # Gapline — design
 
-**Status:** Proposed architecture, not yet implemented or evaluated.  
+**Status:** Experimental read-only v0.1 skill authored; host behavior and audit value not yet evaluated.  
 **Product decision:** Start with one optional, portable, **read-only** coding-agent skill. Extend it only after real investigations show useful, independently supportable findings at acceptable cost.
 
 ## 1. Purpose

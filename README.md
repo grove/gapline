@@ -2,13 +2,27 @@
 
 **Find what your codebase is missing.**
 
-Gapline is a proposed, opt-in **codebase investigation skill for existing coding agents**. Its purpose is to discover consequential weaknesses in an existing software project, investigate promising leads, and give developers evidence-backed next steps.
+Gapline is an experimental, opt-in **codebase investigation skill for existing coding agents**. Its purpose is to discover consequential weaknesses in an existing software project, investigate promising leads, and give developers evidence-backed next steps.
 
 It is not limited to a pull request or a feature currently being implemented. A developer should be able to revisit a mature repository and ask: **What are we overlooking?**
 
-> **Status: design only.** This repository currently contains project documentation and a license, not an implemented skill, executable scanner, benchmark, or verified audit result. There is no installation command yet.
+> **Status: experimental v0.1.** A read-only agent skill, static packaging checks, and small teaching fixtures now exist. No coding-agent host discovery, real-world audit quality, runtime isolation, or benchmark improvement has yet been verified. This is not an executable scanner.
 
-[Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md)
+[Skill](gapline-audit/SKILL.md) · [Evaluation protocol](evaluation/README.md) · [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md)
+
+## Try the experimental skill
+
+Gapline v0.1 is a **prompt-based agent skill**, not a command-line scanner. With a coding agent that has authorized read-only access to a target repository:
+
+1. Open [gapline-audit/SKILL.md](gapline-audit/SKILL.md). If your agent supports skill discovery, configure that file according to the host's own documentation. Otherwise, provide the file's contents directly as instructions. **Automatic discovery has not been verified on a named host.**
+2. Ask: **Use Gapline to investigate a focused component or sampled repository. Read only. Look for hollow tests, documentation drift, and unsafe failure paths. Return up to three consequential findings, with exact evidence, counterevidence, and proposed next checks.**
+3. Inspect the response critically. Claims about runtime behavior remain unverified unless a separate, authorized experiment actually ran. This skill never executes tests or changes the target repository.
+
+For Gapline's own development checkout, run the **static contract tests** with:
+
+    python -m unittest discover -s tests -v
+
+These tests check skill packaging and fixtures, **not** safe host behavior or whether the agent discovers real defects. The [evaluation protocol](evaluation/README.md) describes necessary host smoke tests and matched baseline comparisons. No such evaluation results are claimed yet.
 
 ## Why Gapline?
 
@@ -41,7 +55,7 @@ These are **investigation lenses**, not a checklist that must generate a finding
 
 ## How it should work
 
-The first useful version will be **one portable agent skill**, `gapline-audit`, for a coding agent that already has authorized access to the repository. It will not launch its own model or require another service.
+The first experimental version is **one portable agent skill**, `gapline-audit`, for a coding agent that already has authorized read-only access to the repository. It does not launch its own model or require another service.
 
 ### 1. Scout — discover hypotheses
 
@@ -51,7 +65,7 @@ The agent maps relevant code, tests, docs, and interfaces; chooses a bounded sco
 
 The agent first investigates by reading code, tracing paths, and comparing documented claims with implementations and tests.
 
-A later, separately qualified mode may run selected tests, make controlled inputs, or use existing mutation and analysis tools. **Execution must be authorized and appropriately isolated.** A skill prompt, copied directory, or git worktree is not itself a sandbox. The initial skill will be read-only.
+A later, separately qualified mode may run selected tests, make controlled inputs, or use existing mutation and analysis tools. **Execution must be authorized and appropriately isolated.** A skill prompt, copied directory, or git worktree is not itself a sandbox. The v0.1 skill is read-only.
 
 ### 3. Track — improve across repeated runs
 
@@ -86,7 +100,7 @@ A useful result points to **a precise behavior, the evidence actually obtained, 
 
 ## Intended use
 
-Once the skill exists and its invocation is verified, the user should be able to ask an agent:
+When an agent has been explicitly given the skill and authorized read-only repository access, a developer can ask:
 
 > Use Gapline to investigate this repository. Start read-only. Find up to five consequential weaknesses in behavior, tests, documentation, or reliability. Separate demonstrated problems from hypotheses, and recommend the smallest useful next action.
 
@@ -94,7 +108,7 @@ Or, on a later run:
 
 > Revisit the previous Gapline findings. Check which are still supported, what has actually been fixed, and what new weaknesses deserve investigation.
 
-The skill will support a repository-wide **survey**, a narrow **focus** on a component or concern, and eventually a **revisit** with prior findings. A survey is necessarily sampled and must disclose what was not assessed.
+The current skill supports a sampled repository **survey** or narrow **focus** via the requested scope. A **revisit** with persisted prior findings remains a future capability. A survey must disclose what was not assessed.
 
 ## What Gapline is not
 
@@ -123,13 +137,13 @@ Gapline may use an existing requirement statement as context or suggest a Faultl
 
 ## Roadmap
 
-1. **Read-only skill:** a small, discoverable `gapline-audit/SKILL.md` with bounded exploration, investigation playbooks, and evidence-aware reports.
-2. **Controlled probes:** optional executable checks only after host isolation, permissions, and evidence handling are qualified.
-3. **Finding continuity:** opt-in, human-reviewable history to reduce repetitive findings and verify fixes.
-4. **Real-world evaluation:** compare useful discoveries, false alarms, and end-to-end cost with an ordinary coding-agent review.
-5. **Conditional automation or CLI:** only if measured needs justify the additional complexity.
+1. **Experimental skill: authored, not host-qualified.** [gapline-audit/SKILL.md](gapline-audit/SKILL.md) contains three focused, evidence-aware read-only playbooks.
+2. **Host qualification and real-world evaluation: next.** Verify discovery and tool behavior, then compare against normal agent review on unseen cases at matched budget.
+3. **Controlled probes: conditional.** Only after host isolation, permissions, and evidence handling are qualified.
+4. **Finding continuity: conditional.** Opt-in, human-reviewable history only when repeated audits justify the overhead.
+5. **Automation or CLI: conditional.** Build these only when measured needs justify them.
 
-See [IMPLEMENTATION.md](IMPLEMENTATION.md) for explicit milestones and stopping criteria. The first task is the **read-only skill**, not a general scanning platform.
+See [IMPLEMENTATION.md](IMPLEMENTATION.md) for milestones and stopping criteria. The next task is to **validate and measure the small skill**, not build a general scanning platform.
 
 ## License
 
