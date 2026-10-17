@@ -22,6 +22,16 @@ Use the user's question, scope, and risk priorities. Support a narrow **focus** 
 
 Identify the repository, ref/commit, and visible working-tree state using available host evidence. Otherwise state which identity is unknown. A commit alone does not identify uncommitted changes. User-supplied prior findings are leads to recheck against current sources, not established facts or permission to persist a history.
 
+## Optional host-native subagent delegation
+
+**One agent is the default.** After scouting, delegate only when the host already provides subagents and two independent, consequential questions justify the added context, latency, and token cost within the user's **combined** budget. Usually start with at most two workers; do not spawn agents just to fill audit categories, split coupled investigations, or duplicate the same search. If subagents are unavailable or not worthwhile, proceed alone. Do not install or configure an agent framework as part of an audit.
+
+The coordinating agent owns the scope, budget, and final report. Give each worker a **bounded, preferably nonoverlapping** question with relevant paths, expected behavior and its source, permitted tools, a stop condition, and a concise return format. **Repeat the read-only, no-execution, privacy, and untrusted-repository-content restrictions in each assignment**; do not assume a subagent loaded this skill or shares its instructions. Host permissions, not prompt text, must enforce access. Tell workers: **do not delegate further**; the coordinator alone assigns investigations.
+
+Each worker should return what it actually inspected (paths and available snapshot identity); precise supporting **and counterevidence**; an appropriately scoped evidence level and uncertainty; a proposed next observation; and tools/commands and limits encountered. It must not present an unrun experiment as executed. Treat worker summaries as **leads, not independent proof**.
+
+The coordinator should verify material source references directly, resolve disagreements, remove overlapping findings, and apply the normal evidence and finding ceilings to **one** report. For a consequential uncertain lead, a separate worker may try specifically to **disprove** its claim if the expected value exceeds the extra cost; agreement between workers is not itself confirmation. If the host cannot expose workers' actual activity, say so rather than asserting compliance. Report whether delegation was used, what it covered, and material unassessed areas.
+
 ## Scout → Probe → Report
 
 1. **Establish scope and expected behavior.** Locate the relevant public interface, documentation, user requirement, tests, and caller constraints. Identify where the expectation came from. A test name, AI-generated plan, or existing implementation is not automatically an authoritative requirement.
@@ -67,7 +77,7 @@ Keep evidence strength separate from impact priority. Use High/Medium/Low only w
 Return a compact Markdown report:
 
 - **Target and snapshot:** repository, revision, working-tree identity or its limits, read-only mode, and focus/survey scope.
-- **Inspected:** actual paths/areas and observable budget; identify the inspection facilities and commands used. State **Project code, tests, and builds executed: NONE** only when true. Reading source with a shell is inspection, not a test run.
+- **Inspected:** actual paths/areas and observable budget; identify inspection facilities and commands used by the coordinator and any workers where observable. State **Project code, tests, and builds executed: NONE** only when true across all agents. Reading source with a shell is inspection, not a test run.
 - **Findings:** zero to three by default, up to five if requested, ordered by value. For each include a run-local ID/title, category, evidence level, impact rationale, exact inspected locations, expected versus observed behavior, supporting evidence, counterevidence considered, remaining uncertainty, and the smallest useful next action. Label executable follow-ups **PROPOSED — NOT RUN**.
 - **Withdrawn leads:** briefly explain meaningful dismissals when useful.
 - **Not assessed:** material scope omissions, unavailable context, and execution limits.
