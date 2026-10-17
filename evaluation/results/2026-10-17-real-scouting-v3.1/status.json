@@ -1,0 +1,59 @@
+{
+  "decision": "INCONCLUSIVE",
+  "issue_6": "OPEN",
+  "issue_7": "CLOSED",
+  "production_changed": false,
+  "stop_reason": "r2-A hard wall timeout; no further retry authority",
+  "sessions": [
+    {
+      "id": "curator-1",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "curator-2",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "r1-A",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "r1-B",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "r2-B",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "r2-A",
+      "status": "TIMEOUT"
+    },
+    {
+      "id": "r3-B",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "r3-A",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "r4-A",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "r4-B",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "review-1",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "review-2",
+      "status": "NOT RUN"
+    }
+  ],
+  "reviewer_conclusions": "NOT RUN",
+  "final_timeout_usage": "UNAVAILABLE"
+}

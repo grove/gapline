@@ -126,6 +126,15 @@ a large benchmark a prerequisite for trying the first skill.
 
 ## Compare optional scouting and verification refinements (#6 / #7)
 
+The [controlled real-repository v3.1 attempt](results/2026-10-17-real-scouting-v3.1/README.md)
+adopted the qualified capability gate and froze two fresh independent curator
+reports before audits. Three audits completed; the fourth hit the unchanged
+180-second timeout. The controller stopped before four remaining audits and
+both masked reviews, with no retry. Decision: **INCONCLUSIVE**; #6 remains open,
+#7 remains closed and production is unchanged. The tested host boundary passed;
+scouting effectiveness and independent quality judgments remain incomplete.
+Earlier records below describe historical blockers, not the current host status.
+
 The [native-tool qualification](results/2026-10-17-host-capabilities/README.md)
 tested actual writes and generic MCP resource reads using disposable canaries.
 The read-only host rejected both patches, the sole configured server rejected

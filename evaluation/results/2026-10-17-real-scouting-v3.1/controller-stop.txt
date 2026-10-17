@@ -1,0 +1,15 @@
+Command: python3 -B evaluation/run_real_scouting.py audit
+
+Controller output excerpt at stop (traceback caret lines omitted):
+r2-A: TIMEOUT 180.018s UNAVAILABLE
+Traceback (most recent call last):
+  File "/Users/grove/projects/gapline/evaluation/run_real_scouting.py", line 397, in <module>
+    {"prepare": prepare, "curate": curate, "freeze": freeze, "audit": audit, "review": review}[parser.parse_args().phase]()
+  File "/Users/grove/projects/gapline/evaluation/run_real_scouting.py", line 324, in audit
+    checked_launch(f"{case_id}-{arm}", project, setup["prompts"][f"{case_id}-{arm}"])
+  File "/Users/grove/projects/gapline/evaluation/run_real_scouting.py", line 203, in checked_launch
+    raise ValueError("incomplete, over-budget or unsafe attempt retained; stop")
+ValueError: incomplete, over-budget or unsafe attempt retained; stop
+
+Controller exit: 1
+No retry or subsequent audit/reviewer launched.
