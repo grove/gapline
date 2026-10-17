@@ -9,7 +9,7 @@ import copy
 import json
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
-from run_real_scouting import (COHORT, SCHEDULE, QUALIFICATION, accept_host, anonymize,
+from run_real_scouting import (COHORT, SCHEDULE, QUALIFICATION, CONSTRAINTS, accept_host, anonymize,
                                cases, freeze, normalize_argv, qualified_reference, supply)
 from run_pilot import identity
 from run_refinements import launch
@@ -129,3 +129,9 @@ class RealScoutingTests(unittest.TestCase):
         finding = "Access tokens can be logged at client.py:21; PROPOSED — NOT RUN."
         self.assertIn(finding, anonymize("Tokens: 12345\n" + finding))
         self.assertNotIn("12345", anonymize("Tokens: 12345\n" + finding))
+
+    def test_worker_is_told_exact_visible_qualified_names_before_source_reads(self):
+        for name in qualified_reference()["available_tool_names"]:
+            self.assertIn(name, CONSTRAINTS)
+        self.assertIn("Their presence is expected and MUST NOT cause you to stop", CONSTRAINTS)
+        self.assertIn("Do not invoke apply_patch or any generic resource API", CONSTRAINTS)

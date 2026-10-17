@@ -1,0 +1,3 @@
+Stopped before repository inspection: the tool list exposes the unqualified capability `apply_patch`. Your instructions allow qualified native patch APIs and require stopping if an unqualified additional capability is present.
+
+Actual actions: emitted `HOST_TOOL_NAMES` and tool metadata. No inspection calls, file reads, code execution, tests, network access, or edits occurred. I therefore cannot establish source-cited expectations for r1 or r2.
