@@ -1,0 +1,486 @@
+{
+  "schema_version": 1,
+  "frozen_at_utc": "2026-10-17T11:56:05.055106+00:00",
+  "provenance": "New independently specified synthetic cohort. No parent repository source, audit output, or reports were read by the curator. All case files and evaluator criteria frozen before workers.",
+  "prelaunch_corrections": [
+    "Parent source review identified overflow in the initial unbounded sensor sketch before any workers launched. Final s3 explicitly bounds C/F inputs, checks bounds before arithmetic, and covers extreme integers/floats and maximum-value summaries. See evaluator README for provenance."
+  ],
+  "worker_visibility": "Exactly one cases/sN tree and the identical worker_question; exclude all evaluator-only files.",
+  "common_worker_question": "Audit this repository for consequential gaps between its documented contracts, implementation, and test protection. Follow relevant components and report only findings supported by concrete evidence. Distinguish observed behavior from uncertain requirements; a sound outcome may have no findings. Do not change files.",
+  "evaluation_principles": [
+    "Judge consequential evidence-backed findings, useful connected probes, false positives, uncertainty calibration, and honest verification separately.",
+    "No-findings outcomes are expected for explicit controls; effort or finding count is not a quality score.",
+    "A concrete additional finding can be accepted only if supported by its public contract and meaningful user consequence; the oracle is not universal correctness proof.",
+    "Do not reward unsupported runtime claims. Execution is optional for static audits and unnecessary for the direct documentation correction.",
+    "Workers must not be given the manifest, oracle, provenance README, or other case trees."
+  ],
+  "public_test_validation": {
+    "command": "python3 -B -m unittest discover -s tests",
+    "result": "all five suites pass",
+    "tests_by_case": {
+      "s1": 6,
+      "s2": 6,
+      "s3": 8,
+      "s4": 5,
+      "s5": 6
+    }
+  },
+  "cases": [
+    {
+      "id": "s1",
+      "domain": "studio rubric editions and assessment calculation",
+      "expected_category": "consequential cross-component state-boundary defect",
+      "contracts": [
+        {
+          "path": "README.md",
+          "exact": "Publication freezes\nthe title, criterion order, criterion names, and maximum points for that edition.",
+          "start_line": 6
+        },
+        {
+          "path": "README.md",
+          "exact": "An assessment always uses the edition recorded when it was submitted, so an\nalready recorded assessment has the same percentage after later draft edits.",
+          "start_line": 8
+        },
+        {
+          "path": "README.md",
+          "exact": "A new publication picks up the current draft values.",
+          "start_line": 10
+        }
+      ],
+      "expected_interpretation": "Draft.freeze freezes only the criteria container, retaining mutable Criterion objects. Draft.revise mutates those shared objects. Catalog editions therefore change and Assessments.percentage recomputes old results using changed maxima. A 10/10 recorded result becomes 50 percent after raising the draft maximum to 20. Renaming a draft criterion also changes the published edition.",
+      "accepted_alternatives": [
+        "One root-cause finding about shallow publication and mutable criteria, substantiated by the downstream assessment effect.",
+        "One result-stability finding tracing editor -> catalog -> assessment with criterion aliasing identified as its cause.",
+        "A repair suggestion to copy or immutably snapshot each criterion at publication, with a regression that edits a published draft and rereads an existing result."
+      ],
+      "criteria": {
+        "useful_probes": [
+          "Trace freeze -> Catalog.publish/get -> Assessments.percentage, not just frozen dataclass syntax.",
+          "Distinguish add/remove list stability from element-field stability.",
+          "Use a public draft revision after recording an assessment as a concrete trigger."
+        ],
+        "false_positives": [
+          "Claiming that adding/removing criteria or changing the title already mutates an edition.",
+          "Claiming caller mutation of Catalog.describe or the original score dict changes stored data.",
+          "Presenting the deliberately unsupported direct model-field mutation as a separate critical exposure."
+        ],
+        "uncertainty": "The immutability/result-stability contract is explicit; do not downgrade this to an unspecified policy question.",
+        "verification": "Static alias tracing is sufficient; a reproducer may show 100.00 -> 50.00. Do not claim public tests already cover Draft.revise after publication."
+      },
+      "worker_question": "Audit this repository for consequential gaps between its documented contracts, implementation, and test protection. Follow relevant components and report only findings supported by concrete evidence. Distinguish observed behavior from uncertain requirements; a sound outcome may have no findings. Do not change files.",
+      "path": "/private/tmp/gapline-scout-cohort/cases/s1",
+      "files": [
+        {
+          "path": "cases/s1/README.md",
+          "size_bytes": 1186,
+          "sha256": "8d9dd723bde083be1e6bb64e732c18bac3d81832dccf71408e5758d551d48ac5",
+          "lines": 21
+        },
+        {
+          "path": "cases/s1/rubrics/__init__.py",
+          "size_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "lines": 0
+        },
+        {
+          "path": "cases/s1/rubrics/assessment.py",
+          "size_bytes": 1491,
+          "sha256": "ab339195765591c0e781a150d7447c687e65e3e2cebd6d1815b318dd736cb7b0",
+          "lines": 42
+        },
+        {
+          "path": "cases/s1/rubrics/catalog.py",
+          "size_bytes": 675,
+          "sha256": "4978ea3a80dd47eedb8af0ababcedb7ffe64c73badd4ace9babd6ffcb199fec9",
+          "lines": 24
+        },
+        {
+          "path": "cases/s1/rubrics/editor.py",
+          "size_bytes": 1705,
+          "sha256": "cf089648fa4f3d264c619e6583c009d2a9f01e8513b62216f0b36b5c54b64577",
+          "lines": 55
+        },
+        {
+          "path": "cases/s1/tests/test_rubrics.py",
+          "size_bytes": 3057,
+          "sha256": "e1b9e034fbf086f57739f055ec90b6902ce1a5f2e16eb40e70fbadc7c96f76e2",
+          "lines": 70
+        }
+      ],
+      "python_lines": 191
+    },
+    {
+      "id": "s2",
+      "domain": "exhibition audio admission and uninterrupted playback",
+      "expected_category": "suspicious but correct explicit policy",
+      "contracts": [
+        {
+          "path": "README.md",
+          "exact": "a run admitted while a license was valid may finish after the license closes or\nis revoked.",
+          "start_line": 9
+        },
+        {
+          "path": "README.md",
+          "exact": "Subsequent track-list edits affect later admissions only.",
+          "start_line": 11
+        },
+        {
+          "path": "README.md",
+          "exact": "Finishing a run does not\ncheck the current license.",
+          "start_line": 11
+        },
+        {
+          "path": "README.md",
+          "exact": "No new admission may use a closed or\nrevoked license.",
+          "start_line": 14
+        }
+      ],
+      "expected_interpretation": "No required finding. Admission-time licensing and captured immutable tracks deliberately permit previously admitted visitors to finish after closure or revocation. New admissions enforce revocation and the half-open window. Contract edges have direct public tests.",
+      "accepted_alternatives": [
+        "No findings with an explicit explanation that the tempting finish-time license recheck would violate visitor policy.",
+        "A concise evidence note tying the admission/finish split to README and the provided revocation, closure, track-capture, and endpoint tests."
+      ],
+      "criteria": {
+        "useful_probes": [
+          "Read the visitor policy before treating missing finish-time license validation as a defect.",
+          "Check that start still calls Licenses.admit and snapshots tracks.",
+          "Inspect test coverage of expiry, revocation, endpoints, timezone awareness, and track changes."
+        ],
+        "false_positives": [
+          "Demanding finish-time reauthorization or revocation of admitted runs.",
+          "Claiming the policy edges lack tests.",
+          "Treating this explicitly capability-based local library as an unauthenticated network API."
+        ],
+        "uncertainty": "The uninterrupted playback rule is explicit; no unresolved requirement is needed to excuse the behavior.",
+        "verification": "Static contract/code/test comparison is sufficient. Any execution claim must accurately identify an executed command and result."
+      },
+      "worker_question": "Audit this repository for consequential gaps between its documented contracts, implementation, and test protection. Follow relevant components and report only findings supported by concrete evidence. Distinguish observed behavior from uncertain requirements; a sound outcome may have no findings. Do not change files.",
+      "path": "/private/tmp/gapline-scout-cohort/cases/s2",
+      "files": [
+        {
+          "path": "cases/s2/README.md",
+          "size_bytes": 1221,
+          "sha256": "d15daa7ba2b2315107b41a102f149f521fcb4e8926aed562c0fb7413b926cdac",
+          "lines": 19
+        },
+        {
+          "path": "cases/s2/listening/__init__.py",
+          "size_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "lines": 0
+        },
+        {
+          "path": "cases/s2/listening/clock.py",
+          "size_bytes": 207,
+          "sha256": "b66f624676262ffecee738781f517b3011e3e3fa96e0cdf8135558a37de88c54",
+          "lines": 7
+        },
+        {
+          "path": "cases/s2/listening/licenses.py",
+          "size_bytes": 1332,
+          "sha256": "595363399ba82caa3a3470b210a8457be36008fe447775c308a368737d5a0ff3",
+          "lines": 47
+        },
+        {
+          "path": "cases/s2/listening/runs.py",
+          "size_bytes": 1246,
+          "sha256": "69f230480e40b421a5788273fa8bcfbe9eb23e8182a424247a9605f50438909b",
+          "lines": 48
+        },
+        {
+          "path": "cases/s2/tests/test_listening.py",
+          "size_bytes": 3621,
+          "sha256": "65f62070e2df80ba47cefb3d36cfb1cfb4228ca8e0f27ee9332b474acce822ed",
+          "lines": 75
+        }
+      ],
+      "python_lines": 177
+    },
+    {
+      "id": "s3",
+      "domain": "field temperature ledger and window statistics",
+      "expected_category": "clean control with appropriate no findings",
+      "contracts": [
+        {
+          "path": "README.md",
+          "exact": "Input batches are atomic: one invalid reading leaves the\nentire ledger unchanged.",
+          "start_line": 12
+        },
+        {
+          "path": "README.md",
+          "exact": "Each `(sensor, instant)` identifies one\nreading.",
+          "start_line": 10
+        },
+        {
+          "path": "README.md",
+          "exact": "A later valid submission replaces that reading, including when supplied\nin a different timezone.",
+          "start_line": 11
+        },
+        {
+          "path": "README.md",
+          "exact": "A summary selects `[start, stop)` instants for exactly one sensor.",
+          "start_line": 15
+        },
+        {
+          "path": "README.md",
+          "exact": "Stored rows are returned in timestamp order\nas immutable values.",
+          "start_line": 17
+        }
+      ],
+      "expected_interpretation": "No required finding. Validation occurs before the ledger update; keys use normalized UTC timestamps; summaries use half-open bounds and exact sensor isolation; result values are frozen. Public tests cover the stated contract edges, including invalid second row atomicity, equivalent timezones, bounded magnitudes, arbitrary-size integer rejection, and maximum-value summaries.",
+      "accepted_alternatives": [
+        "No findings, with a short explanation of the validation/commit boundary and public control coverage.",
+        "A bounded conclusion that no consequential gap was substantiated, without claiming universal correctness."
+      ],
+      "criteria": {
+        "useful_probes": [
+          "Follow parse normalization into update keys and summary windows.",
+          "Inspect a rejected multi-row batch and duplicate replacements, not just happy-path summaries.",
+          "Read the test contract edges before suggesting missing tests."
+        ],
+        "false_positives": [
+          "Claiming add partially commits before a later parse error.",
+          "Claiming equivalent timezones create duplicate instants.",
+          "Demanding duplicate rejection, inclusive stop bounds, rounding, thread safety, alerts, or physical sensor calibration contrary to the declared utility scope.",
+          "Generic test-gap findings for already supplied atomicity, conversion, frozen results, sensor isolation, or bound tests."
+        ],
+        "uncertainty": "State the limited in-memory single-threaded scope; do not manufacture findings from excluded deployment concerns.",
+        "verification": "Code and test inspection support a bounded clean result. Runtime execution is optional and must never be fabricated."
+      },
+      "worker_question": "Audit this repository for consequential gaps between its documented contracts, implementation, and test protection. Follow relevant components and report only findings supported by concrete evidence. Distinguish observed behavior from uncertain requirements; a sound outcome may have no findings. Do not change files.",
+      "path": "/private/tmp/gapline-scout-cohort/cases/s3",
+      "files": [
+        {
+          "path": "cases/s3/README.md",
+          "size_bytes": 1525,
+          "sha256": "7a1df0040981e3f00f1933918447492e23a8b9f2e250e078daef55ca908c5b0a",
+          "lines": 23
+        },
+        {
+          "path": "cases/s3/fieldlog/__init__.py",
+          "size_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "lines": 0
+        },
+        {
+          "path": "cases/s3/fieldlog/ledger.py",
+          "size_bytes": 786,
+          "sha256": "83a55be392cf52b1547874163f7e1fc64a81b0c9ae1f576f4f124a6d4fbcfdd9",
+          "lines": 26
+        },
+        {
+          "path": "cases/s3/fieldlog/reading.py",
+          "size_bytes": 994,
+          "sha256": "db545ab9babdc6a51cf6b7b33b9f2f0887c96df0d85a6668ecfe005bede87d01",
+          "lines": 34
+        },
+        {
+          "path": "cases/s3/fieldlog/summary.py",
+          "size_bytes": 424,
+          "sha256": "12285de0599c1f43dcb29e9cdd180d5cdae0e8a5d78d252914a9ce28bc483576",
+          "lines": 19
+        },
+        {
+          "path": "cases/s3/tests/test_fieldlog.py",
+          "size_bytes": 4896,
+          "sha256": "4deb5069b18122133e04e2d78eef1159671e8479ddffb0a51e58cf74673cc2bb",
+          "lines": 104
+        }
+      ],
+      "python_lines": 183
+    },
+    {
+      "id": "s4",
+      "domain": "approved inspection templates and advance shift worksheets",
+      "expected_category": "ambiguous authoritative requirement with preserved uncertainty",
+      "contracts": [
+        {
+          "path": "POLICY.md",
+          "exact": "When a supervisor approves revised task wording, the revised wording must\n   appear on the next shift worksheet.",
+          "start_line": 6
+        },
+        {
+          "path": "POLICY.md",
+          "exact": "Supervisors may prepare morning and evening worksheets several days ahead.",
+          "start_line": 8
+        },
+        {
+          "path": "POLICY.md",
+          "exact": "Only the currently approved revision is offered for new worksheet generation.",
+          "start_line": 11
+        },
+        {
+          "path": "POLICY.md",
+          "exact": "Generating an\n   existing date and shift returns that worksheet without erasing operator marks.",
+          "start_line": 12
+        }
+      ],
+      "expected_interpretation": "Observed: worksheets snapshot a template at generation; later approval updates only the current template, so an already prepared upcoming worksheet keeps older wording, while a newly generated worksheet gets the new revision. POLICY item 2 does not define whether next means next chronological shift (including a prepared sheet) or next newly generated worksheet. Items 3, 5, and 6 do not conclusively settle whether uncompleted prepared sheet wording should refresh. Preserve the ambiguity and seek that decision before declaring a runtime fix.",
+      "accepted_alternatives": [
+        "An explicitly conditional finding describing the prepare -> approve -> next shift scenario and the two plausible readings, with a focused clarification request.",
+        "A requirement gap or uncertainty note rather than a confirmed implementation bug.",
+        "No confirmed runtime finding with an explanation that the prepared-sheet interpretation is unresolved."
+      ],
+      "criteria": {
+        "useful_probes": [
+          "Connect Templates.approve, Desk.prepare, Worksheets.generate, and the stored revision/tasks.",
+          "Read all seven policy clauses, including advance preparation, historical completion, and idempotent existing-sheet generation.",
+          "Ask whether revised wording must refresh already prepared but uncompleted upcoming worksheets and how operator marks are preserved."
+        ],
+        "false_positives": [
+          "Unequivocally declaring stale upcoming sheets a bug without acknowledging next is undefined.",
+          "Claiming policy unambiguously requires every prepared sheet to retain old wording.",
+          "Proposing rewriting completed historical records.",
+          "Treating the existing future-generation test as proof that approvals refresh previously prepared sheets."
+        ],
+        "uncertainty": "Required: separate proven snapshot behavior from uncertain intended approval scope. Do not resolve it by assuming unstated requirements.",
+        "verification": "A prepare-before-approve sequence proves behavior, not authorial intent. The oracle deliberately does not assert either requirement interpretation is correct."
+      },
+      "worker_question": "Audit this repository for consequential gaps between its documented contracts, implementation, and test protection. Follow relevant components and report only findings supported by concrete evidence. Distinguish observed behavior from uncertain requirements; a sound outcome may have no findings. Do not change files.",
+      "path": "/private/tmp/gapline-scout-cohort/cases/s4",
+      "files": [
+        {
+          "path": "cases/s4/POLICY.md",
+          "size_bytes": 1015,
+          "sha256": "2021edd56b3c731fc94f1e6b9e0bc7276e1f8845aa6e171b0dcb1ae7f8126bd5",
+          "lines": 18
+        },
+        {
+          "path": "cases/s4/README.md",
+          "size_bytes": 826,
+          "sha256": "49a99b436fe4164a5a0b5f36691f5e1b686a02a92c6fe1bfcefa2dfcfd326a7d",
+          "lines": 14
+        },
+        {
+          "path": "cases/s4/desk/__init__.py",
+          "size_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "lines": 0
+        },
+        {
+          "path": "cases/s4/desk/service.py",
+          "size_bytes": 617,
+          "sha256": "e16e5c1c7260c899b7eb3c74dd7cec1e6db19c2eea7c1d15da352028aeb868e9",
+          "lines": 23
+        },
+        {
+          "path": "cases/s4/desk/templates.py",
+          "size_bytes": 860,
+          "sha256": "94d43ea9f1c3349f90870e486ead23f3e9fc593b4c7e5bdfd0ad534e692226d0",
+          "lines": 28
+        },
+        {
+          "path": "cases/s4/desk/worksheets.py",
+          "size_bytes": 1506,
+          "sha256": "d46407100a4bb6f946bb004b9eb3daea5988a8d42c3f168a95724fa8a31652e5",
+          "lines": 49
+        },
+        {
+          "path": "cases/s4/tests/test_desk.py",
+          "size_bytes": 2857,
+          "sha256": "678cf9104d265faefc54874b1a5ba6308145141f9b2dea93105a443707f0d7dc",
+          "lines": 63
+        }
+      ],
+      "python_lines": 163
+    },
+    {
+      "id": "s5",
+      "domain": "raster thumbnail layout geometry and CLI documentation",
+      "expected_category": "direct documentation contradiction requiring source correction",
+      "contracts": [
+        {
+          "path": "FORMAT.md",
+          "exact": "This document is the normative compatibility contract for Tile plan.",
+          "start_line": 3
+        },
+        {
+          "path": "FORMAT.md",
+          "exact": "All dimensions and coordinates, including spacing, are whole raster pixels.",
+          "start_line": 4
+        },
+        {
+          "path": "FORMAT.md",
+          "exact": "no physical-unit conversion or DPI parameter is part of version 1.",
+          "start_line": 6
+        },
+        {
+          "path": "README.md",
+          "exact": "| `--spacing` | Horizontal and vertical gap in millimeters | 8 |",
+          "start_line": 17
+        },
+        {
+          "path": "README.md",
+          "exact": "For example, `--spacing 5` leaves a 5 mm gap between neighboring thumbnails.",
+          "start_line": 19
+        }
+      ],
+      "expected_interpretation": "README spacing table and explanatory example contradict the normative pixel format, CLI help, integer spacing_px setting, direct pixel arithmetic, and tests. Correct the hand-maintained README table and example to pixels. Runtime conversion or a DPI option would break the declared version-1 compatibility contract and is outside this correction.",
+      "accepted_alternatives": [
+        "One documentation finding identifying both README claims and directing correction to their source.",
+        "A docs-only actionable issue supported by FORMAT.md and direct CLI-to-layout mapping, without running the program."
+      ],
+      "criteria": {
+        "useful_probes": [
+          "Compare README units to normative FORMAT.md, CLI help, Options.spacing_px, and coordinate arithmetic.",
+          "Identify the table and prose example as two occurrences of one documentation root cause."
+        ],
+        "false_positives": [
+          "Changing runtime geometry to millimeters or introducing DPI conversion.",
+          "Calling a doc-only contradiction an unverified runtime failure.",
+          "Claiming README is generated or advising edits to a nonexistent generator.",
+          "Requiring runtime execution before accepting the direct source contradiction."
+        ],
+        "uncertainty": "Authority is explicit. Do not preserve a false pixels-versus-millimeters ambiguity after reading FORMAT.md.",
+        "verification": "No runtime needed: document authority plus direct source mapping proves the contradiction. State any unexecuted tests honestly; testing is not a gate for this docs-only conclusion."
+      },
+      "worker_question": "Audit this repository for consequential gaps between its documented contracts, implementation, and test protection. Follow relevant components and report only findings supported by concrete evidence. Distinguish observed behavior from uncertain requirements; a sound outcome may have no findings. Do not change files.",
+      "path": "/private/tmp/gapline-scout-cohort/cases/s5",
+      "files": [
+        {
+          "path": "cases/s5/FORMAT.md",
+          "size_bytes": 1122,
+          "sha256": "c10e0535a07c0b06448053ffcedc38048abba6562383acae62f5278077953711",
+          "lines": 19
+        },
+        {
+          "path": "cases/s5/README.md",
+          "size_bytes": 1345,
+          "sha256": "f7fee63155f3804650a0815cabd26d645d74bcba3a067045393e3738bb59600f",
+          "lines": 26
+        },
+        {
+          "path": "cases/s5/tests/test_tileplan.py",
+          "size_bytes": 2863,
+          "sha256": "cddd810ea1859f4340ab704be70c0725011e6d12e88d423fca307027c371203e",
+          "lines": 65
+        },
+        {
+          "path": "cases/s5/tileplan/__init__.py",
+          "size_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "lines": 0
+        },
+        {
+          "path": "cases/s5/tileplan/cli.py",
+          "size_bytes": 827,
+          "sha256": "5b69d5ad72795e57f16551f12741d5aedd9a550ea998cb7d9b32eb359a3a9e47",
+          "lines": 28
+        },
+        {
+          "path": "cases/s5/tileplan/layout.py",
+          "size_bytes": 958,
+          "sha256": "87578accd32561f9162f17f14ef9cc361c2be2761d171f511ccdcd91a8ab7b6e",
+          "lines": 37
+        },
+        {
+          "path": "cases/s5/tileplan/options.py",
+          "size_bytes": 652,
+          "sha256": "68cc3b23b126cd39b0d7ebe9b87bbba6a9ecd50cc99bf5881c663d8edd1f157c",
+          "lines": 19
+        }
+      ],
+      "python_lines": 149
+    }
+  ]
+}
