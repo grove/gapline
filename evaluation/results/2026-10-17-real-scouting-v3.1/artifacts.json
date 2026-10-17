@@ -1,7 +1,15 @@
 {
   "README.md": {
-    "sha256": "97299403860055b892062c8781eefffa57b5e58eb2a6d9ccba4e862b0db35266",
-    "size_bytes": 12815
+    "sha256": "151fe0dd5c8d7944f9ff14cc47004a4abd6e16014b29030159da273d84d89d24",
+    "size_bytes": 13631
+  },
+  "ci-candidate-pr.json": {
+    "sha256": "02b393b5462382b4d5e06179b1d6d1d515a9767cc1001574e8df3f854eaa0100",
+    "size_bytes": 5123
+  },
+  "ci-candidate-push.json": {
+    "sha256": "ede598ca1cbc5b5defc623b7379d0a6175beb1b33cd579c0f1436274bd5bddab",
+    "size_bytes": 5115
   },
   "controller-review.md": {
     "sha256": "dde2a61f3591b3fd968b3c361262dd0ee774b840929c3b26fc1013a60e9823f5",
@@ -91,6 +99,14 @@
     "sha256": "6eb57e044010e5f396dc638c8668a3cb4b482cc017dbec3eeb1aeba09a7b56e2",
     "size_bytes": 3970
   },
+  "issue-6-after.json": {
+    "sha256": "8f71039279a5e374c5a8a84fc48682cda36d04d42d76f60ae1ba5840ecfbe6c7",
+    "size_bytes": 163
+  },
+  "issue-7-after.json": {
+    "sha256": "bf9e80433964ba03341ff8a4201d0b87ee0d090ad8345bd23b663e0b791633a9",
+    "size_bytes": 150
+  },
   "measurements.json": {
     "sha256": "320fd908270eedd8778e85327c3c5e8f3c2b0d059fd024e2d36cb248562c7cc6",
     "size_bytes": 4113
@@ -102,6 +118,10 @@
   "postflight.json": {
     "sha256": "427f4920ed97baf26370aa4632d95ab515f89aa75d5a0ac1d4962ff4b17d218a",
     "size_bytes": 4730
+  },
+  "pr-candidate.json": {
+    "sha256": "de075063aa947eb0100fb500fc3525bd55e6939443f4b4ea5909063e041d4fd9",
+    "size_bytes": 185
   },
   "prelaunch-tests.txt": {
     "sha256": "460b9b15ed8f3ef98368cbb3ece8c4588e43686080d72778d356b7fed9b284ec",

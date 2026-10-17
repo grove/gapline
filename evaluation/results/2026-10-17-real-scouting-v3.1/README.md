@@ -196,3 +196,15 @@ runner's paid phases reject existing attempts; do not run them as a replay.
 The prelaunch suite passed 58 tests. Final checks, controller PR review, artifact
 hashes and exact-candidate CI receipts are saved alongside this record. No
 host qualification probe or project code/test/build was executed by audit workers.
+
+Published in [PR #13](https://github.com/grove/gapline/pull/13) at candidate
+`251dc51b5d0bafae7c23b303c242d3a9019ce077`. All six candidate checks passed:
+[PR CI](https://github.com/grove/gapline/actions/runs/39037331295) and
+[push CI](https://github.com/grove/gapline/actions/runs/39037328559), each with
+regression checks and Node 22.20.0/24 installation jobs. Exact receipts are
+[retained](ci-candidate-pr.json), including [push jobs](ci-candidate-push.json).
+The following receipt-only commit does not alter the tested runner or skill.
+The [#6 evidence update](https://github.com/grove/gapline/issues/6#issuecomment-6234554445)
+leaves it open; [#7 remains closed](issue-7-after.json). The
+[candidate PR state](pr-candidate.json) is open and mergeable, not merged.
+No merge or further paid attempt was performed.
