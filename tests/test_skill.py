@@ -91,6 +91,12 @@ class SkillContractTests(unittest.TestCase):
             "observable result supporting the concern",
             "weaken or refute",
             "Clarify an unknown requirement",
+            "schema constraints, caller privileges, transaction/session rules",
+            "selected path",
+            "blocking or serialization",
+            "Unknown harness behavior remains an evidence gap",
+            "without upgrading the finding's evidence level",
+            "routine cases and direct source/document contradictions",
             "three substantive findings",
             "PROPOSED — NOT RUN",
         ):

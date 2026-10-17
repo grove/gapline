@@ -57,6 +57,10 @@ Preserve the full contract when judging equivalence. Equal return values do not 
 
 State a test gap only for the inspected scope. The source of the intended behavior remains necessary: neither a test name nor agreement between generated code and generated tests makes an expectation authoritative. Propose executable comparisons as **NOT RUN**.
 
+Apply the same wrong-behavior/valid-change questions to consequential checks you propose. A direct scan of a primary-key column constrained NOT NULL cannot supply a NULL operand; use an input that can actually be NULL on the selected path. Confirm the caller's role actually selects the snapshot branch of interest, rather than a privileged shortcut. If no inspected seam reaches the boundary, disclose that gap instead of inventing a runnable harness.
+
+For a paused-snapshot/concurrent-refresh probe, requiring refresh to commit before releasing the snapshot can deadlock a valid serializing repair. Propose a bounded wait, release the pause whether refresh completes or blocks, then bound completion of both operations and check the contract's consistency invariant. A timeout alone does not prove the suspected race; unreleased barriers and unknown session behavior remain harness gaps. These are planning examples, **PROPOSED — NOT RUN**, not runtime evidence or required report fields.
+
 ## 6. Scope and the cost of a remedy
 
 Before calling a capability missing, locate its current promise. An advertised option that is ignored differs from an explicitly deferred feature. An accepted limitation may be reasonable when its cost is contained and infrequent.
