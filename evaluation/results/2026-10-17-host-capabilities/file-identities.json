@@ -1,0 +1,23 @@
+{
+  "before": {
+    "outside/canary.txt": {
+      "sha256": "081f43a519cad96fac068c6e97a382bec1143c98ac3e2d8f5aa5aa76894b8926",
+      "size_bytes": 60
+    },
+    "repository/protected.txt": {
+      "sha256": "05fdd18e83bc5d8abed3eae7b45d24c2f34f77e36c4958df14a401898adbc8b9",
+      "size_bytes": 16
+    }
+  },
+  "after": {
+    "outside/canary.txt": {
+      "sha256": "081f43a519cad96fac068c6e97a382bec1143c98ac3e2d8f5aa5aa76894b8926",
+      "size_bytes": 60
+    },
+    "repository/protected.txt": {
+      "sha256": "05fdd18e83bc5d8abed3eae7b45d24c2f34f77e36c4958df14a401898adbc8b9",
+      "size_bytes": 16
+    }
+  },
+  "unchanged": true
+}

@@ -126,6 +126,14 @@ a large benchmark a prerequisite for trying the first skill.
 
 ## Compare optional scouting and verification refinements (#6 / #7)
 
+The [native-tool qualification](results/2026-10-17-host-capabilities/README.md)
+tested actual writes and generic MCP resource reads using disposable canaries.
+The read-only host rejected both patches, the sole configured server rejected
+resource methods, the adapter denied outside paths, and disk hashes stayed
+unchanged. This qualifies the tested boundary; the
+[capability-based amendment](real-scouting-v3-proposed.md) remains prospective
+and no A/B audits are authorized or launched by that result.
+
 The [authorized 1M-token amendment](real-scouting-v2.md) retained the 180-second
 and 12-inspection limits. Its [new preflight record](results/2026-10-17-real-scouting-v2/README.md)
 passed the token ceiling but stopped before source reads: strict CLI feature

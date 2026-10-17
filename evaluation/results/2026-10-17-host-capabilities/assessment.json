@@ -1,0 +1,25 @@
+{
+  "status": "QUALIFIED FOR THE TESTED SINGLE-INSPECTION-SERVER CONFIGURATION",
+  "general_sandbox_certificate": false,
+  "native_patch_probes": "Both actual writes denied explicitly by read-only host; ordinary file modes; disk bytes unchanged",
+  "generic_resource_probes": "Unsupported by sole configured server; outside/traversal URIs returned no content; unknown server rejected",
+  "adapter_boundary": "Permitted read succeeded; relative and absolute outside reads denied",
+  "probe_count": 12,
+  "adapter_calls": 4,
+  "time_seconds": 33.726,
+  "usage": {
+    "input_tokens": 79245,
+    "cached_input_tokens": 72320,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 872,
+    "reasoning_output_tokens": 0
+  },
+  "audit_sessions": 0,
+  "protocol_status": "Prospective capability amendment proposed; evaluation freeze and audits remain pending",
+  "limitations": [
+    "No resource-enabled MCP server qualified",
+    "No arbitrary host files or real secrets probed",
+    "No exhaustive filesystem, process or network isolation certificate",
+    "One session and host version only"
+  ]
+}
