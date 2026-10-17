@@ -109,3 +109,9 @@ Keep production unchanged. Leave **#6 OPEN** because realistic matched trials
 and independent judgments remain absent. Leave **#7 CLOSED**. The prior PR #13
 publishes only v1 until these new local commits are separately published; its
 passing CI does not validate this amendment.
+
+Automatic approval review subsequently rejected updating the PR branch: the
+user approved the 1M-token change, but publication of the amended commit needs
+separate approval. No publication workaround was attempted. The amendment and
+all new preflight evidence remain locally committed; see the
+[publication receipt](publication-blocker.json). CI for v2 has not run.

@@ -1,7 +1,7 @@
 {
   "README.md": {
-    "sha256": "7f0670a2acf57e75b73b9dc8e3b7edb7572689511d4741d8e146fcae28625b17",
-    "size_bytes": 5990
+    "sha256": "203b1f4ccc59d8627698ddaeed1aaf105c1a3517f8b6959055788222cb0a8bd5",
+    "size_bytes": 6357
   },
   "amendment.json": {
     "sha256": "9db252ccb1957853f7d64cf45cd82050a785099f91fc5952de98bc676509296a",
@@ -35,8 +35,12 @@
     "sha256": "3f46a3f80ff7a68c9cfa3e770a25c5830eaaa5e50ed795f6d7b9b56b11b443f3",
     "size_bytes": 7876
   },
+  "publication-blocker.json": {
+    "sha256": "729db93c44fc09b9ef7647bc192d19d9242d95aa5ee4e804e09880d3e8c10e82",
+    "size_bytes": 620
+  },
   "status.json": {
-    "sha256": "2bb888c5272013cd017c2f78518fde41a849854278d8c1aa557240599f5a2491",
-    "size_bytes": 1689
+    "sha256": "f9e0cff3e306f7c02809ba1d7ceb86693930e0f87c63b3836ba1bcaa6c1f27d2",
+    "size_bytes": 1821
   }
 }

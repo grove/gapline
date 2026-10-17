@@ -60,5 +60,7 @@
       "id": "review-2",
       "status": "NOT RUN; stopped on host preflight blocker"
     }
-  ]
+  ],
+  "publication": "REJECTED by automatic approval review; new commit needs separate publication approval",
+  "ci": "NOT RUN for v2"
 }
