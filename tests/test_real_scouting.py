@@ -5,10 +5,12 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+import copy
 import json
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
-from run_real_scouting import COHORT, SCHEDULE, anonymize, cases, freeze, supply
+from run_real_scouting import (COHORT, SCHEDULE, QUALIFICATION, accept_host, anonymize,
+                               cases, freeze, normalize_argv, qualified_reference, supply)
 from run_pilot import identity
 from run_refinements import launch
 
@@ -59,7 +61,8 @@ class RealScoutingTests(unittest.TestCase):
                 (output / f"curator-1-{suffix}").write_text("unaccepted")
             (output / "curator-1-run.json").write_text(json.dumps({
                 "status": "COMPLETED", "token_budget_met": False}))
-            with patch("run_real_scouting.OUTPUT", output), self.assertRaisesRegex(ValueError, "unqualified"):
+            with (patch("run_real_scouting.OUTPUT", output), patch("run_real_scouting.check_setup"),
+                  self.assertRaisesRegex(ValueError, "unqualified")):
                 freeze()
             self.assertFalse((output / "frozen.json").exists())
 
@@ -85,3 +88,44 @@ class RealScoutingTests(unittest.TestCase):
             argv = process.call_args.args[0]
             for setting in ("features.code_mode_only=true", "features.code_mode_only_strict_3p_tools=true", "features.goals=false"):
                 self.assertIn(setting, argv)
+
+    def test_qualified_native_visibility_is_accepted_but_use_and_changes_are_rejected(self):
+        reference = qualified_reference()
+        valid = {"turn_contexts": [reference["context"]], "experimental_scout_in_host_instructions": False,
+                 "expectations_in_host_instructions": False, "available_tool_names": reference["available_tool_names"],
+                 "tool_names": ["exec", "mcp__inspection__inspect"], "forbidden_dispatch": False,
+                 "mcp_calls": [{"server": "inspection", "tool": "inspect"}]}
+        accept_host(valid, reference)  # Visible apply_patch/resources are qualified, never audit permissions.
+        changes = [
+            {"tool_names": ["exec", "apply_patch"]},
+            {"tool_names": ["exec", "read_mcp_resource"]},
+            {"mcp_calls": [{"server": "inspection", "tool": "read_mcp_resource", "status": "failed"}]},
+            {"mcp_calls": [{"server": "other", "tool": "inspect"}]},
+            {"available_tool_names": reference["available_tool_names"] + ["exec_command"]},
+            {"forbidden_dispatch": True},
+            {"expectations_in_host_instructions": True},
+        ]
+        changed_context = copy.deepcopy(reference["context"])
+        changed_context["sandbox_policy"] = {"type": "workspace-write"}
+        changes.append({"turn_contexts": [changed_context]})
+        for change in changes:
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                accept_host(valid | change, reference)
+
+    def test_invocation_normalization_preserves_security_and_server_identity(self):
+        reference = json.loads((QUALIFICATION / "probe-input.json").read_text())["argv"]
+        normalized = normalize_argv(reference)
+        changed = reference.copy()
+        changed[changed.index("read-only")] = "workspace-write"
+        self.assertNotEqual(normalize_argv(changed), normalized)
+        changed = reference.copy() + ["-c", 'mcp_servers.extra.command="unsafe"']
+        self.assertNotEqual(normalize_argv(changed), normalized)
+        changed = reference.copy()
+        changed[changed.index("-C") + 1] = "/different/source"
+        with self.assertRaisesRegex(ValueError, "root mismatch"):
+            normalize_argv(changed)
+
+    def test_blinding_preserves_substantive_token_findings(self):
+        finding = "Access tokens can be logged at client.py:21; PROPOSED — NOT RUN."
+        self.assertIn(finding, anonymize("Tokens: 12345\n" + finding))
+        self.assertNotIn("12345", anonymize("Tokens: 12345\n" + finding))
