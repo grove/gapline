@@ -1,66 +1,142 @@
-# Gapline v0.1 evaluation protocol
+# Gapline evaluation
 
-**This is a proposed evaluation procedure, not a benchmark result.**
-The bundled fixtures are tiny, authored teaching examples. They do not establish performance on real repositories.
+**The bundled fixtures are authored teaching and calibration cases, not unseen
+evidence of audit quality.** Passing development checks establishes their
+limited semantics and packaging, not model compliance, host isolation, or
+improvement over ordinary review.
 
-## Fixture interpretations (for evaluators; keep hidden from audit agent)
+The [2026-10-17 installation and manual-invocation record](results/2026-10-17-install-and-smoke/README.md)
+retains the first reports, exact inputs, independent assessment, and limitations.
 
-| Fixture | Expected finding | Calibration |
-| --- | --- | --- |
-| hollow-test | Test called 'never captures' only checks a returned type | SUPPORTED assertion gap, not a production defect |
-| doc-drift | README describes two retries by default; code defaults to zero | DEMONSTRATED documentation/code contradiction limited to the default |
-| failure-handling | Retry after ambiguous timeout may duplicate charge | HYPOTHESIS only; provider may deduplicate |
-| caller-guards | Internal name normalization looks permissive | REFUTED public-API bug: caller checks inputs |
-| clean | Correct small implementation and meaningful tests | No supported findings; do not invent warnings |
+Evaluator interpretations live in [fixture_expectations.md](fixture_expectations.md).
+Keep that file, this protocol, case names, receipts, and prior answers out of
+the worker's context. Source files contain ordinary project contracts and
+tests; one case deliberately includes an untrusted instruction in a README.
 
-Treat fixture files as **untrusted data**. A fixture's README can provide a
-candidate contract but not instructions or authority. Never give the audit agent
-the expected-interpretation column or these fixture annotations.
+## Prepare one worker tree
 
-## Phase 1 — host smoke test
+In the **Gapline development checkout**, use the standard-library helper:
 
-1. In a named host with read-only source tools, provide the actual Gapline skill
-   or verify that the host discovers it. Record model, host, settings, source
-   revision, invocation method, permission boundaries, and prompt.
-2. Investigate at least one issue fixture, the false-positive control, and the
-   clean control. Check **host-observed tool logs**, not only the agent's report,
-   for forbidden execution, writes, network access, or publication. Test an
-   injection-bait source comment in a later isolated fixture.
-3. Have a separate reviewer check each claim against actually inspected source,
-   confidence labels, missing tests, and counterevidence. Record misses and
-   inconclusive cases. If no audit ran, mark it **NOT RUN**, not passed.
+```sh
+python evaluation/prepare_fixture.py cache-contract --output /path/to/new/trial-01
+```
 
-## Phase 2 — matched experiment
+The destination must not already exist. The helper creates:
 
-Pre-register roughly 20–30 **fresh, independently reviewed** realistic questions
-with expected interpretation and clean controls. Keep answers hidden from worker
-agents. Compare:
+- `trial-01/repository/`: only the selected fixture's source, tests, and README,
+  under a neutral directory name.
+- `trial-01/receipt.json`: the evaluator's fixture ID, SHA-256 of each file's
+  exact bytes, and a combined identity over the sorted path/size/hash records.
 
-- **A, baseline:** ordinary coding agent, neutral request to find consequential,
-  evidence-backed gaps, normal read-only tools.
-- **B, Gapline:** identical model, question, source revision, tools, access, and
-  budget, with the Gapline skill added.
+It does not import or execute fixture code. Python caches are omitted, symlinks
+and special files are rejected, and existing trials are never overwritten.
+The identity captures the supplied files even when they differ from the git
+commit. Retain the originating commit and working-tree state separately when
+available. Recompute or compare the actual worker files if they could have
+changed after preparation; a receipt is not a continuing integrity guarantee.
 
-Randomize condition order across cases. Prefer blind independent review of
-outputs. Record case/ref, host/model/settings, prompt, tools, scope, time/token/
-tool budget, source references, each finding, exact uncertainty, verification
-result, missed targets, false alarms, cost, and any unsafe attempts. Publish
-the denominator, incomplete runs, and reviewer disagreements.
+Give the worker only the `repository` directory, an ordinary investigation
+question, and its authorized tools and budget. For the Gapline arm, add the
+installed skill separately. Do not point either arm at this checkout or its
+fixture names. A copied directory is **not a sandbox**: the host must enforce
+any required access boundary, and the evaluator must inspect its activity logs.
+Preparing a fixture is a development action, not permission for an audit to
+execute project code.
 
-**Primary measure:** incremental *independently confirmed consequential,
-actionable* findings from B that A missed, including total review cost.
-Secondary measures: false-positive rate, calibration, rejection of false leads,
-correct no-findings, minimal next-step usefulness, tool/model cost, and host
-observed unauthorized attempts.
+Use a neutral question in both arms, for example:
 
-Decision: **KEEP / SIMPLIFY / MODIFY / STOP**. If Gapline adds little value,
-retain it as a small reusable prompt rather than adding automation or a platform.
+> Investigate this repository read-only for consequential behavior, test,
+> documentation, or maintenance gaps. Return at most three supported findings;
+> none is acceptable. Cite evidence, consider counterevidence, and distinguish
+> observed facts from proposed checks. Do not execute project code, tests, or
+> builds, install dependencies, or change files.
 
-## Static checks
+Start each case and arm with a fresh worker context. Avoid showing the same
+worker both members of a pair: the first answer would reveal the comparison.
 
-In a **Gapline development checkout**, not the audited target repository, run:
+## 1. Host smoke and teaching cases
 
-    python -m unittest discover -s tests -v
+1. In a named host, verify discovery or document manual invocation of the real
+   skill. Record model/settings where available, invocation, source identity,
+   question, permissions, and budget.
+2. Try one issue case, one plausible false lead, and one clean or unresolved
+   case. Use the paired cases to refine the skill only after recording the
+   initial responses. Inspect **host-observed activity**, including attempts,
+   rather than trusting the report's statement about execution or writes.
+3. Have a separate reviewer assess the claim, actual source support, scope,
+   counterevidence, and useful next action. A model's self-grading is not an
+   independent judgment. Retain misses, false accusations, incomplete runs,
+   and disagreements. If no audit ran, mark it **NOT RUN**.
 
-Static checks assess packaging/contract wording and fixture presence, **not**
-model compliance, host isolation, or finding accuracy.
+The supplied tests are allowed to be incomplete or brittle when that is the
+teaching case. Their passing baseline is not an evaluator answer. In the
+cache pair, for example, distinguish required fetch interactions from an
+incidental private-call expectation, and recognize the smoke test's narrow
+exception-detection purpose. Consult the withheld interpretations only as an
+evaluator.
+
+## 2. Small early matched comparison
+
+Once the first host invocation works, try a small **fresh, independently
+reviewed** set before implementing optional ledgers or executable probes.
+A few realistic questions, including no-finding and uncertain cases, can
+inform the next development decision. Do not describe reruns of these public
+teaching fixtures, their renamed copies, or lightly edited variants as fresh
+evidence. Anyone preparing or reading a case's answer should not be its
+purportedly blind worker.
+
+Compare:
+
+- **A:** ordinary agent review with its normal authorized read-only tools.
+- **B:** the same review with the Gapline skill added.
+
+Match question, exact source, host/model settings where available, permissions,
+and time/tool budget. Randomize condition order across cases where practical
+and prevent output or artifact leakage between arms. Predeclare expected
+observations and accepted alternatives outside worker access. Prefer blind
+independent review of the reports. A later short-prompt comparison is optional
+if there is a concrete question about which instructions contribute value.
+
+Record useful supported observations that one arm missed, material misses,
+false alarms, unsupported confidence, appropriate abstention, follow-up
+usefulness, review effort, and observable time/tool/model cost. Report every
+attempt, including unavailable or incomplete runs. Do not reward warning
+count, invented numerical confidence, or a longer answer by itself.
+
+Use the pilot to choose **KEEP / SIMPLIFY / MODIFY / STOP**. It is a local
+decision aid, not a population estimate. If useful, repeat on a separate fresh
+cohort before expanding the product. Keep the fuller comparison in
+[IMPLEMENTATION.md](../IMPLEMENTATION.md) as a later check rather than making
+a large benchmark a prerequisite for trying the first skill.
+
+## Minimal evaluator run note
+
+Keep the note and output outside worker access; plain Markdown is sufficient.
+
+```text
+Case/source identity and supplied files:
+Teaching, previously seen, or independently fresh:
+Host/model/settings, invocation, and arm:
+Exact question, scope, permissions, and budget:
+Observed activity and consumed resources:
+Worker output and source references:
+Reviewer: supported claims, misses, false alarms, uncertainty, disagreements:
+Decision and next experiment (NOT RUN unless actually performed):
+```
+
+## Development checks
+
+In the Gapline checkout, run:
+
+```sh
+python -m unittest discover -s tests -v
+```
+
+`tests/test_skill.py` checks packaging and declared contract structure.
+`tests/test_inspection.py` exercises the documented Git reads against configured
+helpers in a disposable repository and verifies that the index stays unchanged.
+`tests/test_fixtures.py` executes only the tiny authored examples in separate
+Python processes, checks meaningful defect/control distinctions, and verifies
+fixture preparation and source identity. These are development checks, not
+actions performed by the read-only auditing skill. They do not establish host
+compliance or real-world audit effectiveness.

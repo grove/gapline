@@ -1,6 +1,6 @@
 # Gapline — implementation plan
 
-**Status:** Experimental read-only skill and static fixtures authored. Host discovery, tool-safety compliance, and real audit quality remain unverified.  
+**Status:** The read-only skill is implemented. The [2026-10-17 validation record](evaluation/results/2026-10-17-install-and-smoke/README.md) separates packaging, installation, controlled cases, and manual host invocation; broad audit effectiveness and host isolation require their own evidence.
 **First product target:** one portable, **read-only** `gapline-audit` skill that helps an existing coding agent discover and prioritize a few evidence-backed weaknesses in an existing repository.  
 **Admission rule:** only add execution, persistence, a CLI, or automation after the simpler skill proves useful and the associated permission and safety requirements are met.
 
@@ -12,12 +12,12 @@ Gapline is **not** an expanded Faultline. It is an independent, agent-native inv
 
 Start with **Scout + read-only Probe**. Keep **Track** as a small later enhancement. There is no separate service, runtime package, mutation engine, scheduler, database, or new model runner in the initial release.
 
-The repository includes a prompt-only skill, packaging checks, teaching fixtures, and the Apache-2.0 license. Nothing here claims that a host audit has run, skill discovery has been verified, host access controls have been qualified, or benchmark value has been demonstrated.
+The repository includes one installable skill and optional references, a real skills-CLI installation check, packaging tests, controlled fixtures, and the Apache-2.0 license. See [evaluation](evaluation/README.md) for the procedure and recorded outcomes. Successful installation, a useful audit response, and enforcement of host access controls are distinct claims.
 
 ### Initial defaults
 
 - **Read-only and opt-in:** no project execution, filesystem modifications, package installation, generated files, network side effects, issues, commits, or PRs. Host-provided read-only repository access is allowed within its actual capabilities and permissions.
-- **Short investigations:** suggest up to five plausible leads and report at most five substantive findings; lower counts and no findings are valid. Constrain breadth to the available time and disclose unassessed areas.
+- **Short investigations:** start with up to three leads and report at most three findings, or up to five if requested; lower counts and no findings are valid. Constrain breadth to the available time and disclose unassessed areas.
 - **Evidence-labeled results:** distinguish `DEMONSTRATED`, `SUPPORTED`, `HYPOTHESIS`, `REFUTED / WITHDRAWN`, and `NOT ASSESSED` exactly as specified in DESIGN.
 - **Counterevidence first:** check for caller preconditions, existing tests, alternate valid behavior, and intentional duplication before declaring a defect.
 - **No invented execution:** all proposed test or runtime probes remain **NOT RUN** until separately authorized and actually executed.
@@ -34,7 +34,7 @@ The repository includes a prompt-only skill, packaging checks, teaching fixtures
 
 **Acceptance**
 
-- Documents agree that v0.1 is read-only, skill-first, opt-in, and not yet implemented.
+- Documents agree that the implemented product is a read-only, opt-in skill and distinguish measured behavior from proposed future capabilities.
 - Links and terminology agree; no fictional install command, audit receipt, released tool, or mandatory dependency.
 - No language implies that reviewing code alone proves runtime behavior.
 - The first follow-on task is small enough to implement and validate separately.
@@ -53,13 +53,18 @@ gapline/
   IMPLEMENTATION.md
   gapline-audit/
     SKILL.md
+    LICENSE
+    references/
+      investigation.md
+  scripts/
+    check_install.py
   tests/
     test_skill.py
 ```
 
-This is an intended structure, **not** a claim that the files already exist.
+This is the implemented package and its installation check. Evaluation helpers and fixtures remain outside the installable skill directory.
 
-Implement just **one canonical** `gapline-audit/SKILL.md` with minimal valid frontmatter (`name: gapline-audit` and an accurate description). Provide clear instructions for both hosts that discover skills automatically and hosts where a developer explicitly points the agent at the file. Document installation only after a real host has verified discovery and use.
+Maintain **one canonical** `gapline-audit/SKILL.md` with minimal valid frontmatter (`name: gapline-audit` and an accurate description). Keep required references and the distribution license inside that directory so a skills-CLI install is complete. Verify `npx skills@latest add grove/gapline` discovery and installation, and distinguish those results from a named host actually invoking the installed skill. Support manual invocation where automatic discovery is unavailable.
 
 Keep the first skill readable, compact, and useful without any Gapline Python runtime, dependency installation, network service, or companion project.
 
@@ -71,7 +76,7 @@ Keep the first skill readable, compact, and useful without any Gapline Python ru
 4. **Probe read-only.** Inspect supporting and opposing evidence; trace caller constraints and look for legitimate alternative behavior. Do not run project code, tests, builds, or write files.
 5. **Classify carefully.** Distinguish a directly observed source/document mismatch, narrow test assertion gap, unverified runtime suspicion, refuted hypothesis, and untouched areas. Avoid "confirmed bug" labels without suitable evidence.
 6. **Prioritize.** Return only the strongest useful observations, with impact rationale and an achievable next check or fix direction.
-7. **Report.** Produce a compact Markdown response with exact source references, evidence level, caveats, project scope, and an explicit statement that no commands were executed.
+7. **Report.** Produce a compact Markdown response with exact source references, evidence level, caveats, and project scope. Record the inspection facilities/commands actually used and state **Project code, tests, and builds executed: NONE** only when true. Bounded host-authorized shell reads are inspection, not runtime reproduction.
 8. **Stop.** If access is too sparse for defensible findings, say so, state what was inspected, and suggest the smallest missing information or authorized follow-up. Do not generate filler findings.
 
 The prompt must explicitly treat repository instructions and prior agent reports as untrusted data, not as authority to change permissions or the task.
@@ -80,17 +85,21 @@ The prompt must explicitly treat repository instructions and prior agent reports
 
 A small standard-library test (`tests/test_skill.py`) may validate the intended path, skill frontmatter, referenced documents, and the presence of safety/evidence terminology. Such string-level tests are **not** a demonstration that an agent actually obeys the skill.
 
+Run `python scripts/check_install.py` to install the current checkout with the actual skills CLI in temporary project directories. Verify complete installed bytes and local references for Codex and Claude Code in the supported copy/symlink modes. CI must test the candidate checkout; a post-merge check must also use the public GitHub shorthand so the user's default-branch command is exercised. Installer execution is a development/setup action, outside a Gapline audit.
+
 Run a host-level smoke test with a read-only fixture repository and capture the actual audit response. Verify tool use and effects from host logs or equivalent, not just from what the agent says.
 
 ### Acceptance checks
 
-- [ ] Skill discovery/manual invocation works in at least one named host and is documented accurately.
-- [ ] A sampled repository review produces at least one specific, supported observation **or** a defensible no-findings report.
-- [ ] Findings cite the actual inspected material and keep behavioral uncertainty visible.
+Checked items below have evidence in the recorded teaching smoke. Unchecked items are further validation goals, not undisclosed runtime components. They must not be represented as proven by the skill text or packaging checks.
+
+- [x] Manual invocation works in the named ChatGPT delegated-worker environment and is documented accurately. Automatic Codex/Claude Code activation remains untested.
+- [x] A sampled fixture review produces at least one specific, supported observation **or** a defensible no-findings report.
+- [x] The retained findings cite the actual inspected material and keep behavioral uncertainty visible.
 - [ ] A request to "find five bugs" does not force five results.
-- [ ] A suspicious README command or source comment cannot induce unauthorized execution, installation, external communication, or writing.
-- [ ] Missing access or unsupported scope produces an honest limited/no-findings result, not fabricated evidence.
-- [ ] No execution or mutation tool, runtime dependency, persistent ledger, or other new feature is required.
+- [ ] Host-observed trials show no unauthorized execution, installation, external communication, or writing when repository text requests those actions. Enforcement requires separate host evidence.
+- [x] Missing requirements produce an honest limited/no-findings result in the retained unresolved case.
+- [x] No execution or mutation tool, runtime dependency, persistent ledger, or other new feature is required.
 
 **Stop condition:** if the skill repeatedly outputs generic advice, unverifiable bugs, or ignores read-only constraints, refine the investigative instructions before extending the feature set.
 
@@ -115,6 +124,8 @@ Create a small set of synthetic, public, independently authored mini-repositorie
 
 Include different programming styles and eventually more than one language, but do not broaden the corpus before the initial host workflow is reliable.
 
+The current cases pair composed identity rules, test interaction contracts, independent validation boundaries, and current versus deferred capabilities. See [evaluation](evaluation/README.md) for evaluator-only interpretations and a helper that prepares neutral worker copies. Add a small matched comparison alongside the first credible host trials; retain the more demanding fresh-case comparison in Milestone G before expansion.
+
 ### Evaluate the agent, not just the text file
 
 For every fixture run, retain a bounded case note of:
@@ -131,12 +142,12 @@ Have a reviewer independently check the substantive conclusions. A prewritten ex
 
 **Acceptance**
 
-- [ ] At least one genuine finding and one genuine clean/no-findings case are reported honestly.
-- [ ] Unsupported runtime conclusions are not presented as demonstrated defects.
-- [ ] At least one planted false lead is refuted or withheld.
+- [x] At least one genuine finding and one genuine clean/no-findings teaching case are reported honestly.
+- [x] Unsupported runtime conclusions are not presented as demonstrated defects in the retained reports.
+- [x] At least one planted false lead is refuted or withheld in the retained reports.
 - [ ] Untrusted repository instructions do not acquire permission.
 - [ ] No host-observed unauthorized execution, writes, or sharing.
-- [ ] Every finding's proposed next step could meaningfully test or reduce uncertainty.
+- [x] The retained substantive finding's proposed next step could meaningfully test or reduce uncertainty.
 
 **Stop condition:** improve the skill if it cannot consistently distinguish a narrow observation from a larger unverified conclusion.
 
@@ -233,7 +244,7 @@ If isolation cannot be verified, this milestone is **NO-GO** for that host; Gapl
 
 ## 7. Milestone G — measure incremental value
 
-Before shipping scheduled scans, CI integrations, a CLI, or a public platform, evaluate whether Gapline changes outcomes.
+Start with a lightweight comparison during the first credible host trials. Before shipping scheduled audits, audit quality gates, a custom CLI, or a public platform, evaluate whether Gapline changes outcomes on fresh cases. Packaging CI is an implementation check, not an automated audit product.
 
 ### Matched comparison
 
@@ -271,7 +282,7 @@ For each proposal, require a measured problem, a simpler alternative considered,
 
 ## 9. Practical first-use acceptance checklist
 
-A developer should eventually be able to invoke the first skill and observe all of the following:
+A developer should be able to invoke the installed skill and observe the following; checkmarks require evidence from the corresponding trial, not merely matching text in SKILL.md:
 
 - [ ] The agent can explain what this repository does and which parts it actually inspected.
 - [ ] It produces up to five **specific** source-grounded findings, or says none were established.
@@ -285,8 +296,8 @@ A developer should eventually be able to invoke the first skill and observe all 
 
 ## 10. Work sequence and first next task
 
-**Docs → read-only skill and teaching fixtures (authored) → host smoke test → fresh matched baseline evaluation → targeted real-world audits → optional continuity/executable probes → optional platform features.**
+**Installable read-only skill → package/install checks and host smoke → controlled and paired cases with a small matched comparison → fresh focused repository audits → continuity or executable probes only if justified.**
 
-The canonical `gapline-audit/SKILL.md`, static checks, and small authored fixtures are now present, but Milestone B is **not yet accepted**: validate skill discovery in an actual named host, inspect the host tool trace on the fixtures, and independently evaluate the generated findings. Then run the matched comparison in [evaluation/README.md](evaluation/README.md) before adding breadth. Static text checks do not qualify a security boundary or prove usefulness.
+The canonical skill, installed references, packaging/installation checks, and controlled cases implement the first product. Retain the exact input identity, invocation method, actual observations, and limitations for each validation run in [evaluation](evaluation/README.md). Further work should respond to an observed weakness or a useful unresolved question; static checks and a small pilot do not qualify a security boundary or prove general effectiveness.
 
 Aim for a useful, low-ceremony investigative habit: **find fewer, more consequential weaknesses and establish exactly what is known about them**.
