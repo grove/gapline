@@ -66,6 +66,23 @@ class SkillContractTests(unittest.TestCase):
             with self.subTest(statement=statement):
                 self.assertIn(statement.lower(), self.skill.lower())
 
+    def test_optional_delegation_preserves_limits_and_review(self):
+        # Static instruction guardrails, not proof of host subagent behavior.
+        for term in (
+            "One agent is the default",
+            "host already provides subagents",
+            "combined",
+            "read-only",
+            "no-execution",
+            "not independent proof",
+            "verify material source references",
+            "disprove",
+            "do not spawn agents",
+            "do not delegate further",
+        ):
+            with self.subTest(term=term):
+                self.assertIn(term.lower(), self.skill.lower())
+
     def test_one_canonical_skill_entry_point(self):
         self.assertFalse((ROOT / "SKILL.md").exists(), "A root skill would shadow the canonical package")
         self.assertEqual(list(ROOT.glob("*/SKILL.md")), [SKILL_PATH])
