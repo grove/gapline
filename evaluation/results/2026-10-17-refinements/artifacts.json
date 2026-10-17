@@ -1,11 +1,15 @@
 {
   "README.md": {
-    "sha256": "701d3a56db1bf85218ad6e2ae37469ae4bf5e4d4b25eba378b874cb7804e7a21",
-    "size_bytes": 17016
+    "sha256": "be780840c782f631b236a37f46ff663a301eb9e4e5bf7f67d955695e6f4f095d",
+    "size_bytes": 17251
   },
   "baseline-context-contamination-check.json": {
     "sha256": "8d41d88e990b2662d85c9152fa0ddc17cfbdeea649d984dc795ba43c7247bd79",
     "size_bytes": 865
+  },
+  "ci-candidate.json": {
+    "sha256": "c2cc4efe4f277aafc6029558aede6b0f4aa35839ea56087304c75ceb095d38b3",
+    "size_bytes": 1862
   },
   "development-checks-before-decision.txt": {
     "sha256": "c5705dce19baea54cd1e95d4af5b5efca6fc24844bdf4ce2379621b5211a66f4",

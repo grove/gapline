@@ -1,5 +1,7 @@
 # Four-way scouting and verification comparison — 2026-10-17
 
+Published in [PR #12](https://github.com/grove/gapline/pull/12).
+
 **Decisions: REVERT the added scouting guidance; SIMPLIFY verification.**
 Twenty bounded audits found no scouting advantage on five compact synthetic
 cases. Blinded reviewers found modest gains from explicit refuting outcomes,
@@ -240,7 +242,9 @@ promises deterministic reports or model availability.
 [final regressions](development-checks-final.txt) each passed 46 tests in a
 disposable checkout copy. The [real local installation check](install-local.txt)
 passed Codex and Claude Code copy/symlink payload and link checks using skills
-CLI 1.7.2 and Node 26.12.0. CI also checks Node 22.20.0 and 24. Installation
+CLI 1.7.2 and Node 26.12.0. [Candidate CI](ci-candidate.json) passed regression
+and Node 22.20.0/24 install jobs for both push and PR events at `ceb2219`; the
+subsequent receipt commit changes only evaluation documentation/receipts. Installation
 checks are development operations, not audit actions or Claude host qualification.
 Prior pilot results were never modified. [Artifact hashes](artifacts.json)
 cover the retained record except that hash file itself. Raw CLI and adapter
