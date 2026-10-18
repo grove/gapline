@@ -8,7 +8,7 @@ Use it for a focused component or a sampled review of a mature repository. A pul
 
 **Current product:** one complete read-only skill, `gapline-audit`, with optional investigation recipes. Installation, packaging checks, teaching fixtures, and evaluation tooling are separate from claims about audit effectiveness. See [evaluation](evaluation/README.md) for the validation method and its limits.
 
-[Skill](gapline-audit/SKILL.md) · [Investigation recipes](gapline-audit/references/investigation.md) · [Evaluation](evaluation/README.md) · [Design](DESIGN.md) · [Implementation](IMPLEMENTATION.md)
+[Skill](gapline-audit/SKILL.md) · [Prompt cookbook](docs/AGENT_PROMPTS.md) · [Investigation recipes](gapline-audit/references/investigation.md) · [Evaluation](evaluation/README.md) · [Design](DESIGN.md) · [Implementation](IMPLEMENTATION.md)
 
 ## Install
 
@@ -49,6 +49,41 @@ Or give it a focused question:
 Hosts that support explicit skill invocation can use their native syntax, such as `$gapline-audit` in Codex. If discovery is unavailable, provide [SKILL.md](gapline-audit/SKILL.md) directly and make its sibling `references/` directory available. Installation into an agent's skill directory and the agent actually invoking the skill are distinct checks.
 
 The host must already authorize access to the target. Gapline supports file/search tools and bounded, authorized shell reads. It **does not run project code, collect or run tests, import project modules, execute builds, modify files, call project endpoints, or publish findings**. The host supplies actual access controls; the skill is not a sandbox.
+
+## What can I point `gapline-audit` at?
+
+**A repository or component is the native audit scope.** You can also ask the hosting coding agent to use a GitHub issue, pull request, or related issue/PR collection as *context for a bounded audit*, provided the host already has permission and tools to read them. This is not a Gapline issue/PR-fetching CLI or a guarantee that every link will be discovered.
+
+| Requested scope | What the agent can investigate | Important limit |
+| --- | --- | --- |
+| Whole repository | Sample major public promises, source, tests, and docs | Sampled survey, not full certification |
+| Directory, component, function, behavior | Focus on a specific contract, risk, callers, and nearby tests | Identify authoritative expectations rather than assuming code defines them |
+| Individual issue | Contrast stated intent and decisions with implementation and tests | An issue state is not evidence of implementation correctness |
+| Pull request | Inspect changed behavior, relevant tests, and surrounding implementation | Distinguish open PR head from merged baseline; no automatic review posting |
+| Parent issue and child issues with PRs | Map accessible issue → PR → code/test evidence; investigate child promises and cross-child integration | **Agent-orchestrated:** GitHub hierarchy/PR traversal is not built into Gapline; report missing links and sampled omissions |
+| Several components or PRs | Trace shared invariants and integration seams | Requires host access to each relevant candidate/ref |
+| Earlier audit concern | Recheck the prior lead against current source and counterevidence | No persistent finding ledger or automatic status tracking |
+
+For example, a **parent-issue audit** can start with:
+
+```text
+Use gapline-audit read-only on https://github.com/ORG/REPO/issues/100.
+With your existing GitHub access, find verifiable child issues and linked
+implementation PRs. Map parent outcomes to accessible child/PR/code/test
+evidence. Inspect the highest-risk cross-child integration seams at main.
+Distinguish merged code from open PR heads and mark unknown links.
+Return the evidence map, up to five consequential findings (or none),
+counterevidence, unassessed areas, and PROPOSED — NOT RUN checks.
+Do not run tests or publish anything.
+```
+
+A missing child issue, absent PR association, inaccessible repository, or large issue tree can make coverage partial. Ask for a map with **UNKNOWN** entries rather than silently assuming the feature is complete. Use [the prompt cookbook](docs/AGENT_PROMPTS.md) for ready-to-use requests covering repository audits, components, issues, PRs, parent/child hierarchies, integrations, test protection, and finding rechecks.
+
+### Can I create GitHub issues from the findings?
+
+**Not within a Gapline audit.** Its current skill must remain read-only, including no local file changes and no issue/PR publication. A separate, **explicitly authorized** post-audit workflow can use [Intentline](https://github.com/grove/intentline): `intentline-plan` to produce a source-grounded **DRAFT** acceptance plan (saving a plan requires its separate Python CLI and permitted storage), and `intentline-issue` (**singular**) to review, create, or update **one** issue in a host-accessible tracker. No sibling skill is required or automatically run. Issue creation requires the host's write access and a request that specifies the target; neither a finding nor a draft constitutes approval or a verified runtime bug.
+
+The [cookbook](docs/AGENT_PROMPTS.md#optional-turn-a-finding-into-a-github-issue-with-intentline) includes copy/paste examples for a read-only issue draft and an explicitly authorized GitHub issue creation, preserving original requirement sources, uncertainties, and checks marked **PROPOSED — NOT RUN**.
 
 ## What it investigates
 
