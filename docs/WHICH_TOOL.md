@@ -52,8 +52,8 @@ If you want to create or update a GitHub issue, use **`intentline-issue`**, and 
 
 ## Want to see a whole example?
 
-- **[Intentline: first feature plan](https://github.com/grove/intentline/blob/main/docs/FIRST_USE.md)** — original request, chat prompt, example response, next action.
-- **[Gapline: first code audit](https://github.com/grove/gapline/blob/main/docs/FIRST_USE.md)** — a small real teaching fixture, chat prompt, source-grounded example result, next action.
+- **[Try Gapline's first code audit](FIRST_USE.md)** — a real teaching fixture, chat prompt, illustrative result, and next step.
+- **[See Intentline's prompt cookbook](https://github.com/grove/intentline/blob/main/docs/AGENT_PROMPTS.md)** — practical planning and issue prompts.
 
 You can start with just a single skill and one sentence to your coding assistant. No universal pipeline, quality score, or automatic approval is involved.
 
