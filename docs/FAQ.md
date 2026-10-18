@@ -52,6 +52,21 @@ You can narrow a future request to a risky area or ask about one behavior, witho
 
 Not during a Gapline audit. If you want an issue drafted or created afterwards, [Intentline's issue skill](https://github.com/grove/intentline) is an **optional separate task**, using the coding assistant's tracker access. Creating an issue requires an explicit request and a destination. The [prompt cookbook](AGENT_PROMPTS.md#optional-turn-a-finding-into-a-github-issue-with-intentline) includes examples.
 
+
+## What might the first report look like?
+
+Here is a **made-up illustration**, not an audit of a real project:
+
+> **Possible gap:** A table download is meant to preserve the on-screen sort order, but the inspected download path may use the original row order.
+>
+> **Checked:** The download implementation and the selected export tests.
+>
+> **Still unknown:** Whether other code or tests already preserve the order.
+>
+> **Suggested next step:** Try a sorted-table download and compare the file's row order (suggested only; **NOT RUN**).
+
+A useful report should make these distinctions instead of simply declaring that a bug exists.
+
 ## What does a useful finding look like?
 
 Rather than just “tests are insufficient,” it should say **what behavior is expected, which specific code and tests were inspected, what they do and do not establish, why the gap matters, and the smallest next check**. A suspected runtime bug is not proof it happens; an unrun test is only a proposal.
