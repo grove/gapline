@@ -1,5 +1,7 @@
 # Coding-agent prompt cookbook
 
+New here? Start with the [first-use example](FIRST_USE.md) or [choose a tool](WHICH_TOOL.md) before exploring these detailed prompts.
+
 These are **copy/paste requests for an existing coding agent**, not new Gapline commands or automatically supported GitHub target types. Replace placeholders such as `ORG/REPO`, `#123`, and `PATH`. Ask for the installed `gapline-audit` skill explicitly; in Codex, `$gapline-audit` is one native way to invoke it. The host must already provide access to the cited repository, issues, PRs, and source. Installing the skill does not grant that access.
 
 **Keep the boundary clear:** `gapline-audit` investigates **read-only**. It may inspect source, tests, docs, issue/PR context, and available prior records; it does not execute project code or tests, run builds, write files, publish issues/PRs, or fix code. A GitHub URL in a prompt is a *request for the host agent to find and inspect evidence*, not a built-in Gapline crawler. Use a bounded sample on large targets and report unavailable links, unknown working-tree state, and material unassessed work. Up to three findings is the default; up to five on request. Zero supported findings is valid.
