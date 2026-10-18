@@ -126,7 +126,11 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("gapline-audit/SKILL.md", readme)
         self.assertIn("evaluation/README.md", readme)
         self.assertIn("npx skills@latest add grove/gapline", readme)
-        self.assertIn("python -m unittest discover -s tests -v", readme)
+        self.assertIn("docs/ADVANCED.md", readme)
+        self.assertIn("docs/FAQ.md", readme)
+        self.assertNotIn("python -m unittest discover -s tests -v", readme)
+        details = (ROOT / "docs" / "ADVANCED.md").read_text(encoding="utf-8")
+        self.assertIn("python -m unittest discover -s tests -v", details)
         self.assertTrue((ROOT / "DESIGN.md").is_file())
         self.assertTrue((ROOT / "IMPLEMENTATION.md").is_file())
 
