@@ -1,6 +1,6 @@
 # Gapline: common questions
 
-[Back to the quick start](../README.md) · [Copy-and-paste prompts](AGENT_PROMPTS.md)
+[Back to the quick start](../README.md) · [First-use walkthrough](FIRST_USE.md) · [Choose a tool](WHICH_TOOL.md) · [Copy-and-paste prompts](AGENT_PROMPTS.md)
 
 ## What do I need to install Gapline?
 
