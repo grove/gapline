@@ -51,6 +51,8 @@ Gapline gives you a short report: **what it checked, possible problems, evidence
 
 ## More help
 
+- **[Try a complete first audit](docs/FIRST_USE.md)** — a real teaching example with the prompt, sample report, and what to do next.
+- **[Which tool should I use?](docs/WHICH_TOOL.md)** — choose between Intentline, Gapline, Proofline, and Faultline.
 - **[Copy-and-paste prompts](docs/AGENT_PROMPTS.md)** — more ways to audit features, issues, pull requests, and entire projects.
 - **[Common questions and troubleshooting](docs/FAQ.md)** — installation, permissions, and how to understand the results.
 - **[Detailed setup and technical background](docs/ADVANCED.md)** — advanced options, evidence standards, development, and validation.
