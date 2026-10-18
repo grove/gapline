@@ -55,7 +55,7 @@ In Codex, you can also start with `$gapline-audit`. In other assistants, explici
 
 ## 4. Here's an example of what the assistant might say
 
-<escape>**Illustrative response — not an actual Gapline run**</escape>
+**Illustrative response — not an actual Gapline run**
 
 > **Scope:** Reservation intake teaching example. I read its requirement, `orders.py`, and `test_orders.py`. I did not run code or tests.
 >
