@@ -48,6 +48,41 @@ than guessing. Cite specific issue/PR and source evidence, give up to
 three consequential findings, and state what was not assessed.
 ```
 
+## Investigate an observed production incident (read-only)
+
+**Use when:** a maintainer has a real, permitted incident observation and wants to investigate whether code, documented behavior or tests might explain it. Gapline is **not** a production-monitoring, root-cause certification or incident-remediation service. Do not provide secrets, private customer data or unrestricted live production access to an agent.
+
+```text
+Use gapline-audit read-only to investigate INCIDENT_RECORD about
+OBSERVED_SYMPTOM in ORG/REPO at INCIDENT_VERSION_OR_FULL_SHA.
+The incident record and the repository/source access have been
+separately authorized for reading. If you cannot inspect them,
+say NOT ASSESSED; do not invent incident details.
+
+Record exactly what the incident telemetry/postmortem establishes,
+including its observation window and whether the deployed revision is
+known. Find the applicable original product request or policy and
+accepted exceptions, then inspect the relevant callers, implementation
+and selected tests at the incident revision (or state if unavailable).
+
+Distinguish observed production symptom from a source-code hypothesis,
+a missing test assertion, and verified root cause. Seek counterevidence,
+plausible alternative explanations and changed code since the incident.
+Return up to three consequential, cited hypotheses or no supported
+finding. For each, suggest the smallest discriminatory check as
+PROPOSED — NOT RUN with an independently sourced expected result.
+
+Report which links, logs, source revisions and tests were unavailable.
+Do not run project code or tests, fetch live production secrets, write
+local files, publish issues, fix code or declare a root cause confirmed.
+```
+
+**Teaching example — hypothetical, NOT AN AUDIT OR INCIDENT RECORD:** a payment client may retry after losing a successful response. The expected one-charge invariant must come from a genuine accepted contract, not from the AI's intuition. An incident report might show two charges with one idempotency key; inspect the actual recorded event and whether the claimed deployed revision is known before examining a deduplication path. If a test covers only a first successful request, Gapline may suggest a *proposed* lost-acknowledgement regression test. A suspected absent assertion does not itself prove double-charging or causation. Check for an upstream deduplication layer that could refute the hypothesis. **Tests were not run.**
+
+**No-source control:** if INCIDENT_RECORD is missing/inaccessible, or the observation cannot be tied to an identifiable target revision, report **NOT ASSESSED / NEEDS SOURCE** for the unresolved link, not a definitive bug. It can still be useful to state what specific source, event or owner decision is needed next. Never treat an incident label, closed ticket, or proposed reproduction as demonstrated runtime behavior.
+
+For follow-up, an authorized user can separately ask [Intentline](https://github.com/grove/intentline) to draft a source-grounded issue or acceptance plan. That is a different permission boundary: this Gapline investigation itself does not create or update issues.
+
 ## Audit a pull request
 
 ```text
